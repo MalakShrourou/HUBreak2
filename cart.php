@@ -161,6 +161,23 @@
             border-radius: 5px;
         }
 
+        .subbutton {
+            display: block;
+            width: 130px;
+            padding: 12px;
+            background: #f18b05;
+            color: #fff;
+            border: 0;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 45%;
+            margin-top: 4%;
+        }
+
+        .subbutton:hover {
+            background: #fda735;
+        }
+
         .place {
             background: orange;
             width: 15%;
@@ -209,44 +226,47 @@
     <div class="intro">
         <h1>سلة المشتريات</h1>
     </div>
-    <?php
-    if (!$database = mysqli_connect("localhost", "root", "12345678", "hubreak2_db"))
-        die("Sorry, could not connect to the server.");
-    extract($_POST);
-    $query = "select orders.ID,price,Quantity,name from Orders,products where orders.productId=products.ID";
-    $result = mysqli_query($database, $query);
-    print("<table class='table'>");
-    print("<thead>");
-    print("<th>حذف</th>");
-    print("<th>السعر</th>");
-    print("<th>الكمية</th>");
-    print("<th>المنتج</th>");
-    print("</thead>");
-    $total = 0;
-    while ($row = mysqli_fetch_row($result)) {
-        print("<tr>");
-        print("<form method='get' action='deletecart.php'>");
-        print("<td><input type='submit' class='button' value='X'></td>");
-        $x = 0;
-        foreach ($row as $value) {
-            if ($x == 0)
-                print("<input type='hidden' name='Id' value='$value'>");
-            else
-                print("<td>$value</td>");
-            $x++;
+    <form method='post' action='placeorder.php'>
+        <?php
+        if (!$database = mysqli_connect("localhost", "root", "12345678", "hubreak2_db"))
+            die("Sorry, could not connect to the server.");
+        extract($_POST);
+        $query = "select orders.ID,price,Quantity,name from Orders,products where orders.productId=products.ID";
+        $result = mysqli_query($database, $query);
+        print("<table class='table'>");
+        print("<thead>");
+        print("<th>حذف</th>");
+        print("<th>السعر</th>");
+        print("<th>الكمية</th>");
+        print("<th>المنتج</th>");
+        print("</thead>");
+        $total = 0;
+        while ($row = mysqli_fetch_row($result)) {
+            print("<tr>");
+            print("<form method='get' action='deletecart.php'>");
+            print("<td><input type='submit' class='button' value='X'></td>");
+            $x = 0;
+            foreach ($row as $value) {
+                if ($x == 0)
+                    print("<input type='hidden' name='Id' value='$value'>");
+                else
+                    print("<td>$value</td>");
+                $x++;
+            }
+            $total = $total + $row[2] * $row[1];
+            print("</form>");
+            print("</tr>");
         }
-        $total = $total + $row[2] * $row[1];
-        print("</form>");
-        print("</tr>");
-    }
-    print("<tfoot style='margin-top:30px;'>");
-    print("<th></th>");
-    print("<th>$total</th>");
-    print("<th colspan='2'>المبلغ الاجمالي</th>");
-    print("</tfoot>");
-    print("</table>");
-    mysqli_close($database);
-    ?>
+        print("<tfoot style='margin-top:30px;'>");
+        print("<th></th>");
+        print("<th>$total</th>");
+        print("<th colspan='2'>المبلغ الاجمالي</th>");
+        print("</tfoot>");
+        print("</table>");
+        mysqli_close($database);
+        ?>
+        <input type="submit" value="تأكيد الطلب" class="subbutton">
+    </form>
     <footer>
         <p>Developed By</p>
         <p>HU Break Team &copy;</p>
