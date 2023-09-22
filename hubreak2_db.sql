@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 22, 2023 at 05:52 PM
+-- Generation Time: Sep 22, 2023 at 08:46 PM
 -- Server version: 8.0.17
 -- PHP Version: 7.3.10
 
@@ -65,6 +65,7 @@ INSERT INTO `customers` (`ID`, `Name`, `Email`, `Password`) VALUES
 CREATE TABLE `orders` (
   `ID` int(11) NOT NULL,
   `ProductID` int(11) NOT NULL,
+  `resturantID` int(11) NOT NULL,
   `Quantity` int(11) NOT NULL,
   `Description` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -328,7 +329,8 @@ ALTER TABLE `customers`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `Foreign3` (`ProductID`);
+  ADD KEY `resturantID` (`resturantID`) USING BTREE,
+  ADD KEY `ProductID` (`ProductID`,`resturantID`) USING BTREE;
 
 --
 -- Indexes for table `products`
@@ -376,7 +378,7 @@ ALTER TABLE `customers`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -411,7 +413,8 @@ ALTER TABLE `carts`
 -- Constraints for table `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `Foreign3` FOREIGN KEY (`ProductID`) REFERENCES `products` (`ID`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `Foreign3` FOREIGN KEY (`ProductID`) REFERENCES `products` (`ID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `Foreign6` FOREIGN KEY (`resturantID`) REFERENCES `resturants` (`ID`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `rate`
