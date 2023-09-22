@@ -6,192 +6,192 @@
     <meta charset=utf8>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            font-family: 'Times New Roman', Times, serif;
-            box-sizing: border-box;
-        }
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: 'Times New Roman', Times, serif;
+        box-sizing: border-box;
+    }
 
-        body {
-            color: rgb(124, 17, 17);
-            background-attachment: fixed;
-        }
+    body {
+        color: rgb(124, 17, 17);
+        background-attachment: fixed;
+    }
 
-        .menu-bar {
-            background: #f18b05;
-            text-align: right;
-            height: 40px;
-            margin-right: 10%;
-            padding-right: 5px;
-            font-size: large;
-        }
+    .menu-bar {
+        background: #f18b05;
+        text-align: right;
+        height: 40px;
+        margin-right: 10%;
+        padding-right: 5px;
+        font-size: large;
+    }
 
-        .menu-bar ul {
-            display: inline-flex;
-            list-style: none;
-            color: #fff;
-        }
+    .menu-bar ul {
+        display: inline-flex;
+        list-style: none;
+        color: #fff;
+    }
 
-        .menu-bar ul li {
-            width: 120px;
-            margin: 0px;
-            padding: 10px 0px;
-            text-align: center;
-        }
+    .menu-bar ul li {
+        width: 120px;
+        margin: 0px;
+        padding: 10px 0px;
+        text-align: center;
+    }
 
-        .menu-bar ul li a {
-            text-decoration: none;
-            color: #fff;
-            padding-right: 10px;
-        }
+    .menu-bar ul li a {
+        text-decoration: none;
+        color: #fff;
+        padding-right: 10px;
+    }
 
-        .menu,
-        .user {
-            display: none;
-        }
+    .menu,
+    .user {
+        display: none;
+    }
 
-        .menu-bar ul li:hover {
-            background-color: #fda025;
-        }
+    .menu-bar ul li:hover {
+        background-color: #fda025;
+    }
 
-        .menu-bar ul li:hover .menu,
-        .menu-bar ul li:hover .user {
-            display: block;
-            position: absolute;
-            background-color: #FBB202;
-            margin-top: 10px;
-            margin-left: -20px;
-        }
+    .menu-bar ul li:hover .menu,
+    .menu-bar ul li:hover .user {
+        display: block;
+        position: absolute;
+        background-color: #FBB202;
+        margin-top: 10px;
+        margin-left: -20px;
+    }
 
-        .menu-bar ul li:hover .menu ul,
-        .menu-bar ul li:hover .user ul {
-            display: block;
-        }
+    .menu-bar ul li:hover .menu ul,
+    .menu-bar ul li:hover .user ul {
+        display: block;
+    }
 
-        .menu-bar ul li:hover .menu ul li,
-        .menu-bar ul li:hover .user ul li {
-            width: 150px;
-            padding: 10px;
-            border-bottom: 1px dotted #fff;
-            background: transparent;
-            border-radius: 0;
-            text-align: center;
-        }
+    .menu-bar ul li:hover .menu ul li,
+    .menu-bar ul li:hover .user ul li {
+        width: 150px;
+        padding: 10px;
+        border-bottom: 1px dotted #fff;
+        background: transparent;
+        border-radius: 0;
+        text-align: center;
+    }
 
-        .menu-bar ul li:hover .menu ul li:last-child,
-        .menu-bar ul li:hover .user ul li:last-child {
-            border-bottom: none;
-        }
+    .menu-bar ul li:hover .menu ul li:last-child,
+    .menu-bar ul li:hover .user ul li:last-child {
+        border-bottom: none;
+    }
 
-        .menu-bar ul li:hover .menu ul li a:hover,
-        .menu-bar ul li:hover .user ul li a:hover {
-            color: rgb(124, 17, 17);
-        }
+    .menu-bar ul li:hover .menu ul li a:hover,
+    .menu-bar ul li:hover .user ul li a:hover {
+        color: rgb(124, 17, 17);
+    }
 
-        .logo {
-            width: 10%;
-            height: 40px;
-            right: 0;
-            position: absolute;
-        }
-
-
-        .product {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 20%;
-            height: 30%;
-            border-radius: 15px;
-            background-color: rgb(241, 238, 238);
-            margin: 70px 50px 0 0;
-            font-size: 20px;
-        }
-
-        .food {
-            width: 200px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 15px;
-            margin: 20px 20px 5px 20px;
-        }
-
-        .section {
-            margin-bottom: 100px;
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            margin-left: 12%;
-        }
-
-        h1,
-        h2,
-        h3 {
-            text-align: center;
-        }
+    .logo {
+        width: 10%;
+        height: 40px;
+        right: 0;
+        position: absolute;
+    }
 
 
-        .cart-icon {
-            display: inline-block;
-            width: 18px;
-            height: 18px;
-            background-image: url("cart-icon.png");
-            background-size: contain;
-        }
+    .product {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 20%;
+        height: 30%;
+        border-radius: 15px;
+        background-color: rgb(241, 238, 238);
+        margin: 70px 50px 0 0;
+        font-size: 20px;
+    }
 
-        footer {
-            background: #f18b05;
-            color: white;
-            text-align: center;
-            padding: 10px;
-        }
+    .food {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 15px;
+        margin: 20px 20px 5px 20px;
+    }
 
-        .intro {
-            background-color: #fda025;
-            width: 100%;
-            color: white;
-            padding: 2% 0;
-            font-size: xx-large;
-        }
+    .section {
+        margin-bottom: 100px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-left: 12%;
+    }
 
-        h2 {
-            padding: 30px;
-        }
+    h1,
+    h2,
+    h3 {
+        text-align: center;
+    }
 
-        .submit {
-            margin-left: 47%;
-            margin-bottom: 3%;
-            background-color: #f18b05;
-            width: 70px;
-            border: 0;
-            padding: 10px;
-            color: white;
-            border-radius: 10px;
-        }
 
-        .user-icon {
-            display: inline-block;
-            width: 18px;
-            height: 18px;
-            background-image: url("user.png");
-            background-size: contain;
-        }
+    .cart-icon {
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        background-image: url("cart-icon.png");
+        background-size: contain;
+    }
 
-        .product .button {
-            display: block;
-            width: 130px;
-            padding: 12px;
-            background: #f18b05;
-            color: #fff;
-            border: 0;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+    footer {
+        background: #f18b05;
+        color: white;
+        text-align: center;
+        padding: 10px;
+    }
 
-        .product .button:hover {
-            background: #fda735;
-        }
+    .intro {
+        background-color: #fda025;
+        width: 100%;
+        color: white;
+        padding: 2% 0;
+        font-size: xx-large;
+    }
+
+    h2 {
+        padding: 30px;
+    }
+
+    .submit {
+        margin-left: 47%;
+        margin-bottom: 3%;
+        background-color: #f18b05;
+        width: 70px;
+        border: 0;
+        padding: 10px;
+        color: white;
+        border-radius: 10px;
+    }
+
+    .user-icon {
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        background-image: url("user.png");
+        background-size: contain;
+    }
+
+    .product .button {
+        display: block;
+        width: 130px;
+        padding: 12px;
+        background: #f18b05;
+        color: #fff;
+        border: 0;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .product .button:hover {
+        background: #fda735;
+    }
     </style>
 </head>
 
@@ -235,7 +235,7 @@
         if (!$database = mysqli_connect("localhost", "root", "12345678", "hubreak2_db"))
             die("Sorry, could not connect to the server.");
         extract($_POST);
-        $query = "select products.* from products join resturantproducts on products.ID = productId WHERE resturantproducts.resturantId = 1  ";
+        $query = "select products.*,resturantproducts.resturantId from products join resturantproducts on products.ID = productId WHERE resturantproducts.resturantId = 1  ";
         $result = mysqli_query($database, $query);
         while ($row = mysqli_fetch_row($result)) {
             print("<form class='product' method='post' action='addtocart.php'>");
@@ -245,6 +245,8 @@
                     print("<img src='$value' class='food'></img>");
                 elseif ($x == 1)
                     print("<input type='hidden' name='ID' value='$value'>");
+                elseif ($x == 4)
+                    print("<input type='hidden' name='restID' value='$value'>");
                 else {
                     print("<span >$value</span>");
                 }
