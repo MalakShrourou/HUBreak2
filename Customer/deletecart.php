@@ -1,4 +1,5 @@
 <?php
+session_start();
 if (!$database = mysqli_connect("localhost", "root", "12345678"))
     die("Sorry, could not connect to the server.");
 if (!mysqli_select_db($database, "hubreak2_db"))

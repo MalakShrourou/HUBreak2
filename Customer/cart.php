@@ -1,10 +1,12 @@
-<!DOCTYPE html>
+<?php
+session_start();
+?>
+<!Doctype html>
 <html>
 
 <head>
-    <title>Espresso</title>
-    <meta charset=utf8>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <title>Cart</title>
+    <meta charset="UTF-8">
     <style>
     * {
         margin: 0;
@@ -16,6 +18,7 @@
     body {
         color: rgb(124, 17, 17);
         background-attachment: fixed;
+        background-color: white;
     }
 
     .menu-bar {
@@ -96,48 +99,24 @@
         position: absolute;
     }
 
-
-    .product {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 20%;
-        height: 30%;
-        border-radius: 15px;
-        background-color: rgb(241, 238, 238);
-        margin: 70px 50px 0 0;
-        font-size: 20px;
+    .table {
+        font-size: 30px;
+        margin: 6% 6% auto 15%;
+        width: 80%;
+        color: rgb(124, 17, 17);
     }
 
-    .food {
-        width: 200px;
-        height: 200px;
-        object-fit: cover;
-        border-radius: 15px;
-        margin: 20px 20px 5px 20px;
-    }
-
-    .section {
-        margin-bottom: 100px;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        margin-left: 12%;
-    }
-
-    h1,
-    h2,
-    h3 {
+    .table td {
         text-align: center;
     }
 
+    tr {
+        height: 40px;
+    }
 
-    .cart-icon {
-        display: inline-block;
-        width: 18px;
-        height: 18px;
-        background-image: url("cart-icon.png");
-        background-size: contain;
+    thead,
+    tfoot {
+        height: 30px;
     }
 
     footer {
@@ -145,29 +124,17 @@
         color: white;
         text-align: center;
         padding: 10px;
+        margin-bottom: 0;
+        margin-top: 10%;
+        background-attachment: fixed;
     }
 
-    .intro {
-        background-color: #fda025;
-        width: 100%;
-        color: white;
-        padding: 2% 0;
-        font-size: xx-large;
-    }
-
-    h2 {
-        padding: 30px;
-    }
-
-    .submit {
-        margin-left: 47%;
-        margin-bottom: 3%;
-        background-color: #f18b05;
-        width: 70px;
-        border: 0;
-        padding: 10px;
-        color: white;
-        border-radius: 10px;
+    a .cart-icon {
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        background-image: url("cart-icon.png");
+        background-size: contain;
     }
 
     .user-icon {
@@ -178,7 +145,26 @@
         background-size: contain;
     }
 
-    .product .button {
+    .intro {
+        background-color: #fda025;
+        width: 100%;
+        color: white;
+        padding: 2% 0;
+        font-size: xx-large;
+        text-align: center;
+    }
+
+    .button {
+        cursor: pointer;
+        padding: 6px;
+        width: 60%;
+        background: red;
+        color: white;
+        border: 0;
+        border-radius: 5px;
+    }
+
+    .subbutton {
         display: block;
         width: 130px;
         padding: 12px;
@@ -187,10 +173,38 @@
         border: 0;
         border-radius: 5px;
         cursor: pointer;
+        margin-left: 45%;
+        margin-top: 4%;
     }
 
-    .product .button:hover {
+    .subbutton:hover {
         background: #fda735;
+    }
+
+    .place {
+        background: orange;
+        width: 15%;
+        border: 0;
+        margin-left: 44%;
+        margin-top: 30px;
+        padding: 15px;
+        color: #FFFFFF;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    .desc {
+        margin: 10px 100px 20px 75%;
+        overflow: auto;
+        text-align: right;
+        font-size: 30px;
+    }
+
+    .box {
+        overflow: auto;
+        text-align: right;
+        margin-left: 62%;
+        font-size: 20px;
     }
     </style>
 </head>
@@ -227,40 +241,54 @@
         </ul>
     </nav>
     <div class="intro">
-        <h1>مطاعم اسبريسو</h1>
-        <h3>الموقع : بجانب مبنى مطاعم الجامعة</h3>
+        <h1>سلة المشتريات</h1>
     </div>
-    <div class="section">
+    <form method='post' action='placeorder.php'>
         <?php
         if (!$database = mysqli_connect("localhost", "root", "12345678", "hubreak2_db"))
             die("Sorry, could not connect to the server.");
         extract($_POST);
-        $query = "select products.*,resturantproducts.resturantId from products join resturantproducts on products.ID = productId WHERE resturantproducts.resturantId = 2";
+        $query = "select orders.ID,price,Quantity,name from Orders,products where orders.productId=products.ID";
         $result = mysqli_query($database, $query);
+        print("<table class='table'>");
+        print("<thead>");
+        print("<th>حذف</th>");
+        print("<th>السعر</th>");
+        print("<th>الكمية</th>");
+        print("<th>المنتج</th>");
+        print("</thead>");
+        $total = 0;
         while ($row = mysqli_fetch_row($result)) {
-            print("<form class='product' method='post' action='addtocart.php'>");
+            print("<tr>");
+            print("<form method='get' action='deletecart.php'>");
+            print("<td><input type='submit' class='button' value='X'></td>");
             $x = 0;
             foreach ($row as $value) {
                 if ($x == 0)
-                    print("<img src='$value' class='food'></img>");
-                elseif ($x == 1)
-                    print("<input type='hidden' name='ID' value='$value'>");
-                elseif ($x == 4)
-                    print("<input type='hidden' name='restID' value='$value'>");
-                else {
-                    print("<span >$value</span>");
-                }
+                    print("<input type='hidden' name='Id' value='$value'>");
+                else
+                    print("<td>$value</td>");
                 $x++;
             }
-            print("<span class='count'><input type='number' style='margin-right: 10px;' name='quantity' min='1'
-                                max='5' value='1'>: الكمية</span><br>
-                        <input type='submit' class='button' value='أضف إلى السلة'></input><br>");
+            $total = $total + $row[2] * $row[1];
             print("</form>");
+            print("</tr>");
         }
+        print("<tfoot style='margin-top:30px;'>");
+        print("<th></th>");
+        print("<th>$total</th>");
+        print("<th colspan='2'>المبلغ الاجمالي</th>");
+        print("</tfoot>");
+        print("</table><br>");
+        print("<label class='desc'> :أضف ملاحظة<br><textarea rows='6' cols='30' name='desc' class='box' placeholder='...أكتب ملاحظتك هنا'></textarea></label>");
         mysqli_close($database);
         ?>
-    </div>
+        <input type="submit" value="تأكيد الطلب" class="subbutton">
+    </form>
     <footer>
         <p>Developed By</p>
         <p>HU Break Team &copy;</p>
     </footer>
+</body>
+
+</html>

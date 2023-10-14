@@ -1,13 +1,13 @@
+<?php
+session_start();
+session_unset();
+session_destroy();
+header("Refresh: 2; url=Login.php");
+?>
 <html>
 
 <head>
     <title>Logout</title>
-    <?php
-    session_start();
-    session_unset();
-    session_destroy();
-    header("Refresh: 2; url=Login.php");
-    ?>
     <style>
         body {
             background-color: #f18b05;

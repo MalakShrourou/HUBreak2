@@ -1,21 +1,26 @@
-<!DOCTYPE html>
+<?php
+session_start();
+?>
+<!Doctype html>
+
 <html>
 
 <head>
-    <title>Zaza</title>
-    <meta charset=utf8>
+    <title>HU Break</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <style>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        body {
+            background-image: url("cover.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
         * {
             margin: 0;
             padding: 0;
             font-family: 'Times New Roman', Times, serif;
             box-sizing: border-box;
-        }
-
-        body {
-            color: rgb(124, 17, 17);
-            background-attachment: fixed;
         }
 
         .menu-bar {
@@ -89,6 +94,13 @@
             color: rgb(124, 17, 17);
         }
 
+        .intro {
+            background-color: #fda025;
+            width: 100%;
+            height: 100%;
+            padding-bottom: 4%;
+        }
+
         .logo {
             width: 10%;
             height: 40px;
@@ -96,41 +108,70 @@
             position: absolute;
         }
 
-
-        .product {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 20%;
-            height: 30%;
-            border-radius: 15px;
-            background-color: rgb(241, 238, 238);
-            margin: 70px 50px 0 0;
-            font-size: 20px;
+        .intro h1 {
+            color: #fff;
+            font-size: 70px;
+            padding-left: 8%;
+            padding-right: 8%;
+            padding-bottom: 8%;
+            padding-top: 14%;
         }
 
-        .food {
-            width: 200px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 15px;
-            margin: 20px 20px 5px 20px;
+        .logo2 {
+            margin-top: 2%;
+            float: right;
+            margin-right: 4%;
         }
 
-        .section {
-            margin-bottom: 100px;
+        .rest {
+            width: 27%;
+            margin: 20px;
+            text-align: center;
+            border-style: solid;
+            border-color: #fff;
+            background: #fff;
+            border-radius: 30px;
+            color: white;
+            box-shadow: -30px 30px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .rest img {
+            width: 70%;
+            height: auto;
+            border-radius: 200px;
+            border-style: solid;
+            margin: 20px;
+        }
+
+        .center {
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
-            margin-left: 12%;
+            margin: 100px 0 100px 11%;
         }
 
-        h1,
-        h2,
-        h3 {
+        .name {
             text-align: center;
+            font-size: 24px;
+            color: rgb(124, 17, 17);
         }
 
+        footer {
+            background-color: #f18b05;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            padding: 15px;
+        }
+
+        footer img {
+            cursor: pointer;
+        }
+
+        a {
+            text-decoration: none;
+            color: transparent;
+        }
 
         .cart-icon {
             display: inline-block;
@@ -140,57 +181,12 @@
             background-size: contain;
         }
 
-        footer {
-            background: #f18b05;
-            color: white;
-            text-align: center;
-            padding: 10px;
-        }
-
-        .intro {
-            background-color: #fda025;
-            width: 100%;
-            color: white;
-            padding: 2% 0;
-            font-size: xx-large;
-        }
-
-        h2 {
-            padding: 30px;
-        }
-
-        .submit {
-            margin-left: 47%;
-            margin-bottom: 3%;
-            background-color: #f18b05;
-            width: 70px;
-            border: 0;
-            padding: 10px;
-            color: white;
-            border-radius: 10px;
-        }
-
         .user-icon {
             display: inline-block;
             width: 18px;
             height: 18px;
             background-image: url("user.png");
             background-size: contain;
-        }
-
-        .product .button {
-            display: block;
-            width: 130px;
-            padding: 12px;
-            background: #f18b05;
-            color: #fff;
-            border: 0;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .product .button:hover {
-            background: #fda735;
         }
     </style>
 </head>
@@ -211,7 +207,7 @@
             </li>
             <li><a href="#">العروض</a></li>
             <li><a href="Home.php#cont">من نحن</a></li>
-            <li class="rest"><a href=" #">المطاعم</a>
+            <li><a href=" #">المطاعم</a>
                 <div class="menu">
                     <ul>
                         <li><a href="Zaza.php">مطعم ظاظا</a></li>
@@ -226,41 +222,72 @@
             <li><a href="Home.php">الصفحة الرئيسية</a></li>
         </ul>
     </nav>
+
     <div class="intro">
-        <h1>مطاعم ظاظا</h1>
-        <h3>الموقع : بجانب مبنى مطاعم الجامعة</h3>
+        <img src="FastFood.png" class="logo2">
+        <h1><em>It's not just food, It's an Experience.</em></h1>
+        <br><br><br><br>
     </div>
-    <div class="section">
+    <div class="center">
         <?php
         if (!$database = mysqli_connect("localhost", "root", "12345678", "hubreak2_db"))
             die("Sorry, could not connect to the server.");
         extract($_POST);
-        $query = "select products.*,resturantproducts.resturantId from products join resturantproducts on products.ID = productId WHERE resturantproducts.resturantId = 5 ";
+        $query = "select ID,Image,name from resturants ";
         $result = mysqli_query($database, $query);
         while ($row = mysqli_fetch_row($result)) {
-            print("<form class='product' method='post' action='addtocart.php' >");
+            print("<div class='rest'>");
             $x = 0;
+            $link = null;
+            $RestID = 0;
             foreach ($row as $value) {
-                if ($x == 0)
-                    print("<img src='$value' class='food'></img>");
-                elseif ($x == 1)
-                    print("<input type='hidden' name='ID' value='$value'>");
-                elseif ($x == 4)
-                    print("<input type='hidden' name='restID' value='$value'>");
-                else {
-                    print("<span >$value</span>");
+                if ($x == 0) {
+                    if ($value == 1) {
+                        $link = "eastern.php";
+                        $RestID = 1;
+                    } elseif ($value == 2) {
+                        $link = "Espresso.php";
+                        $RestID = 2;
+                    } elseif ($value == 3) {
+                        $link = "medicine.php";
+                        $RestID = 3;
+                    } elseif ($value == 4) {
+                        $link = "village.php";
+                        $RestID = 4;
+                    } elseif ($value == 5) {
+                        $link = "zaza.php";
+                        $RestID = 5;
+                    } elseif ($value == 6) {
+                        $link = "western.php";
+                        $RestID = 6;
+                    }
+                }
+                if ($x == 1)
+                    print("<a href='$link'><img src='$value'></img></a><br>");
+                elseif ($x == 2) {
+                    print("<a href='$link'><span class='name'>$value</span></a><br><br>");
                 }
                 $x++;
             }
-            print("<span class='count'><input type='number' style='margin-right: 10px;' name='quantity' min='1'
-                                max='5' value='1'>: الكمية</span><br>
-                        <input type='submit' class='button' value='أضف إلى السلة'></input><br>");
-            print("</form>");
+            print("</div>");
         }
         mysqli_close($database);
         ?>
     </div>
-    <footer>
-        <p>Developed By</p>
-        <p>HU Break Team &copy;</p>
+    <footer id="cont">
+        <h1 style="margin-top: 20px;">نبذة عنا</h1>
+        <p style="margin-top: 10px;"> فريق طلابي من الجامعة الهاشمية حبينا نخدم زملائناالطلاب <br>بتوفير وقتهم وتقديم
+            العروض الخاصة فيهم</p>
+        <br>
+        <img src="instagram.png" width="25px">
+        <img src="facebook.png" width="25px">
+        <img src="twitter.png" width="25px">
+        <br><br>
+        <hr>
+        <br>
+        <h2>Developed By</h2>
+        <h3>HU Break Team <span>&copy</span></h3>
     </footer>
+</body>
+
+</html>

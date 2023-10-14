@@ -1,8 +1,11 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>Eastern</title>
+    <title>Zaza</title>
     <meta charset=utf8>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <style>
@@ -192,6 +195,109 @@
     .product .button:hover {
         background: #fda735;
     }
+
+    .rating {
+        padding: 10px;
+        position: relative;
+        direction: rtl;
+        margin-top: 100px;
+        width: 100%;
+        margin-left: 160%;
+    }
+
+    .rating .emo {
+        direction: rtl;
+        position: absolute;
+        font-family: FontAwesome;
+        color: #f18b05;
+        font-size: 90px;
+        bottom: 100%;
+        transform: translateX(-50%);
+        display: inline-block;
+        left: 50%;
+    }
+
+    .rating .emo:after {
+        content: '\f119';
+    }
+
+    .rating input {
+        position: absolute;
+        width: 25px;
+        height: 50px;
+        cursor: pointer;
+        transform: translateX(52px);
+        opacity: 0;
+        z-index: 5;
+    }
+
+    .rating input:nth-of-type(4):checked~.emo:after,
+    .rating input:nth-of-type(4):hover~.emo:after,
+    .rating input:nth-of-type(3):checked~.emo:after,
+    .rating input:nth-of-type(3):hover~.emo:after {
+        content: '\f11a';
+    }
+
+    .rating input:nth-of-type(1):checked~.emo:after,
+    .rating input:nth-of-type(1):hover~.emo:after,
+    .rating input:nth-of-type(2):checked~.emo:after,
+    .rating input:nth-of-type(2):hover~.emo:after {
+        content: '\f118';
+    }
+
+    .rating input:nth-of-type(1) {
+        right: 50px;
+    }
+
+    .rating input:nth-of-type(2) {
+        right: 100px;
+    }
+
+    .rating input:nth-of-type(3) {
+        right: 150px;
+    }
+
+    .rating input:nth-of-type(4) {
+        right: 200px;
+    }
+
+    .rating input:nth-of-type(5) {
+        right: 250px;
+    }
+
+    .rating input:nth-of-type(6) {
+        right: 300px;
+    }
+
+    .rating input:checked~.star:after,
+    .rating input:hover~.star:after {
+        content: '\f005';
+    }
+
+    .rating .star {
+        display: inline-block;
+        font-family: FontAwesome;
+        font-size: 42px;
+        color: #FBB202;
+        cursor: pointer;
+        margin: 3px;
+    }
+
+    .rating .star:after {
+        content: '\f006';
+    }
+
+    .rating .star:hover~.star:after,
+    .rating .star:hover:after {
+        content: '\f005';
+    }
+
+    .box {
+        overflow: auto;
+        text-align: right;
+        margin-left: 168%;
+        font-size: 12px;
+    }
     </style>
 </head>
 
@@ -227,18 +333,18 @@
         </ul>
     </nav>
     <div class="intro">
-        <h1>مطاعم الشرقي</h1>
-        <h3>الموقع : في مجمع القاعات الشرقي</h3>
+        <h1>مطاعم ظاظا</h1>
+        <h3>الموقع : بجانب مبنى مطاعم الجامعة</h3>
     </div>
     <div class="section">
         <?php
         if (!$database = mysqli_connect("localhost", "root", "12345678", "hubreak2_db"))
             die("Sorry, could not connect to the server.");
         extract($_POST);
-        $query = "select products.*,resturantproducts.resturantId from products join resturantproducts on products.ID = productId WHERE resturantproducts.resturantId = 1  ";
+        $query = "select products.*,resturantproducts.resturantId from products join resturantproducts on products.ID = productId WHERE resturantproducts.resturantId = 5 ";
         $result = mysqli_query($database, $query);
         while ($row = mysqli_fetch_row($result)) {
-            print("<form class='product' method='post' action='addtocart.php'>");
+            print("<form class='product' method='post' action='addtocart.php' >");
             $x = 0;
             foreach ($row as $value) {
                 if ($x == 0)
@@ -259,6 +365,21 @@
         }
         mysqli_close($database);
         ?>
+        <form action="submit_rating.php" method="post">
+            <input type="hidden" name="RestID" value="5">
+            <div class="rating">
+                <input type="radio" name="rate" value="5" /><span class="star"> </span>
+                <input type="radio" name="rate" value="4" /><span class="star"> </span>
+                <input type="radio" name="rate" value="3" /><span class="star"> </span>
+                <input type="radio" name="rate" value="2" /><span class="star"> </span>
+                <input type="radio" name="rate" value="1" /><span class="star"> </span>
+                <span class="emo"> </span>
+            </div>
+            <div>
+                <textarea rows="4" cols="35" name="desc" class="box" placeholder='...أكتب ملاحظتك هنا'></textarea>
+            </div><br>
+            <input type="submit" value="إضافة تقييم" class="submit" style="margin-left: 200%;">
+        </form>
     </div>
     <footer>
         <p>Developed By</p>

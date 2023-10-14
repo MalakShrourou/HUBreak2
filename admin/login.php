@@ -8,20 +8,20 @@ if (!mysqli_select_db($database, "hubreak2_db"))
 extract($_POST);
 $error = "";
 if (isset($submit)) {
-    $query = "SELECT * FROM customers WHERE email = '$email'";
+    $query = "SELECT * FROM resturants WHERE username = '$username'";
     if (!$result = mysqli_query($database, $query))
         die("wrong query");
     if (mysqli_num_rows($result) == 1) {
         $row = mysqli_fetch_assoc($result);
-        if ($password == $row['Password']) {
-            $_SESSION['email'] = $email;
+        if ($password == $row['password']) {
+            $_SESSION['username'] = $username;
             $error = "";
             header("Location:Home.php");
         } else {
             $error = "Wrong Password";
         }
     } else {
-        $error = "Invalid Email";
+        $error = "Invalid username";
     }
 }
 ?>
@@ -30,6 +30,7 @@ if (isset($submit)) {
 <html>
 
 <head>
+    <title>HU Break</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <style>
         @import url(https://fonts.googleapis.com/css?family=Roboto:300);
@@ -163,8 +164,8 @@ if (isset($submit)) {
     <div class="login-page">
         <div class="form">
             <form class="login-form" method="POST" autocomplete="off">
-                <input type="email" name="email" placeholder="Email" spellcheck="false" required />
-                <input type="password" name="password" placeholder="Password (must containe 8 digits)"
+                <input type="test" name="username" placeholder="Username" required />
+                <input type="password" name="password" placeholder="Password (must containe 8 digits)" required
                     spellcheck="false" style="margin-left: -10px; " required id="id_password" />
                 <i class="far fa-eye" id="togglePassword" style="margin-left: -35px; cursor: pointer;"></i>
                 <script>
@@ -180,7 +181,6 @@ if (isset($submit)) {
                     <?php echo $error; ?>
                 </p>
                 <button name="submit">Login</button>
-                <p class="message">Don't have an account? <a href="Signup.php">Signup</a></p>
             </form>
         </div>
     </div>
