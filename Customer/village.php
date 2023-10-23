@@ -294,7 +294,7 @@ session_start();
     }
 
     .rating .emo:after {
-        content: '\f119';
+        content: '\f118';
     }
 
     .rating div input {
@@ -320,8 +320,6 @@ session_start();
     .rating input:nth-of-type(2):hover~.emo:after {
         content: '\f118';
     }
-
-
 
     .rating input:checked~.star:after,
     .rating input:hover~.star:after {
@@ -408,7 +406,7 @@ session_start();
         $query = "select products.*,resturantproducts.resturantId from products join resturantproducts on products.ID = productId WHERE resturantproducts.resturantId = 4 ";
         $result = mysqli_query($database, $query);
         while ($row = mysqli_fetch_row($result)) {
-            print("<form class='product' method='post' action='addtocart.php'>");
+            print("<form class='product' method='post' action='addtocart.php' onclick='myFunction()'>");
             $x = 0;
             foreach ($row as $value) {
                 if ($x == 0)
@@ -505,7 +503,7 @@ session_start();
             ?>
         </div>
         <div class="rating">
-            <form action="submit_rating.php" method="post">
+            <form action="submit_rating.php" method="post" onclick='myFunction()'>
                 <input type="hidden" name="RestID" value="4">
                 <span class="emo"> </span><br><br><br><br><br>
                 <div>
@@ -525,3 +523,13 @@ session_start();
         <p>Developed By</p>
         <p>HU Break Team &copy;</p>
     </footer>
+
+    <script>
+    function myFunction() {
+        alert("تمت الإضافة بنجاح!");
+    }
+    </script>
+
+</body>
+
+</html>

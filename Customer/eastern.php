@@ -99,7 +99,6 @@ session_start();
         position: absolute;
     }
 
-
     .product {
         display: flex;
         flex-direction: column;
@@ -133,7 +132,6 @@ session_start();
     h3 {
         text-align: center;
     }
-
 
     .cart-icon {
         display: inline-block;
@@ -293,8 +291,8 @@ session_start();
         margin-bottom: 20px;
     }
 
-    .rating .emo:after {
-        content: '\f119';
+    .emo:after {
+        content: '\f118';
     }
 
     .rating div input {
@@ -320,8 +318,6 @@ session_start();
     .rating input:nth-of-type(2):hover~.emo:after {
         content: '\f118';
     }
-
-
 
     .rating input:checked~.star:after,
     .rating input:hover~.star:after {
@@ -397,6 +393,7 @@ session_start();
         </ul>
     </nav>
     <div class="intro">
+        <p id="demo"></p>
         <h1>مطاعم الشرقي</h1>
         <h3>الموقع : في مجمع القاعات الشرقي</h3>
     </div>
@@ -424,7 +421,7 @@ session_start();
             }
             print("<span class='count'><input type='number' style='margin-right: 10px;' name='quantity' min='1'
                                 max='5' value='1'>: الكمية</span><br>
-                        <input type='submit' class='button' value='أضف إلى السلة'></input><br>");
+                        <input type='submit' class='button' value='أضف إلى السلة' onclick='myFunction()'></input><br>");
             print("</form>");
         }
         mysqli_close($database);
@@ -505,7 +502,7 @@ session_start();
             ?>
         </div>
         <div class="rating">
-            <form action="submit_rating.php" method="post">
+            <form action="submit_rating.php" method="post" onsubmit="myFunction()">
                 <input type="hidden" name="RestID" value="1">
                 <span class="emo"> </span><br><br><br><br><br>
                 <div>
@@ -525,3 +522,13 @@ session_start();
         <p>Developed By</p>
         <p>HU Break Team &copy;</p>
     </footer>
+
+    <script>
+    function myFunction() {
+        alert("تمت الإضافة بنجاح!");
+    }
+    </script>
+
+</body>
+
+</html>
