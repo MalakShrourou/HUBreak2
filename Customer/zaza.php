@@ -121,7 +121,7 @@ session_start();
     }
 
     .section {
-        margin-bottom: 100px;
+        margin-bottom: 50px;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
@@ -196,32 +196,108 @@ session_start();
         background: #fda735;
     }
 
-    .rating {
+    .rate_sec {
+        display: flex;
+        flex-direction: row;
+        margin-left: 20%;
+        margin-bottom: 50px;
+    }
+
+    .show_rate {
+        display: flex;
+        flex-direction: column;
+        width: 40%;
+        text-align: center;
+    }
+
+    .total-rate {
+        width: 75%;
+        border-radius: 15px;
+        background-color: rgb(241, 238, 238);
+        font-size: 20px;
+        padding: 20px;
+        padding-left: 50px;
+    }
+
+    .rating3 {
+        position: absolute;
+        width: 35px;
+        height: 50px;
+        cursor: pointer;
+        transform: translateX(52px);
+        opacity: 0;
+        z-index: 5;
+    }
+
+    .star3 {
+        font-family: FontAwesome;
+        font-size: 30px;
+        color: #FBB202;
+        cursor: pointer;
+        margin: 0;
+        padding: 5px;
+    }
+
+    .star3::after {
+        content: '\f005';
+    }
+
+    .rate {
+        width: 75%;
+        height: auto;
+        border-radius: 15px;
+        background-color: rgb(241, 238, 238);
+        font-size: 18px;
         padding: 10px;
-        position: relative;
-        direction: rtl;
-        margin-top: 100px;
-        width: 100%;
-        margin-left: 160%;
+        margin: 30px 10px 10px 0;
+    }
+
+    .show {
+        position: absolute;
+        width: 35px;
+        height: 50px;
+        cursor: pointer;
+        transform: translateX(52px);
+        opacity: 0;
+        z-index: 5;
+    }
+
+    .star2 {
+        display: inline-block;
+        font-family: FontAwesome;
+        font-size: 30px;
+        color: #FBB202;
+        cursor: pointer;
+        margin: 0;
+        padding: 0;
+    }
+
+    .star2::after {
+        content: '\f005';
+    }
+
+    .rating {
+        width: 35%;
+        padding: 20px;
+        border-radius: 15px;
+        background-color: rgb(241, 238, 238);
+        text-align: center;
     }
 
     .rating .emo {
-        direction: rtl;
         position: absolute;
         font-family: FontAwesome;
         color: #f18b05;
         font-size: 90px;
-        bottom: 100%;
         transform: translateX(-50%);
-        display: inline-block;
-        left: 50%;
+        margin-bottom: 20px;
     }
 
     .rating .emo:after {
         content: '\f119';
     }
 
-    .rating input {
+    .rating div input {
         position: absolute;
         width: 25px;
         height: 50px;
@@ -245,29 +321,7 @@ session_start();
         content: '\f118';
     }
 
-    .rating input:nth-of-type(1) {
-        right: 50px;
-    }
 
-    .rating input:nth-of-type(2) {
-        right: 100px;
-    }
-
-    .rating input:nth-of-type(3) {
-        right: 150px;
-    }
-
-    .rating input:nth-of-type(4) {
-        right: 200px;
-    }
-
-    .rating input:nth-of-type(5) {
-        right: 250px;
-    }
-
-    .rating input:nth-of-type(6) {
-        right: 300px;
-    }
 
     .rating input:checked~.star:after,
     .rating input:hover~.star:after {
@@ -295,8 +349,19 @@ session_start();
     .box {
         overflow: auto;
         text-align: right;
-        margin-left: 168%;
         font-size: 12px;
+        margin-top: 5px;
+        margin-right: 10px;
+    }
+
+    .sub {
+        background-color: #f18b05;
+        width: 70px;
+        border: 0;
+        color: white;
+        border-radius: 10px;
+        padding: 10px;
+        margin-top: 2px;
     }
     </style>
 </head>
@@ -315,7 +380,6 @@ session_start();
                     </ul>
                 </div>
             </li>
-            <li><a href="#">العروض</a></li>
             <li><a href="Home.php#cont">من نحن</a></li>
             <li class="rest"><a href=" #">المطاعم</a>
                 <div class="menu">
@@ -365,21 +429,97 @@ session_start();
         }
         mysqli_close($database);
         ?>
-        <form action="submit_rating.php" method="post">
-            <input type="hidden" name="RestID" value="5">
-            <div class="rating">
-                <input type="radio" name="rate" value="5" /><span class="star"> </span>
-                <input type="radio" name="rate" value="4" /><span class="star"> </span>
-                <input type="radio" name="rate" value="3" /><span class="star"> </span>
-                <input type="radio" name="rate" value="2" /><span class="star"> </span>
-                <input type="radio" name="rate" value="1" /><span class="star"> </span>
-                <span class="emo"> </span>
+    </div>
+    <div class="rate_sec">
+        <div class="show_rate">
+            <div class="total-rate">
+                <?php
+                if (!$database = mysqli_connect("localhost", "root", "12345678", "hubreak2_db"))
+                    die("Sorry, could not connect to the server.");
+                extract($_POST);
+                $query = "select rate from rate where ResturantID=5";
+                $result = mysqli_query($database, $query);
+                $total = 0;
+                $count = 0;
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $total += $row['rate'];
+                    $count++;
+                }
+                $avg = $total / $count;
+                if ($avg >= 1) {
+                    print("<input type='radio' name='s' class='rating3' disabled checked><span class='star3'></span>");
+                }
+                if ($avg >= 2) {
+                    print("<input type='radio' name='s' class='rating3' disabled checked><span class='star3'></span>");
+                }
+                if ($avg >= 3) {
+                    print("<input type='radio' name='s' class='rating3' disabled checked><span class='star3'></span>");
+                }
+                if ($avg >= 4) {
+                    print("<input type='radio' name='s' class='rating3' disabled checked><span class='star3'></span>");
+                }
+                if ($avg >= 5) {
+                    print("<input type='radio' name='s' class='rating3' disabled checked><span class='star3'></span>");
+                }
+                print("<span>:تقييم المطعم</span>");
+                mysqli_close($database);
+                ?>
             </div>
-            <div>
-                <textarea rows="4" cols="35" name="desc" class="box" placeholder='...أكتب ملاحظتك هنا'></textarea>
-            </div><br>
-            <input type="submit" value="إضافة تقييم" class="submit" style="margin-left: 200%;">
-        </form>
+            <?php
+            if (!$database = mysqli_connect("localhost", "root", "12345678", "hubreak2_db"))
+                die("Sorry, could not connect to the server.");
+            extract($_POST);
+            $query = "select Name,rate,comment from rate,customers where customers.ID=rate.customerID and rate.rate >=2 and  resturantID=5";
+            if (!$result = mysqli_query($database, $query))
+                die("wrong query");
+            while ($row = mysqli_fetch_row($result)) {
+                $x = 0;
+                print("<div class='rate'>");
+                foreach ($row as $value) {
+                    if ($x == 1) {
+                        if ($value >= 1) {
+                            print("<input type='radio' name='s' class='show' disabled checked><span class='star2'></span>");
+                        }
+                        if ($value >= 2) {
+                            print("<input type='radio' name='s' class='show' disabled checked><span class='star2'></span>");
+                        }
+                        if ($value >= 3) {
+                            print("<input type='radio' name='s' class='show' disabled checked><span class='star2'></span>");
+                        }
+                        if ($value >= 4) {
+                            print("<input type='radio' name='s' class='show' disabled checked><span class='star2'></span>");
+                        }
+                        if ($value >= 5) {
+                            print("<input type='radio' name='s' class='show' disabled checked><span class='star2'></span>");
+                        }
+                        print("<br>");
+                    } else {
+                        print("<span class='text'>$value</span><br>");
+                    }
+                    $x++;
+                }
+                print("</div>");
+            }
+            mysqli_query($database, $query);
+            mysqli_close($database);
+            ?>
+        </div>
+        <div class="rating">
+            <form action="submit_rating.php" method="post">
+                <input type="hidden" name="RestID" value="5">
+                <span class="emo"> </span><br><br><br><br><br>
+                <div>
+                    <input type="radio" name="rate" value="5"><span class="star"> </span>
+                    <input type="radio" name="rate" value="4"><span class="star"> </span>
+                    <input type="radio" name="rate" value="3"><span class="star"> </span>
+                    <input type="radio" name="rate" value="2"><span class="star"> </span>
+                    <input type="radio" name="rate" value="1"><span class="star"> </span>
+                </div>
+                <textarea rows="4" cols="35" name="desc" class="box" placeholder='...أكتب ملاحظتك هنا'></textarea><br>
+                <input type="submit" value="إضافة تقييم" class="sub">
+                <br><br><br><br>
+            </form>
+        </div>
     </div>
     <footer>
         <p>Developed By</p>

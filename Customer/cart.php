@@ -223,7 +223,6 @@ session_start();
                     </ul>
                 </div>
             </li>
-            <li><a href="#">العروض</a></li>
             <li><a href="Home.php#cont">من نحن</a></li>
             <li class="rest"><a href=" #">المطاعم</a>
                 <div class="menu">
