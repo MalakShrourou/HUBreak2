@@ -16,20 +16,23 @@ if (isset($submit)) {
         if (!$result = mysqli_query($database, $query2))
             die("wrong query");
         $row = mysqli_fetch_assoc($result);
-        if ($currentpass == $row['password'])
-            if (preg_match('/^\d{8,}$/', $newpass))
-                if ($newpass == $confirmnewpass) {
-                    $query3 = "UPDATE customers SET password = '$newpass' WHERE email = '$email' AND password = '$currentpass'";
-                    $success = "Password Changed";
-                    mysqli_query($database, $query3);
-                } else
-                    $error = "Please Enter New Password";
+        if ($currentpass = $row['Password'])
+            if (preg_match('/^(?=.*\d){8,}/', $newpass))
+                if ($newpass != $currentpass)
+                    if ($newpass == $confirmnewpass) {
+                        $query3 = "UPDATE customers SET password = '$newpass' WHERE email = '$email' AND password = '$currentpass'";
+                        $success = "Password Changed";
+                        mysqli_query($database, $query3);}
+                    else
+                        $error = "Dismatch";
+                else
+                    $error = "Please enter a new password";
             else
-                $error = "Password Must Contain At Least 8 Digits";
+                $error = "Password must contain at least 8 digits";
         else
-            $error = "Wrong Password";
+            $error = "Wrong password";
     } else
-        $error = "Email Not Found";
+        $error = "Email not found";
 }
 mysqli_close($database);
 ?>
