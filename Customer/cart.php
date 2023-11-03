@@ -170,6 +170,8 @@ session_start();
         padding: 12px;
         background: #f18b05;
         color: #fff;
+        font-size: x-large;
+        font-weight: bold;
         border: 0;
         border-radius: 5px;
         cursor: pointer;
