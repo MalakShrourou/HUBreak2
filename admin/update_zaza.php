@@ -5,5 +5,5 @@
     $query2 = "update products set Price = $new_price where products.ID = $ID";
     mysqli_query($database, $query2);
     mysqli_close($database);
-    header("Location: change_zaza.php");
+    header("Location:javascript://history.go(-1)");
     ?>
