@@ -245,7 +245,7 @@ session_start();
             padding: 10px 20px;
             cursor: pointer;
         }
-	.button {
+        .button {
             font-size: large;
             font-weight: bold;
         }
@@ -297,18 +297,18 @@ session_start();
             </div>
             <p>
 				<label>
-					<input type="text" placeholder="name" name="meal_name" required>
+					<input type="text" placeholder="name" name="meal_name" autocomplete="off" required>
 				</label>اسم الوجبة
 			</p>
             <br>
             <p>
 				<label>
-					<input type="text" placeholder="price" name="meal_price" required>
+					<input type="text" placeholder="price" name="meal_price" autocomplete="off" required>
 				</label>سعر الوجبة
 			</p>
             <br>
             <div class="form-group">
-                <input type="submit" value="إضافة">
+                <input type="submit" class="button" value="إضافة">
             </div>
         </form>
     </div>
