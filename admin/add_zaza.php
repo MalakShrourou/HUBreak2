@@ -245,6 +245,10 @@ session_start();
             padding: 10px 20px;
             cursor: pointer;
         }
+	.button {
+            font-size: large;
+            font-weight: bold;
+        }
     </style>
 </head>
 
