@@ -286,7 +286,7 @@ session_start();
     </div>
     <div class="container">
         <h2>إضافة وجبة</h2>
-        <form action="upload_zaza.php" method="post">
+        <form action="insert_zaza.php" method="post">
             <div class="form-group">
                 <label for="image">أرفق صورة الوجبة</label>
                 <input type="file" name="meal_image" id="image" accept="image/*" >
