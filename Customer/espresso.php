@@ -359,9 +359,14 @@ session_start();
             width: 70px;
             border: 0;
             color: white;
+            cursor: pointer;
             border-radius: 10px;
             padding: 10px;
             margin-top: 2px;
+        }
+
+        .sub:hover {
+            background: #fda735;
         }
     </style>
 </head>
