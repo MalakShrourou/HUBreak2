@@ -358,8 +358,13 @@ session_start();
             border: 0;
             color: white;
             border-radius: 10px;
+            cursor: pointer;
             padding: 10px;
             margin-top: 2px;
+        }
+
+        .sub:hover {
+            background: #fda735;
         }
     </style>
 </head>
