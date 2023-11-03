@@ -5,5 +5,5 @@
     $query2 = "delete from products where products.ID = $ID";
     mysqli_query($database, $query2);
     mysqli_close($database);
-    header("Location:javascript://history.go(-1)");
+    header("Location: delete_zaza.php");
     ?>
