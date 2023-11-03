@@ -5,5 +5,5 @@
     $query2 = "insert into products (Image, Name, Price) values ('$meal_image','$meal_name','$meal_price')";
     mysqli_query($database, $query2);
     mysqli_close($database);
-    header("Location:javascript://history.go(-1)");
+    header("Location: add_zaza.php");
     ?>
