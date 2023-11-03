@@ -248,6 +248,7 @@ session_start();
         .button {
             font-size: large;
             font-weight: bold;
+	    border-radius: 5px;
         }
     </style>
 </head>
