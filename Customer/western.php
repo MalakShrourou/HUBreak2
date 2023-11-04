@@ -364,8 +364,8 @@ session_start();
     }
 
     .sub:hover {
-            background: #fda735;
-        }
+        background: #fda735;
+    }
     </style>
 </head>
 
@@ -408,7 +408,7 @@ session_start();
         if (!$database = mysqli_connect("localhost", "root", "12345678", "hubreak2_db"))
             die("Sorry, could not connect to the server.");
         extract($_POST);
-        $query = "select products.*,resturantproducts.resturantId from products join resturantproducts on products.ID = productId WHERE resturantproducts.resturantId = 6 ";
+        $query = "select products.*,resturantproducts.price,resturantproducts.resturantId from products join resturantproducts on products.ID = productId WHERE resturantproducts.resturantId = 6 ";
         $result = mysqli_query($database, $query);
         while ($row = mysqli_fetch_row($result)) {
             print("<form class='product' method='post' action='addtocart.php' onclick='myFunction()'>");
