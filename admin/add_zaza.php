@@ -99,7 +99,6 @@ session_start();
             position: absolute;
         }
 
-
         .product {
             display: flex;
             flex-direction: column;
@@ -222,21 +221,26 @@ session_start();
             background-color: #f9f9f9;
             text-align: right;
         }
+
         .form-group {
             margin-bottom: 15px;
             text-align: center;
         }
+
         .form-group label {
             display: block;
             margin-bottom: 5px;
             text-align: right;
         }
-        .form-group input[type="file"], .form-group textarea {
+
+        .form-group input[type="file"],
+        .form-group textarea {
             width: 100%;
             padding: 10px;
             margin-bottom: 10px;
             text-align: right;
         }
+
         .form-group input[type="submit"] {
             background-color: #f18b05;
             color: white;
@@ -289,22 +293,22 @@ session_start();
         <form action="upload_zaza.php" method="post">
             <div class="form-group">
                 <label for="image">أرفق صورة الوجبة</label>
-                <input type="file" name="meal_image" id="image" accept="image/*" >
+                <input type="file" name="meal_image" id="image" accept="image/*">
             </div>
             <p>
-				<label>
-					<input type="text" placeholder="name" name="meal_name" required>
-				</label>اسم الوجبة
-			</p>
+                <label>
+                    <input type="text" placeholder="name" name="meal_name" required>
+                </label>اسم الوجبة
+            </p>
             <br>
             <p>
-				<label>
-					<input type="text" placeholder="price" name="meal_price" required>
-				</label>سعر الوجبة
-			</p>
+                <label>
+                    <input type="text" placeholder="price" name="meal_price" required>
+                </label>سعر الوجبة
+            </p>
             <br>
             <div class="form-group">
-                <input type="submit" value="إضافة">
+                <input type="submit" value="إضافة" onclick="myFunction()">
             </div>
         </form>
     </div>
