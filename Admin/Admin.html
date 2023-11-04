@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+
+<head>
+  <title>Administrator page</title>
+  <style type="text/css">
+    body {
+      background-color: #f18b05;
+      background-image: url('cover.jpg');
+    }
+
+    .column {
+      float: left;
+      width: 33.33%;
+      padding: 5px;
+    }
+
+    div :hover {
+      filter: brightness(65%);
+    }
+
+    .row::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+
+    nav h1 {
+      text-align: center;
+      background-color: #f18b05;
+      padding-top: 2%;
+      padding-bottom: 2%;
+      margin-top: 0%;
+      font-size: 300%;
+      color: white;
+      margin-right: 24%;
+      margin-left: 27%;
+    }
+
+    img {
+      width: 250px;
+      height: 150%;
+      margin-left: 75%;
+      margin-top: 5%;
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <h1>CHOOSE YOUR ACTION</h1>
+  </nav>
+
+  <div class="row">
+    <div class="column">
+      <a href="AddItems.php"><img src="AddItems.jpg" alt="Add Items"></a>
+    </div>
+    <div class="column">
+      <a href="DeleteItems.php">
+        <img src="DeleteItems.jpg" alt="Delete Items">
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column">
+      <a href="ChangePrices.php">
+        <img src="ChangePrices.jpg" alt="Change Prices">
+      </a>
+    </div>
+    <div class="column">
+      <a href="SubmitPosters.php">
+        <img src="SubmitPosters.jpg" alt="Submit Posters">
+      </a>
+    </div>
+  </div>
+  <div>
+    <a href="BrowseReviews.php">
+      <img src="BrowseReviews.jpg" alt="Browse Reviews" style="margin-left: 42%;">
+    </a>
+  </div>
+
+</body>
+
+</html>
