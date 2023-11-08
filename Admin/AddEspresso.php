@@ -9,182 +9,182 @@ session_start();
     <meta charset=utf8>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            font-family: 'Times New Roman', Times, serif;
-            box-sizing: border-box;
-        }
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: 'Times New Roman', Times, serif;
+        box-sizing: border-box;
+    }
 
-        body {
-            color: rgb(124, 17, 17);
-            background-attachment: fixed;
-        }
+    body {
+        color: rgb(124, 17, 17);
+        background-attachment: fixed;
+    }
 
-        .menu-bar {
-            background: #f18b05;
-            text-align: right;
-            height: 40px;
-            margin-right: 10%;
-            padding-right: 5px;
-            font-size: large;
-        }
+    .menu-bar {
+        background: #f18b05;
+        text-align: right;
+        height: 40px;
+        margin-right: 10%;
+        padding-right: 5px;
+        font-size: large;
+    }
 
-        .menu-bar ul {
-            display: inline-flex;
-            list-style: none;
-            color: #fff;
-        }
+    .menu-bar ul {
+        display: inline-flex;
+        list-style: none;
+        color: #fff;
+    }
 
-        .menu-bar ul li {
-            width: 120px;
-            margin: 0px;
-            padding: 10px 0px;
-            text-align: center;
-        }
+    .menu-bar ul li {
+        width: 120px;
+        margin: 0px;
+        padding: 10px 0px;
+        text-align: center;
+    }
 
-        .menu-bar ul li a {
-            text-decoration: none;
-            color: #fff;
-            padding-right: 10px;
-        }
+    .menu-bar ul li a {
+        text-decoration: none;
+        color: #fff;
+        padding-right: 10px;
+    }
 
-        .menu,
-        .user {
-            display: none;
-        }
+    .menu,
+    .user {
+        display: none;
+    }
 
-        .menu-bar ul li:hover {
-            background-color: #fda025;
-        }
+    .menu-bar ul li:hover {
+        background-color: #fda025;
+    }
 
-        .menu-bar ul li:hover .menu,
-        .menu-bar ul li:hover .user {
-            display: block;
-            position: absolute;
-            background-color: #FBB202;
-            margin-top: 10px;
-            margin-left: -20px;
-        }
+    .menu-bar ul li:hover .menu,
+    .menu-bar ul li:hover .user {
+        display: block;
+        position: absolute;
+        background-color: #FBB202;
+        margin-top: 10px;
+        margin-left: -20px;
+    }
 
-        .menu-bar ul li:hover .menu ul,
-        .menu-bar ul li:hover .user ul {
-            display: block;
-        }
+    .menu-bar ul li:hover .menu ul,
+    .menu-bar ul li:hover .user ul {
+        display: block;
+    }
 
-        .menu-bar ul li:hover .menu ul li,
-        .menu-bar ul li:hover .user ul li {
-            width: 150px;
-            padding: 10px;
-            border-bottom: 1px dotted #fff;
-            background: transparent;
-            border-radius: 0;
-            text-align: center;
-        }
+    .menu-bar ul li:hover .menu ul li,
+    .menu-bar ul li:hover .user ul li {
+        width: 150px;
+        padding: 10px;
+        border-bottom: 1px dotted #fff;
+        background: transparent;
+        border-radius: 0;
+        text-align: center;
+    }
 
-        .menu-bar ul li:hover .menu ul li:last-child,
-        .menu-bar ul li:hover .user ul li:last-child {
-            border-bottom: none;
-        }
+    .menu-bar ul li:hover .menu ul li:last-child,
+    .menu-bar ul li:hover .user ul li:last-child {
+        border-bottom: none;
+    }
 
-        .menu-bar ul li:hover .menu ul li a:hover,
-        .menu-bar ul li:hover .user ul li a:hover {
-            color: rgb(124, 17, 17);
-        }
+    .menu-bar ul li:hover .menu ul li a:hover,
+    .menu-bar ul li:hover .user ul li a:hover {
+        color: rgb(124, 17, 17);
+    }
 
-        .logo {
-            width: 10%;
-            height: 40px;
-            right: 0;
-            position: absolute;
-        }
+    .logo {
+        width: 10%;
+        height: 40px;
+        right: 0;
+        position: absolute;
+    }
 
-        h1,
-        h2,
-        h3 {
-            text-align: center;
-        }
+    h1,
+    h2,
+    h3 {
+        text-align: center;
+    }
 
 
-        .cart-icon {
-            display: inline-block;
-            width: 18px;
-            height: 18px;
-            background-image: url("cart-icon.png");
-            background-size: contain;
-        }
+    .cart-icon {
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        background-image: url("cart-icon.png");
+        background-size: contain;
+    }
 
-        footer {
-            background: #f18b05;
-            color: white;
-            text-align: center;
-            padding: 10px;
-        }
+    footer {
+        background: #f18b05;
+        color: white;
+        text-align: center;
+        padding: 10px;
+    }
 
-        .intro {
-            background-color: #fda025;
-            width: 100%;
-            color: white;
-            padding: 2% 0;
-            font-size: xx-large;
-        }
+    .intro {
+        background-color: #fda025;
+        width: 100%;
+        color: white;
+        padding: 2% 0;
+        font-size: xx-large;
+    }
 
-        h2 {
-            padding: 30px;
-        }
+    h2 {
+        padding: 30px;
+    }
 
-        .user-icon {
-            display: inline-block;
-            width: 18px;
-            height: 18px;
-            background-image: url("user.png");
-            background-size: contain;
-        }
+    .user-icon {
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        background-image: url("user.png");
+        background-size: contain;
+    }
 
-        .container {
-            max-width: 400px;
-            margin: 30px auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            background-color: #f9f9f9;
-            text-align: right;
-        }
+    .container {
+        max-width: 400px;
+        margin: 30px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        background-color: #f9f9f9;
+        text-align: right;
+    }
 
-        .form-group {
-            margin-bottom: 15px;
-            text-align: center;
-        }
+    .form-group {
+        margin-bottom: 15px;
+        text-align: center;
+    }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            text-align: right;
-        }
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        text-align: right;
+    }
 
-        .form-group input[type="file"],
-        .form-group textarea {
-            width: 70%;
-            padding: 10px;
-            margin-bottom: 10px;
-            text-align: left;
-        }
+    .form-group input[type="file"],
+    .form-group textarea {
+        width: 70%;
+        padding: 10px;
+        margin-bottom: 10px;
+        text-align: left;
+    }
 
-        .form-group input[type="submit"] {
-            background-color: #f18b05;
-            border: #f18b05;
-            color: white;
-            font-weight: bold;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 15px;
-            width: 20%;
-        }
+    .form-group input[type="submit"] {
+        background-color: #f18b05;
+        border: #f18b05;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 15px;
+        width: 20%;
+    }
 
-        input[type="text"] {
-            margin-right: 30%;
-            width: 50%;
-            text-align: right;
-        }
+    input[type="text"] {
+        margin-right: 30%;
+        width: 50%;
+        text-align: right;
+    }
     </style>
 </head>
 
@@ -224,7 +224,7 @@ session_start();
     </div>
     <div class="container">
         <h2>إضافة وجبة</h2>
-        <form action="upload.php" method="post">
+        <form action="Add.php" method="post">
             <input type="hidden" name="RestID" value="2">
             <div class="form-group">
                 <label>
@@ -253,9 +253,9 @@ session_start();
     </footer>
 
     <script>
-        function myFunction() {
-            alert("تمت الإضافة بنجاح!");
-        }
+    function myFunction() {
+        alert("تمت الإضافة بنجاح!");
+    }
     </script>
 
 </body>
