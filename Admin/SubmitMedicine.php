@@ -56,7 +56,7 @@ if (isset($_POST['upload'])) {
             margin: 20px auto;
         }
 
-        img {
+        #display-image img {
             width: 30%;
             margin-left: 37%;
         }

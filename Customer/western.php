@@ -99,7 +99,6 @@ session_start();
         position: absolute;
     }
 
-
     .product {
         display: flex;
         flex-direction: column;
@@ -133,7 +132,6 @@ session_start();
     h3 {
         text-align: center;
     }
-
 
     .cart-icon {
         display: inline-block;
@@ -366,6 +364,12 @@ session_start();
     .sub:hover {
         background: #fda735;
     }
+
+    #display-image img {
+        width: 50%;
+        margin-left: 25%;
+        margin-bottom: 3%;
+    }
     </style>
 </head>
 
@@ -411,14 +415,17 @@ session_start();
         $query = "select products.*,resturantproducts.price,resturantproducts.resturantId from products join resturantproducts on products.ID = productId WHERE resturantproducts.resturantId = 6 ";
         $result = mysqli_query($database, $query);
         while ($row = mysqli_fetch_row($result)) {
-            print("<form class='product' method='post' action='addtocart.php' onclick='myFunction()'>");
+            print("<form class='product' method='post' action='addtocart.php'>");
             $x = 0;
             foreach ($row as $value) {
                 if ($x == 0)
                     print("<img src='$value' class='food'></img>");
                 elseif ($x == 1)
                     print("<input type='hidden' name='ID' value='$value'>");
-                elseif ($x == 4)
+                elseif ($x == 3) {
+                    print("<input type='hidden' name='price' value='$value'>");
+                    print("<span >$value</span>");
+                } elseif ($x == 4)
                     print("<input type='hidden' name='restID' value='$value'>");
                 else {
                     print("<span >$value</span>");
@@ -427,13 +434,27 @@ session_start();
             }
             print("<span class='count'><input type='number' style='margin-right: 10px;' name='quantity' min='1'
                                 max='5' value='1'>: الكمية</span><br>
-                        <input type='submit' class='button' value='أضف إلى السلة'></input><br>");
+                        <input type='submit' class='button' value='أضف إلى السلة' onclick='myFunction()'></input><br>");
             print("</form>");
         }
         mysqli_close($database);
         ?>
     </div>
-    0<div class="rate_sec">
+    <div id="display-image">
+        <?php
+        if (!$database = mysqli_connect("localhost", "root", "12345678", "hubreak2_db"))
+            die("Sorry, could not connect to the server.");
+        extract($_POST);
+        $query = "select filename from resturants where ID=6";
+        $result = mysqli_query($database, $query);
+        while ($data = mysqli_fetch_assoc($result)) {
+            ?>
+        <img src="../Admin/image/<?php echo $data['filename']; ?>">
+        <?php
+        }
+        ?>
+    </div>
+    <div class="rate_sec">
         <div class="show_rate">
             <div class="total-rate">
                 <?php
