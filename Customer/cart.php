@@ -281,7 +281,7 @@ session_start();
         print("<th colspan='2'>المبلغ الاجمالي</th>");
         print("</tfoot>");
         print("</table><br>");
-        print("<label class='desc'> :أضف ملاحظة<br><textarea rows='6' cols='30' name='desc' class='box' placeholder='...أكتب ملاحظتك هنا'></textarea></label>");
+        print("<label class='desc'> : أضف ملاحظة<br><textarea rows='6' cols='30' name='desc' class='box' placeholder='...أكتب ملاحظتك هنا'></textarea></label>");
         mysqli_close($database);
         ?>
         <input type="submit" value="تأكيد الطلب" class="subbutton">
