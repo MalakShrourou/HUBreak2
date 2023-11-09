@@ -275,7 +275,7 @@ session_start();
     </div>
     <footer id="cont">
         <h1 style="margin-top: 20px;">نبذة عنا</h1>
-        <p style="margin-top: 10px;"> فريق طلابي من الجامعة الهاشمية حبينا نخدم زملائناالطلاب <br>بتوفير وقتهم وتقديم
+        <p style="margin-top: 10px;"> فريق طلابي من الجامعة الهاشمية حبينا نخدم زملائنا الطلاب <br>بتوفير وقتهم و تقديم
             العروض الخاصة فيهم</p>
         <br>
         <img src="instagram.png" width="25px">
