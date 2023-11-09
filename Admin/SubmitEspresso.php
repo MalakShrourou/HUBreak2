@@ -5,13 +5,13 @@ if (isset($_POST['upload'])) {
     $filename = $_FILES["uploadfile"]["name"];
     $tempname = $_FILES["uploadfile"]["tmp_name"];
     $folder = "./image/" . $filename;
-    $database = mysqli_connect("localhost", "root", "12345678", "hubreak2_db");
-    $query = "UPDATE resturants SET Poster='$filename' WHERE ID=2";
-    mysqli_query($database, $query);
+    $db = mysqli_connect("localhost", "root", "12345678", "hubreak2_db");
+    $sql = "UPDATE resturants SET filename='$filename' WHERE ID=2";
+    mysqli_query($db, $sql);
     if (move_uploaded_file($tempname, $folder)) {
         echo "<script>
         alert('Image uploaded successfully!');
-        </script> ";
+        </script>";
     } else {
         echo "<script>
         alert('Failed to upload image!');
@@ -24,13 +24,20 @@ if (isset($_POST['upload'])) {
 <html>
 
 <head>
+    <title>Image Upload</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="style.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        body {
+            background-image: url('cover.jpg');
+            background-size: cover;
+            background-color: #f18b05;
         }
 
         #content {
@@ -50,20 +57,8 @@ if (isset($_POST['upload'])) {
         }
 
         img {
-            margin: 5px;
-            width: 350px;
-            height: 250px;
-        }
-
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            min-height: 100vh;
-            background-color: rgb(255, 102, 0);
-            background-image: url('cover.jpg');
-            background-size: cover;
+            width: 30%;
+            margin-left: 37%;
         }
     </style>
 </head>
@@ -75,22 +70,19 @@ if (isset($_POST['upload'])) {
                 <input class="form-control" type="file" name="uploadfile" value="">
             </div>
             <div class="form-group">
-                <button class="btn btn-primary" style="background-color:orange;border-color:orange;" type="submit"
-                    name="upload">UPLOAD</button>
+                <button class="btn btn-primary" type="submit" name="upload">UPLOAD</button>
             </div>
         </form>
     </div>
-    <div>
+    <div id="display-image">
         <?php
-        $database = mysqli_connect("localhost", "root", "12345678", "hubreak2_db");
-        $query = "select Poster from resturants where ID=2";
-        $result = mysqli_query($database, $query);
+        $query = "select filename from resturants where ID=2";
+        $result = mysqli_query($db, $query);
         while ($data = mysqli_fetch_assoc($result)) {
             ?>
-            <img src="./image/<?php echo $data['filename']; ?>" alt="Espresso Poster">
+            <img src="./image/<?php echo $data['filename']; ?>">
             <?php
         }
-        mysqli_close($database);
         ?>
     </div>
 </body>
