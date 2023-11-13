@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <head>
-    <title>Add Items</title>
+    <title>Add Posters</title>
     <style type="text/css">
         body {
             background-image: url('cover.jpg');

@@ -10,184 +10,184 @@ session_start();
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <meta charset="UTF-8">
     <style type="text/css">
-    body {
-        background-image: url("cover.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
+        body {
+            background-image: url("cover.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
 
-    * {
-        margin: 0;
-        padding: 0;
-        font-family: 'Times New Roman', Times, serif;
-        box-sizing: border-box;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Times New Roman', Times, serif;
+            box-sizing: border-box;
+        }
 
-    .menu-bar {
-        background: #f18b05;
-        text-align: right;
-        height: 40px;
-        margin-right: 10%;
-        padding-right: 5px;
-        font-size: large;
-    }
+        .menu-bar {
+            background: #f18b05;
+            text-align: right;
+            height: 40px;
+            margin-right: 10%;
+            padding-right: 5px;
+            font-size: large;
+        }
 
-    .menu-bar ul {
-        display: inline-flex;
-        list-style: none;
-        color: #fff;
-    }
+        .menu-bar ul {
+            display: inline-flex;
+            list-style: none;
+            color: #fff;
+        }
 
-    .menu-bar ul li {
-        width: 120px;
-        margin: 0px;
-        padding: 10px 0px;
-        text-align: center;
-    }
+        .menu-bar ul li {
+            width: 120px;
+            margin: 0px;
+            padding: 10px 0px;
+            text-align: center;
+        }
 
-    .menu-bar ul li a {
-        text-decoration: none;
-        color: #fff;
-        padding-right: 10px;
-    }
+        .menu-bar ul li a {
+            text-decoration: none;
+            color: #fff;
+            padding-right: 10px;
+        }
 
-    .menu,
-    .user {
-        display: none;
-    }
+        .menu,
+        .user {
+            display: none;
+        }
 
-    .menu-bar ul li:hover {
-        background-color: #fda025;
-    }
+        .menu-bar ul li:hover {
+            background-color: #fda025;
+        }
 
-    .menu-bar ul li:hover .menu,
-    .menu-bar ul li:hover .user {
-        display: block;
-        position: absolute;
-        background-color: #FBB202;
-        margin-top: 10px;
-        margin-left: -20px;
-    }
+        .menu-bar ul li:hover .menu,
+        .menu-bar ul li:hover .user {
+            display: block;
+            position: absolute;
+            background-color: #FBB202;
+            margin-top: 10px;
+            margin-left: -20px;
+        }
 
-    .menu-bar ul li:hover .menu ul,
-    .menu-bar ul li:hover .user ul {
-        display: block;
-    }
+        .menu-bar ul li:hover .menu ul,
+        .menu-bar ul li:hover .user ul {
+            display: block;
+        }
 
-    .menu-bar ul li:hover .menu ul li,
-    .menu-bar ul li:hover .user ul li {
-        width: 150px;
-        padding: 10px;
-        border-bottom: 1px dotted #fff;
-        background: transparent;
-        border-radius: 0;
-        text-align: center;
-    }
+        .menu-bar ul li:hover .menu ul li,
+        .menu-bar ul li:hover .user ul li {
+            width: 150px;
+            padding: 10px;
+            border-bottom: 1px dotted #fff;
+            background: transparent;
+            border-radius: 0;
+            text-align: center;
+        }
 
-    .menu-bar ul li:hover .menu ul li:last-child,
-    .menu-bar ul li:hover .user ul li:last-child {
-        border-bottom: none;
-    }
+        .menu-bar ul li:hover .menu ul li:last-child,
+        .menu-bar ul li:hover .user ul li:last-child {
+            border-bottom: none;
+        }
 
-    .menu-bar ul li:hover .menu ul li a:hover,
-    .menu-bar ul li:hover .user ul li a:hover {
-        color: rgb(124, 17, 17);
-    }
+        .menu-bar ul li:hover .menu ul li a:hover,
+        .menu-bar ul li:hover .user ul li a:hover {
+            color: rgb(124, 17, 17);
+        }
 
-    .intro {
-        background-color: #fda025;
-        width: 100%;
-        height: 100%;
-        padding-bottom: 4%;
-    }
+        .intro {
+            background-color: #fda025;
+            width: 100%;
+            height: 100%;
+            padding-bottom: 4%;
+        }
 
-    .logo {
-        width: 10%;
-        height: 40px;
-        right: 0;
-        position: absolute;
-    }
+        .logo {
+            width: 10%;
+            height: 40px;
+            right: 0;
+            position: absolute;
+        }
 
-    .intro h1 {
-        color: #fff;
-        font-size: 70px;
-        padding-left: 8%;
-        padding-right: 8%;
-        padding-bottom: 8%;
-        padding-top: 14%;
-    }
+        .intro h1 {
+            color: #fff;
+            font-size: 70px;
+            padding-left: 8%;
+            padding-right: 8%;
+            padding-bottom: 8%;
+            padding-top: 14%;
+        }
 
-    .logo2 {
-        margin-top: 2%;
-        float: right;
-        margin-right: 4%;
-    }
+        .logo2 {
+            margin-top: 2%;
+            float: right;
+            margin-right: 4%;
+        }
 
-    .rest {
-        width: 27%;
-        margin: 20px;
-        text-align: center;
-        border-style: solid;
-        border-color: #fff;
-        background: #fff;
-        border-radius: 30px;
-        color: white;
-        box-shadow: -30px 30px 20px rgba(0, 0, 0, 0.3);
-    }
+        .rest {
+            width: 27%;
+            margin: 20px;
+            text-align: center;
+            border-style: solid;
+            border-color: #fff;
+            background: #fff;
+            border-radius: 30px;
+            color: white;
+            box-shadow: -30px 30px 20px rgba(0, 0, 0, 0.3);
+        }
 
-    .rest img {
-        width: 70%;
-        height: auto;
-        border-radius: 200px;
-        border-style: solid;
-        margin: 20px;
-    }
+        .rest img {
+            width: 70%;
+            height: auto;
+            border-radius: 200px;
+            border-style: solid;
+            margin: 20px;
+        }
 
-    .center {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        margin: 100px 0 100px 11%;
-    }
+        .center {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            margin: 100px 0 100px 11%;
+        }
 
-    .name {
-        text-align: center;
-        font-size: 24px;
-        color: rgb(124, 17, 17);
-    }
+        .name {
+            text-align: center;
+            font-size: 24px;
+            color: rgb(124, 17, 17);
+        }
 
-    footer {
-        background-color: #f18b05;
-        color: white;
-        font-weight: bold;
-        text-align: center;
-        padding: 15px;
-    }
+        footer {
+            background-color: #f18b05;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            padding: 15px;
+        }
 
-    footer img {
-        cursor: pointer;
-    }
+        footer img {
+            cursor: pointer;
+        }
 
-    a {
-        text-decoration: none;
-        color: transparent;
-    }
+        a {
+            text-decoration: none;
+            color: transparent;
+        }
 
-    .cart-icon {
-        display: inline-block;
-        width: 18px;
-        height: 18px;
-        background-image: url("cart-icon.png");
-        background-size: contain;
-    }
+        .cart-icon {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            background-image: url("cart-icon.png");
+            background-size: contain;
+        }
 
-    .user-icon {
-        display: inline-block;
-        width: 18px;
-        height: 18px;
-        background-image: url("user.png");
-        background-size: contain;
-    }
+        .user-icon {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            background-image: url("user.png");
+            background-size: contain;
+        }
     </style>
 </head>
 
@@ -275,7 +275,7 @@ session_start();
     </div>
     <footer id="cont">
         <h1 style="margin-top: 20px;">نبذة عنا</h1>
-        <p style="margin-top: 10px;"> فريق طلابي من الجامعة الهاشمية حبينا نخدم زملائناالطلاب <br>بتوفير وقتهم وتقديم
+        <p style="margin-top: 10px;"> فريق طلابي من الجامعة الهاشمية حبينا نخدم زملائنا الطلاب <br>بتوفير وقتهم وتقديم
             العروض الخاصة فيهم</p>
         <br>
         <img src="instagram.png" width="25px">

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 
 <head>
-    <title>Add Items</title>
+    <title>Reviews</title>
     <style type="text/css">
     body {
         background-image: url('cover.jpg');
     }
 
     div :hover {
-        filter: brightness(65%);
+        filter: brightness(75%);
     }
 
     .rest {

@@ -24,7 +24,7 @@ if (isset($_POST['upload'])) {
 <html>
 
 <head>
-    <title>Image Upload</title>
+    <title>Zaza - Poster</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="style.css">
     <style>
@@ -36,7 +36,6 @@ if (isset($_POST['upload'])) {
 
         body {
             background-image: url('cover.jpg');
-            background-size: cover;
             background-color: #f18b05;
         }
 
@@ -45,7 +44,7 @@ if (isset($_POST['upload'])) {
             width: 50%;
             justify-content: center;
             align-items: center;
-            margin: 20px auto;
+            margin: 200px auto 50px;
             padding: 50px;
             border: 1px solid #cbcbcb00;
             border-radius: 15px;
@@ -56,9 +55,21 @@ if (isset($_POST['upload'])) {
             margin: 20px auto;
         }
 
-        img {
+        #display-image img {
+            width: 40%;
+            margin-left: 30%;
+            margin-bottom: 50px;
+        }
+
+        .upload {
+            background-color: #f18b05;
+            border: #f18b05;
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 15px;
             width: 30%;
-            margin-left: 37%;
+            margin-left: 30%;
         }
     </style>
 </head>
@@ -70,7 +81,7 @@ if (isset($_POST['upload'])) {
                 <input class="form-control" type="file" name="uploadfile" value="">
             </div>
             <div class="form-group">
-                <button class="btn btn-primary" type="submit" name="upload">UPLOAD</button>
+                <button class="upload" type="submit" name="upload">تحميل</button>
             </div>
         </form>
     </div>

@@ -226,7 +226,7 @@ session_start();
         if (!$database = mysqli_connect("localhost", "root", "12345678", "hubreak2_db"))
             die("Sorry, could not connect to the server.");
         extract($_POST);
-        $query = "select products.*,resturantproducts.resturantId from products join resturantproducts on products.ID = productId WHERE resturantproducts.resturantId = 2 ";
+        $query = "select products.*,resturantproducts.price,resturantproducts.resturantId from products join resturantproducts on products.ID = productId WHERE resturantproducts.resturantId = 2 ";
         $result = mysqli_query($database, $query);
         while ($row = mysqli_fetch_row($result)) {
             print("<form class='product' method='post' action='delete.php' ><br>");

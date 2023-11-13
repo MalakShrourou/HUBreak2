@@ -24,42 +24,53 @@ if (isset($_POST['upload'])) {
 <html>
 
 <head>
-    <title>Image Upload</title>
+    <title>Espresso - Poster</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="style.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-        body {
-            background-image: url('cover.jpg');
-            background-size: cover;
-            background-color: #f18b05;
-        }
+    body {
+        background-image: url('cover.jpg');
+        background-color: #f18b05;
+    }
 
-        #content {
-            background: rgba(0, 0, 0, 0.582);
-            width: 50%;
-            justify-content: center;
-            align-items: center;
-            margin: 20px auto;
-            padding: 50px;
-            border: 1px solid #cbcbcb00;
-            border-radius: 15px;
-        }
+    #content {
+        background: rgba(0, 0, 0, 0.582);
+        width: 50%;
+        justify-content: center;
+        align-items: center;
+        padding: 50px;
+        border: 1px solid #cbcbcb00;
+        border-radius: 15px;
+        margin: 200px auto 50px;
+    }
 
-        form {
-            width: 50%;
-            margin: 20px auto;
-        }
+    form {
+        width: 50%;
+        margin: 20px auto;
+    }
 
-        img {
-            width: 30%;
-            margin-left: 37%;
-        }
+    #display-image img {
+        width: 40%;
+        margin-left: 30%;
+        margin-bottom: 50px;
+    }
+
+    .upload {
+        background-color: #f18b05;
+        border: #f18b05;
+        color: white;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 15px;
+        width: 30%;
+        margin-left: 30%;
+    }
     </style>
 </head>
 
@@ -70,7 +81,7 @@ if (isset($_POST['upload'])) {
                 <input class="form-control" type="file" name="uploadfile" value="">
             </div>
             <div class="form-group">
-                <button class="btn btn-primary" type="submit" name="upload">UPLOAD</button>
+                <button class="upload" type="submit" name="upload">تحميل</button>
             </div>
         </form>
     </div>
@@ -80,8 +91,8 @@ if (isset($_POST['upload'])) {
         $result = mysqli_query($db, $query);
         while ($data = mysqli_fetch_assoc($result)) {
             ?>
-            <img src="./image/<?php echo $data['filename']; ?>">
-            <?php
+        <img src="./image/<?php echo $data['filename']; ?>">
+        <?php
         }
         ?>
     </div>
