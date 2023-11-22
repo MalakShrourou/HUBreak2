@@ -1,5 +1,11 @@
 <?php
 session_start();
+
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    header('Location: login.php');
+    exit();
+}
+
 if (!$database = mysqli_connect("localhost", "root", "12345678"))
     die("Sorry, could not connect to the server.");
 if (!mysqli_select_db($database, "hubreak2_db"))
