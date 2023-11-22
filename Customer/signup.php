@@ -62,7 +62,7 @@ mysqli_close($database);
             border-radius: 30px;
         }
 
-        .form input {
+        .inputt {
             background: #f2f2f2;
             width: 90%;
             border: 0;
@@ -73,7 +73,7 @@ mysqli_close($database);
             border-radius: 30px;
         }
 
-        .form button {
+        .submit {
             background: orange;
             width: 50%;
             border: 0;
@@ -167,9 +167,9 @@ mysqli_close($database);
     <div class="login-page">
         <div class="form">
             <form class="login-form" method="POST" autocomplete="off">
-                <input type="text" name="name" placeholder="Name" required />
-                <input type="email" name="email" placeholder="Email" required />
-                <input type="password" name="password" placeholder="Password(must containe 8 digits)" required
+                <input type="text" name="name" class="inputt" placeholder="Name" required />
+                <input type="email" name="email" class="inputt" placeholder="Email" required />
+                <input type="password" name="password" class="inputt" placeholder="Password (must contain 8 digits)" required
                     spellcheck="false" style="margin-left: -10px; " required id="id_password" />
                 <i class="far fa-eye" id="togglePassword" style="margin-left: -35px; cursor: pointer;"></i>
                 <script>
@@ -189,7 +189,7 @@ mysqli_close($database);
                 <p class="success">
                     <?php echo $success; ?>
                 </p>
-                <button name="submit">Create Account</button>
+                <input type="submit" name="submit" class="submit" value="Create Account">
                 <p class="message">Already have an account? <a href="Login.php">Sign In</a></p>
             </form>
         </div>
