@@ -232,13 +232,13 @@ session_start();
                 </label>
                 <p>
                     <label>
-                        <input type="text" placeholder="الاسم" name="meal_name" required>اسم الوجبة
+                        <input type="text" placeholder="الاسم" name="meal_name" required autocomplete="off">اسم الوجبة
                     </label>
                 </p>
                 <br>
                 <p>
                     <label>
-                        <input type="text" placeholder="السعر" name="meal_price" required
+                        <input type="text" placeholder="السعر" name="meal_price" required autocomplete="off"
                             style="margin-right:28.5%;">سعر الوجبة
                     </label>
                 </p>

@@ -266,7 +266,7 @@ session_start();
                 }
                 $x++;
             }
-            print("<span class='count'><input type='text' name='new_price' size='5'> : السعر الجديد</span><br>
+            print("<span class='count'><input type='text' name='new_price' size='5' autocomplete='off'> : السعر الجديد</span><br>
                         <input type='submit' class='button' value='تعديل السعر' onclick='myFunction()'></input><br>");
             print("</form>");
         }
