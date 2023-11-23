@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     header('Location: login.php');
     exit();
@@ -105,10 +104,10 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     }
 
     .table {
-        font-size: 30px;
-        margin: 6% 6% auto 15%;
-        width: 80%;
+        font-size: 18px;
+        width: 100%;
         color: rgb(124, 17, 17);
+        height: auto;
     }
 
     .table td {
@@ -116,7 +115,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     }
 
     tr {
-        height: 40px;
+        height: 30px;
     }
 
     thead,
@@ -130,7 +129,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
         text-align: center;
         padding: 10px;
         margin-bottom: 0;
-        margin-top: 10%;
+        margin-top: 3%;
         background-attachment: fixed;
     }
 
@@ -162,7 +161,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     .button {
         cursor: pointer;
         padding: 6px;
-        width: 60%;
+        width: 40%;
         background: red;
         color: white;
         border: 0;
@@ -171,17 +170,15 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 
     .subbutton {
         display: block;
-        width: 130px;
+        width: 150px;
         padding: 12px;
         background: #f18b05;
         color: #fff;
-        font-size: x-large;
-        font-weight: bold;
         border: 0;
         border-radius: 5px;
         cursor: pointer;
-        margin-left: 45%;
-        margin-top: 4%;
+        margin-left: 47%;
+        font-size: x-large;
     }
 
     .subbutton:hover {
@@ -189,17 +186,40 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     }
 
     .desc {
-        margin: 10px 100px 20px 75%;
+        margin: 0px 100px 20px 77%;
         overflow: auto;
         text-align: right;
-        font-size: 30px;
+        font-size: 16px;
+        color: rgb(124, 17, 17);
     }
 
     .box {
         overflow: auto;
         text-align: right;
-        margin-left: 62%;
-        font-size: 20px;
+        margin-left: 57%;
+    }
+
+    .section {
+        width: 40%;
+        color: white;
+        font-size: 28px;
+        background-color: rgb(241, 238, 238);
+        height: auto;
+        margin: 30px 60px 30px 20px;
+    }
+
+    h4 {
+        background-color: #f18b05;
+        text-align: center;
+        padding: 5px;
+        width: 50%;
+        margin-left: 110px;
+    }
+
+    .center {
+        display: flex;
+        flex-direction: row-reverse;
+        flex-wrap: wrap;
     }
     </style>
 </head>
@@ -238,46 +258,233 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
         <h1>سلة المشتريات</h1>
     </div>
     <form method='post' action='placeorder.php'>
-        <?php
-        if (!$database = mysqli_connect("localhost", "root", "12345678", "hubreak2_db"))
-            die("Sorry, could not connect to the server.");
-        extract($_POST);
-        $query = "select orders.ID,price,Quantity,name from Orders,products where orders.productId=products.ID ";
-        $result = mysqli_query($database, $query);
-        print("<table class='table'>");
-        print("<thead>");
-        print("<th>حذف</th>");
-        print("<th>السعر</th>");
-        print("<th>الكمية</th>");
-        print("<th>المنتج</th>");
-        print("</thead>");
-        $total = 0;
-        while ($row = mysqli_fetch_row($result)) {
-            print("<tr>");
-            print("<form method='get' action='deletecart.php'>");
-            print("<td><input type='submit' class='button' value='X'></td>");
-            $x = 0;
-            foreach ($row as $value) {
-                if ($x == 0)
-                    print("<input type='hidden' name='Id' value='$value'>");
-                else
-                    print("<td>$value</td>");
-                $x++;
+        <div class="center">
+            <?php
+            if (!$database = mysqli_connect("localhost", "root", "12345678", "hubreak2_db"))
+                die("Sorry, could not connect to the server.");
+            extract($_POST);
+            $query = "SELECT DISTINCT resturantID FROM Orders";
+            $result = mysqli_query($database, $query);
+            while ($row = mysqli_fetch_row($result)) {
+                foreach ($row as $value) {
+                    if ($value == 1) {
+                        print("<div class='section'><h4>مطاعم الشرقي</h4>");
+                        $query1 = "select orders.ID,price,Quantity,name from Orders,products where orders.productId=products.ID and resturantID=1 ";
+                        $result1 = mysqli_query($database, $query1);
+                        print("<table class='table'>");
+                        print("<thead>");
+                        print("<th>حذف</th>");
+                        print("<th>السعر</th>");
+                        print("<th>الكمية</th>");
+                        print("<th>المنتج</th>");
+                        print("</thead>");
+                        $total = 0;
+                        while ($row = mysqli_fetch_row($result1)) {
+                            print("<tr>");
+                            print("<form method='get' action='deletecart.php'>");
+                            print("<td><input type='submit' class='button' value='X'></td>");
+                            $x = 0;
+                            foreach ($row as $value) {
+                                if ($x == 0)
+                                    print("<input type='hidden' name='Id' value='$value'>");
+                                else
+                                    print("<td>$value</td>");
+                                $x++;
+                            }
+                            print("</form>");
+                            $total = $total + $row[2] * $row[1];
+                            print("</tr>");
+                        }
+                        print("<tfoot>");
+                        print("<th></th>");
+                        print("<th>$total JD</th>");
+                        print("<th colspan='2'>المبلغ الاجمالي</th>");
+                        print("</tfoot>");
+                        print("</table>");
+                        print("<input type='hidden' name='total1' value='$total'>");
+                        print("<label class='desc'> : أضف ملاحظة<br><textarea rows='5' cols='25' name='desc1' class='box' placeholder='...أكتب ملاحظتك هنا'></textarea></label></div>");
+                    } elseif ($value == 2) {
+                        print("<div class='section'><h4>مطاعم اسبريسو</h4>");
+                        $query2 = "select orders.ID,price,Quantity,name from Orders,products where orders.productId=products.ID and resturantID=2 ";
+                        $result2 = mysqli_query($database, $query2);
+                        print("<table class='table'>");
+                        print("<thead>");
+                        print("<th>حذف</th>");
+                        print("<th>السعر</th>");
+                        print("<th>الكمية</th>");
+                        print("<th>المنتج</th>");
+                        print("</thead>");
+                        $total2 = 0;
+                        while ($row = mysqli_fetch_row($result2)) {
+                            print("<tr>");
+                            print("<form method='get' action='deletecart.php'>");
+                            print("<td><input type='submit' class='button' value='X'></td>");
+                            $x = 0;
+                            foreach ($row as $value) {
+                                if ($x == 0)
+                                    print("<input type='hidden' name='Id' value='$value'>");
+                                else
+                                    print("<td>$value</td>");
+                                $x++;
+                            }
+                            print("</form>");
+                            $total2 = $total2 + $row[2] * $row[1];
+                            print("</tr>");
+                        }
+                        print("<tfoot>");
+                        print("<th></th>");
+                        print("<th>$total2 JD</th>");
+                        print("<th colspan='2'>المبلغ الاجمالي</th>");
+                        print("</tfoot>");
+                        print("</table>");
+                        print("<label class='desc'> : أضف ملاحظة<br><textarea rows='5' cols='25' name='desc2' class='box' placeholder='...أكتب ملاحظتك هنا'></textarea></label></div>");
+                    } elseif ($value == 3) {
+                        print("<div class='section'><h4>مطاعم الطب</h4>");
+                        $query3 = "select orders.ID,price,Quantity,name from Orders,products where orders.productId=products.ID and resturantID=3 ";
+                        $result3 = mysqli_query($database, $query3);
+                        print("<table class='table'>");
+                        print("<thead>");
+                        print("<th>حذف</th>");
+                        print("<th>السعر</th>");
+                        print("<th>الكمية</th>");
+                        print("<th>المنتج</th>");
+                        print("</thead>");
+                        $total = 0;
+                        while ($row = mysqli_fetch_row($result3)) {
+                            print("<tr>");
+                            print("<form method='get' action='deletecart.php'>");
+                            print("<td><input type='submit' class='button' value='X'></td>");
+                            $x = 0;
+                            foreach ($row as $value) {
+                                if ($x == 0)
+                                    print("<input type='hidden' name='Id' value='$value'>");
+                                else
+                                    print("<td>$value</td>");
+                                $x++;
+                            }
+                            print("</form>");
+                            $total = $total + $row[2] * $row[1];
+                            print("</tr>");
+                        }
+                        print("<tfoot>");
+                        print("<th></th>");
+                        print("<th>$total JD</th>");
+                        print("<th colspan='2'>المبلغ الاجمالي</th>");
+                        print("</tfoot>");
+                        print("</table>");
+                        print("<label class='desc'> : أضف ملاحظة<br><textarea rows='5' cols='25' name='desc3' class='box' placeholder='...أكتب ملاحظتك هنا'></textarea></label></div>");
+                    } elseif ($value == 4) {
+                        print("<div class='section'><h4>مطاعم القرية الطلابية</h4>");
+                        $query4 = "select orders.ID,price,Quantity,name from Orders,products where orders.productId=products.ID and resturantID=4 ";
+                        $result4 = mysqli_query($database, $query4);
+                        print("<table class='table'>");
+                        print("<thead>");
+                        print("<th>حذف</th>");
+                        print("<th>السعر</th>");
+                        print("<th>الكمية</th>");
+                        print("<th>المنتج</th>");
+                        print("</thead>");
+                        $total = 0;
+                        while ($row = mysqli_fetch_row($result4)) {
+                            print("<tr>");
+                            print("<form method='get' action='deletecart.php'>");
+                            print("<td><input type='submit' class='button' value='X'></td>");
+                            $x = 0;
+                            foreach ($row as $value) {
+                                if ($x == 0)
+                                    print("<input type='hidden' name='Id' value='$value'>");
+                                else
+                                    print("<td>$value</td>");
+                                $x++;
+                            }
+                            print("</form>");
+                            $total = $total + $row[2] * $row[1];
+                            print("</tr>");
+                        }
+                        print("<tfoot>");
+                        print("<th></th>");
+                        print("<th>$total JD</th>");
+                        print("<th colspan='2'>المبلغ الاجمالي</th>");
+                        print("</tfoot>");
+                        print("</table>");
+                        print("<label class='desc'> : أضف ملاحظة<br><textarea rows='5' cols='25' name='desc4' class='box' placeholder='...أكتب ملاحظتك هنا'></textarea></label></div>");
+                    } elseif ($value == 5) {
+                        print("<div class='section'><h4>مطاعم ظاظا</h4>");
+                        $query5 = "select orders.ID,price,Quantity,name from Orders,products where orders.productId=products.ID and resturantID=5 ";
+                        $result5 = mysqli_query($database, $query5);
+                        print("<table class='table'>");
+                        print("<thead>");
+                        print("<th>حذف</th>");
+                        print("<th>السعر</th>");
+                        print("<th>الكمية</th>");
+                        print("<th>المنتج</th>");
+                        print("</thead>");
+                        $total = 0;
+                        while ($row = mysqli_fetch_row($result5)) {
+                            print("<tr>");
+                            print("<form method='get' action='deletecart.php'>");
+                            print("<td><input type='submit' class='button' value='X'></td>");
+                            $x = 0;
+                            foreach ($row as $value) {
+                                if ($x == 0)
+                                    print("<input type='hidden' name='Id' value='$value'>");
+                                else
+                                    print("<td>$value</td>");
+                                $x++;
+                            }
+                            print("</form>");
+                            $total = $total + $row[2] * $row[1];
+                            print("</tr>");
+                        }
+                        print("<tfoot>");
+                        print("<th></th>");
+                        print("<th>$total JD</th>");
+                        print("<th colspan='2'>المبلغ الاجمالي</th>");
+                        print("</tfoot>");
+                        print("</table>");
+                        print("<label class='desc'> : أضف ملاحظة<br><textarea rows='5' cols='25' name='desc5' class='box' placeholder='...أكتب ملاحظتك هنا'></textarea></label></div>");
+                    } elseif ($value == 6) {
+                        print("<div class='section'><h4>مطاعم الغربي</h4>");
+                        $query6 = "select orders.ID,price,Quantity,name from Orders,products where orders.productId=products.ID and resturantID=6 ";
+                        $result6 = mysqli_query($database, $query6);
+                        print("<table class='table'>");
+                        print("<thead>");
+                        print("<th>حذف</th>");
+                        print("<th>السعر</th>");
+                        print("<th>الكمية</th>");
+                        print("<th>المنتج</th>");
+                        print("</thead>");
+                        $total = 0;
+                        while ($row = mysqli_fetch_row($result6)) {
+                            print("<tr>");
+                            print("<form method='get' action='deletecart.php'>");
+                            print("<td><input type='submit' class='button' value='X'></td>");
+                            $x = 0;
+                            foreach ($row as $value) {
+                                if ($x == 0)
+                                    print("<input type='hidden' name='Id' value='$value'>");
+                                else
+                                    print("<td>$value</td>");
+                                $x++;
+                            }
+                            print("</form>");
+                            $total = $total + $row[2] * $row[1];
+                            print("</tr>");
+                        }
+                        print("<tfoot>");
+                        print("<th></th>");
+                        print("<th>$total JD</th>");
+                        print("<th colspan='2'>المبلغ الاجمالي</th>");
+                        print("</tfoot>");
+                        print("</table>");
+                        print("<label class='desc'> : أضف ملاحظة<br><textarea rows='5' cols='25' name='desc6' class='box' placeholder='...أكتب ملاحظتك هنا'></textarea></label></div>");
+                    }
+                }
             }
-            print("</form>");
-            $total = $total + $row[2] * $row[1];
-            print("</tr>");
-        }
-        print("<tfoot style='margin-top:30px;'>");
-        print("<th></th>");
-        print("<th>$total</th>");
-        print("<th colspan='2'>المبلغ الاجمالي</th>");
-        print("</tfoot>");
-        print("</table><br>");
-        print("<label class='desc'> : أضف ملاحظة<br><textarea rows='6' cols='30' name='desc' class='box' placeholder='...أكتب ملاحظتك هنا'></textarea></label>");
-        mysqli_close($database);
-        ?>
-        <input type="submit" value="تأكيد الطلب" class="subbutton">
+            mysqli_close($database);
+            ?>
+        </div>
+        <input type='submit' value='تأكيد الطلب' class='subbutton'>
     </form>
     <footer>
         <p>Developed By</p>

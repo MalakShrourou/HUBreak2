@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     header('Location: login.php');
     exit();
@@ -418,7 +417,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
         if (!$database = mysqli_connect("localhost", "root", "12345678", "hubreak2_db"))
             die("Sorry, could not connect to the server.");
         extract($_POST);
-        $query = "select products.*,resturantproducts.price,resturantproducts.resturantId from products join resturantproducts on products.ID = productId WHERE resturantproducts.resturantId = 4 ";
+        $query = "select products.Image,products.ID,products.name,resturantproducts.price,resturantproducts.resturantId from products join resturantproducts on products.ID = productId WHERE resturantproducts.resturantId = 4 ";
         $result = mysqli_query($database, $query);
         while ($row = mysqli_fetch_row($result)) {
             print("<form class='product' method='post' action='addtocart.php'>");
@@ -430,11 +429,11 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                     print("<input type='hidden' name='ID' value='$value'>");
                 elseif ($x == 3) {
                     print("<input type='hidden' name='price' value='$value'>");
-                    print("<span >$value</span>");
+                    print("<span>$value JD</span>");
                 } elseif ($x == 4)
                     print("<input type='hidden' name='restID' value='$value'>");
                 else {
-                    print("<span >$value</span>");
+                    print("<span>$value</span>");
                 }
                 $x++;
             }
