@@ -6,7 +6,7 @@ session_start();
 
 <head>
     <title>Zaza - Add</title>
-    <meta charset=utf8>
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <style>
     * {
@@ -37,7 +37,7 @@ session_start();
     }
 
     .menu-bar ul li {
-        width: 120px;
+        width: 150px;
         margin: 0px;
         padding: 10px 0px;
         text-align: center;
@@ -46,11 +46,9 @@ session_start();
     .menu-bar ul li a {
         text-decoration: none;
         color: #fff;
-        padding-right: 10px;
     }
 
-    .menu,
-    .user {
+    .menu {
         display: none;
     }
 
@@ -58,22 +56,18 @@ session_start();
         background-color: #fda025;
     }
 
-    .menu-bar ul li:hover .menu,
-    .menu-bar ul li:hover .user {
+    .menu-bar ul li:hover .menu {
         display: block;
         position: absolute;
         background-color: #FBB202;
         margin-top: 10px;
-        margin-left: -20px;
     }
 
-    .menu-bar ul li:hover .menu ul,
-    .menu-bar ul li:hover .user ul {
+    .menu-bar ul li:hover .menu ul {
         display: block;
     }
 
-    .menu-bar ul li:hover .menu ul li,
-    .menu-bar ul li:hover .user ul li {
+    .menu-bar ul li:hover .menu ul li {
         width: 150px;
         padding: 10px;
         border-bottom: 1px dotted #fff;
@@ -82,13 +76,11 @@ session_start();
         text-align: center;
     }
 
-    .menu-bar ul li:hover .menu ul li:last-child,
-    .menu-bar ul li:hover .user ul li:last-child {
+    .menu-bar ul li:hover .menu ul li:last-child {
         border-bottom: none;
     }
 
-    .menu-bar ul li:hover .menu ul li a:hover,
-    .menu-bar ul li:hover .user ul li a:hover {
+    .menu-bar ul li:hover .menu ul li a:hover {
         color: rgb(124, 17, 17);
     }
 
@@ -103,15 +95,6 @@ session_start();
     h2,
     h3 {
         text-align: center;
-    }
-
-
-    .cart-icon {
-        display: inline-block;
-        width: 18px;
-        height: 18px;
-        background-image: url("cart-icon.png");
-        background-size: contain;
     }
 
     footer {
@@ -131,14 +114,6 @@ session_start();
 
     h2 {
         padding: 30px;
-    }
-
-    .user-icon {
-        display: inline-block;
-        width: 18px;
-        height: 18px;
-        background-image: url("user.png");
-        background-size: contain;
     }
 
     .container {
@@ -192,30 +167,67 @@ session_start();
     <nav class="menu-bar">
         <img src="logo.jpg" class="logo">
         <ul>
-            <li><a href="cart.php"><span class="cart-icon"></span></a></li>
-            <li><a href="#"><span class="user-icon"></span></a>
-                <div class="user">
-                    <ul>
-                        <li><a href="Logout.php">تسجيل الخروج</a></li>
-                        <li><a href="ChangePassword.php">تغيير كلمة السر</a></li>
-                        <li><a href="DeleteAccount.php">حذف الحساب</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li><a href="Home.php#cont">من نحن</a></li>
-            <li class="rest"><a href=" #">المطاعم</a>
+            <li class="rest"><a href=" #">التقييمات</a>
                 <div class="menu">
                     <ul>
-                        <li><a href="Zaza.php">مطعم ظاظا</a></li>
-                        <li><a href="Village.php">مطعم القرية الطلابية</a></li>
-                        <li><a href="Espresso.php">مطعم اسبريسو</a></li>
-                        <li><a href="Eastern.php">مطعم الشرقي</a></li>
-                        <li><a href="Western.php">مطعم الغربي</a></li>
-                        <li><a href="Medicine.php">مطعم الطب</a></li>
+                        <li><a href="ReviewsZaza.php">مطعم ظاظا</a></li>
+                        <li><a href="ReviewsVillage.php">مطعم القرية الطلابية</a></li>
+                        <li><a href="ReviewsEspresso.php">مطعم اسبريسو</a></li>
+                        <li><a href="ReviewsEastern.php">مطعم الشرقي</a></li>
+                        <li><a href="ReviewsWestern.php">مطعم الغربي</a></li>
+                        <li><a href="ReviewsMedicine.php">مطعم الطب</a></li>
                     </ul>
                 </div>
             </li>
-            <li><a href="Home.php">الصفحة الرئيسية</a></li>
+            <li class="rest"><a href=" #">إضافة إعلان</a>
+                <div class="menu">
+                    <ul>
+                        <li><a href="SubmitZaza.php">مطعم ظاظا</a></li>
+                        <li><a href="SubmitVillage.php">مطعم القرية الطلابية</a></li>
+                        <li><a href="SubmitEspresso.php">مطعم اسبريسو</a></li>
+                        <li><a href="SubmitEastern.php">مطعم الشرقي</a></li>
+                        <li><a href="SubmitWestern.php">مطعم الغربي</a></li>
+                        <li><a href="SubmitMedicine.php">مطعم الطب</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="rest"><a href=" #">تعديل الأسعار</a>
+                <div class="menu">
+                    <ul>
+                        <li><a href="ChangeZaza.php">مطعم ظاظا</a></li>
+                        <li><a href="ChangeVillage.php">مطعم القرية الطلابية</a></li>
+                        <li><a href="ChangeEspresso.php">مطعم اسبريسو</a></li>
+                        <li><a href="ChangeEastern.php">مطعم الشرقي</a></li>
+                        <li><a href="ChangeWestern.php">مطعم الغربي</a></li>
+                        <li><a href="ChangeMedicine.php">مطعم الطب</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="rest"><a href=" #">حذف وجبة</a>
+                <div class="menu">
+                    <ul>
+                        <li><a href="DeleteZaza.php">مطعم ظاظا</a></li>
+                        <li><a href="DeleteVillage.php">مطعم القرية الطلابية</a></li>
+                        <li><a href="DeleteEspresso.php">مطعم اسبريسو</a></li>
+                        <li><a href="DeleteEastern.php">مطعم الشرقي</a></li>
+                        <li><a href="DeleteWestern.php">مطعم الغربي</a></li>
+                        <li><a href="DeleteMedicine.php">مطعم الطب</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li class="rest"><a href=" #">إضافة وجبة</a>
+                <div class="menu">
+                    <ul>
+                        <li><a href="AddZaza.php">مطعم ظاظا</a></li>
+                        <li><a href="AddVillage.php">مطعم القرية الطلابية</a></li>
+                        <li><a href="AddEspresso.php">مطعم اسبريسو</a></li>
+                        <li><a href="AddEastern.php">مطعم الشرقي</a></li>
+                        <li><a href="AddWestern.php">مطعم الغربي</a></li>
+                        <li><a href="AddMedicine.php">مطعم الطب</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li><a href="Admin.html">الصفحة الرئيسية</a></li>
         </ul>
     </nav>
     <div class="intro">
@@ -240,6 +252,13 @@ session_start();
                     <label>
                         <input type="text" placeholder="السعر" name="meal_price" required autocomplete="off"
                             style="margin-right:28.5%;">سعر الوجبة
+                    </label>
+                </p>
+                <br>
+                <p>
+                    <label>
+                        <input type="number" placeholder="الوقت" name="meal_time" required autocomplete="off"
+                            style="margin-right:27%; text-align:right;" min=0 max=30>وقت اللإعداد
                     </label>
                 </p>
                 <br>

@@ -128,9 +128,10 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
         color: white;
         text-align: center;
         padding: 10px;
-        margin-bottom: 0;
-        margin-top: 3%;
-        background-attachment: fixed;
+        position: relative;
+        left: 0;
+        bottom: 0;
+        width: 100%;
     }
 
     a .cart-icon {
@@ -177,8 +178,8 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
         border: 0;
         border-radius: 5px;
         cursor: pointer;
-        margin-left: 47%;
         font-size: x-large;
+        margin: 3% auto 3% 45%;
     }
 
     .subbutton:hover {
@@ -205,7 +206,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
         font-size: 28px;
         background-color: rgb(241, 238, 238);
         height: auto;
-        margin: 30px 60px 30px 20px;
+        margin: 30px 75px 30px 20px;
     }
 
     h4 {
@@ -314,7 +315,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                         print("<th>الكمية</th>");
                         print("<th>المنتج</th>");
                         print("</thead>");
-                        $total2 = 0;
+                        $total = 0;
                         while ($row = mysqli_fetch_row($result2)) {
                             print("<tr>");
                             print("<form method='get' action='deletecart.php'>");
@@ -328,15 +329,16 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                                 $x++;
                             }
                             print("</form>");
-                            $total2 = $total2 + $row[2] * $row[1];
+                            $total = $total + $row[2] * $row[1];
                             print("</tr>");
                         }
                         print("<tfoot>");
                         print("<th></th>");
-                        print("<th>$total2 JD</th>");
+                        print("<th>$total JD</th>");
                         print("<th colspan='2'>المبلغ الاجمالي</th>");
                         print("</tfoot>");
                         print("</table>");
+                        print("<input type='hidden' name='total2' value='$total'>");
                         print("<label class='desc'> : أضف ملاحظة<br><textarea rows='5' cols='25' name='desc2' class='box' placeholder='...أكتب ملاحظتك هنا'></textarea></label></div>");
                     } elseif ($value == 3) {
                         print("<div class='section'><h4>مطاعم الطب</h4>");
@@ -372,6 +374,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                         print("<th colspan='2'>المبلغ الاجمالي</th>");
                         print("</tfoot>");
                         print("</table>");
+                        print("<input type='hidden' name='total3' value='$total'>");
                         print("<label class='desc'> : أضف ملاحظة<br><textarea rows='5' cols='25' name='desc3' class='box' placeholder='...أكتب ملاحظتك هنا'></textarea></label></div>");
                     } elseif ($value == 4) {
                         print("<div class='section'><h4>مطاعم القرية الطلابية</h4>");
@@ -407,6 +410,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                         print("<th colspan='2'>المبلغ الاجمالي</th>");
                         print("</tfoot>");
                         print("</table>");
+                        print("<input type='hidden' name='total4' value='$total'>");
                         print("<label class='desc'> : أضف ملاحظة<br><textarea rows='5' cols='25' name='desc4' class='box' placeholder='...أكتب ملاحظتك هنا'></textarea></label></div>");
                     } elseif ($value == 5) {
                         print("<div class='section'><h4>مطاعم ظاظا</h4>");
@@ -442,6 +446,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                         print("<th colspan='2'>المبلغ الاجمالي</th>");
                         print("</tfoot>");
                         print("</table>");
+                        print("<input type='hidden' name='total5' value='$total'>");
                         print("<label class='desc'> : أضف ملاحظة<br><textarea rows='5' cols='25' name='desc5' class='box' placeholder='...أكتب ملاحظتك هنا'></textarea></label></div>");
                     } elseif ($value == 6) {
                         print("<div class='section'><h4>مطاعم الغربي</h4>");
@@ -477,6 +482,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                         print("<th colspan='2'>المبلغ الاجمالي</th>");
                         print("</tfoot>");
                         print("</table>");
+                        print("<input type='hidden' name='total6' value='$total'>");
                         print("<label class='desc'> : أضف ملاحظة<br><textarea rows='5' cols='25' name='desc6' class='box' placeholder='...أكتب ملاحظتك هنا'></textarea></label></div>");
                     }
                 }
