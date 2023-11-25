@@ -271,10 +271,13 @@ session_start();
                     print("<img src='$value' class='food'></img>");
                 elseif ($x == 1)
                     print("<input type='hidden' name='ID' value='$value'>");
-                elseif ($x == 4)
+                elseif ($x == 3) {
+                    print("<input type='hidden' name='price' value='$value'>");
+                    print("<span >$value JD : السعر الحالي</span>");
+                }elseif ($x == 4)
                     print("<input type='hidden' name='RestID' value='$value'>");
                 else {
-                    print("<span >$value</span>");
+                    print("<span>$value</span>");
                 }
                 $x++;
             }
