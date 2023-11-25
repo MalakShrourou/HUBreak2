@@ -128,7 +128,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
         color: white;
         text-align: center;
         padding: 10px;
-        position: relative;
+        position: absolute;
         left: 0;
         bottom: 0;
         width: 100%;
