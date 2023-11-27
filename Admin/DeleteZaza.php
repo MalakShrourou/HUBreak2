@@ -9,157 +9,157 @@ session_start();
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <style>
-    * {
-        margin: 0;
-        padding: 0;
-        font-family: 'Times New Roman', Times, serif;
-        box-sizing: border-box;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Times New Roman', Times, serif;
+            box-sizing: border-box;
+        }
 
-    body {
-        color: rgb(124, 17, 17);
-        background-attachment: fixed;
-    }
+        body {
+            color: rgb(124, 17, 17);
+            background-attachment: fixed;
+        }
 
-    .menu-bar {
-        background: #f18b05;
-        text-align: right;
-        height: 40px;
-        margin-right: 10%;
-        padding-right: 5px;
-        font-size: large;
-    }
+        .menu-bar {
+            background: #f18b05;
+            text-align: right;
+            height: 40px;
+            margin-right: 10%;
+            padding-right: 5px;
+            font-size: large;
+        }
 
-    .menu-bar ul {
-        display: inline-flex;
-        list-style: none;
-        color: #fff;
-    }
+        .menu-bar ul {
+            display: inline-flex;
+            list-style: none;
+            color: #fff;
+        }
 
-    .menu-bar ul li {
-        width: 150px;
-        margin: 0px;
-        padding: 10px 0px;
-        text-align: center;
-    }
+        .menu-bar ul li {
+            width: 150px;
+            margin: 0px;
+            padding: 10px 0px;
+            text-align: center;
+        }
 
-    .menu-bar ul li a {
-        text-decoration: none;
-        color: #fff;
-    }
+        .menu-bar ul li a {
+            text-decoration: none;
+            color: #fff;
+        }
 
-    .menu {
-        display: none;
-    }
+        .menu {
+            display: none;
+        }
 
-    .menu-bar ul li:hover {
-        background-color: #fda025;
-    }
+        .menu-bar ul li:hover {
+            background-color: #fda025;
+        }
 
-    .menu-bar ul li:hover .menu {
-        display: block;
-        position: absolute;
-        background-color: #FBB202;
-        margin-top: 10px;
-    }
+        .menu-bar ul li:hover .menu {
+            display: block;
+            position: absolute;
+            background-color: #FBB202;
+            margin-top: 10px;
+        }
 
-    .menu-bar ul li:hover .menu ul {
-        display: block;
-    }
+        .menu-bar ul li:hover .menu ul {
+            display: block;
+        }
 
-    .menu-bar ul li:hover .menu ul li {
-        width: 150px;
-        padding: 10px;
-        border-bottom: 1px dotted #fff;
-        background: transparent;
-        border-radius: 0;
-        text-align: center;
-    }
+        .menu-bar ul li:hover .menu ul li {
+            width: 150px;
+            padding: 10px;
+            border-bottom: 1px dotted #fff;
+            background: transparent;
+            border-radius: 0;
+            text-align: center;
+        }
 
-    .menu-bar ul li:hover .menu ul li:last-child {
-        border-bottom: none;
-    }
+        .menu-bar ul li:hover .menu ul li:last-child {
+            border-bottom: none;
+        }
 
-    .menu-bar ul li:hover .menu ul li a:hover {
-        color: rgb(124, 17, 17);
-    }
+        .menu-bar ul li:hover .menu ul li a:hover {
+            color: rgb(124, 17, 17);
+        }
 
-    .logo {
-        width: 10%;
-        height: 40px;
-        right: 0;
-        position: absolute;
-    }
+        .logo {
+            width: 10%;
+            height: 40px;
+            right: 0;
+            position: absolute;
+        }
 
-    .product {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 20%;
-        height: 30%;
-        border-radius: 15px;
-        background-color: rgb(241, 238, 238);
-        margin: 70px 50px 0 0;
-        font-size: 20px;
-    }
+        .product {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 20%;
+            height: 30%;
+            border-radius: 15px;
+            background-color: rgb(241, 238, 238);
+            margin: 70px 50px 0 0;
+            font-size: 20px;
+        }
 
-    .food {
-        width: 200px;
-        height: 200px;
-        object-fit: cover;
-        border-radius: 15px;
-        margin: 0px 20px 10px 20px;
-    }
+        .food {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin: 0px 20px 10px 20px;
+        }
 
-    .section {
-        margin-bottom: 50px;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        margin-left: 12%;
-    }
+        .section {
+            margin-bottom: 50px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            margin-left: 12%;
+        }
 
-    h1,
-    h2,
-    h3 {
-        text-align: center;
-    }
+        h1,
+        h2,
+        h3 {
+            text-align: center;
+        }
 
-    footer {
-        background: #f18b05;
-        color: white;
-        text-align: center;
-        padding: 10px;
-    }
+        footer {
+            background: #f18b05;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
 
-    .intro {
-        background-color: #fda025;
-        width: 100%;
-        color: white;
-        padding: 2% 0;
-        font-size: xx-large;
-    }
+        .intro {
+            background-color: #fda025;
+            width: 100%;
+            color: white;
+            padding: 2% 0;
+            font-size: xx-large;
+        }
 
-    h2 {
-        padding: 30px;
-    }
+        h2 {
+            padding: 30px;
+        }
 
-    .product .button {
-        display: block;
-        width: 50px;
-        padding: 6px;
-        margin-top: 5px;
-        background: red;
-        color: #fff;
-        border: 0;
-        border-radius: 5px;
-        text-align: center;
-        cursor: pointer;
-    }
+        .product .button {
+            display: block;
+            width: 50px;
+            padding: 6px;
+            margin-top: 5px;
+            background: red;
+            color: #fff;
+            border: 0;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+        }
 
-    .product .button:hover {
-        background: darkred;
-    }
+        .product .button:hover {
+            background: darkred;
+        }
     </style>
 </head>
 
@@ -268,9 +268,9 @@ session_start();
     </footer>
 
     <script>
-    function myFunction() {
-        alert("تم الحذف بنجاح!");
-    }
+        function myFunction() {
+            alert("تم الحذف بنجاح!");
+        }
     </script>
 
 </body>
