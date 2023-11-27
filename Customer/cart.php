@@ -12,216 +12,216 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     <title>Cart</title>
     <meta charset="UTF-8">
     <style>
-    * {
-        margin: 0;
-        padding: 0;
-        font-family: 'Times New Roman', Times, serif;
-        box-sizing: border-box;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Times New Roman', Times, serif;
+            box-sizing: border-box;
+        }
 
-    body {
-        color: rgb(124, 17, 17);
-        background-attachment: fixed;
-        background-color: white;
-    }
+        body {
+            color: rgb(124, 17, 17);
+            background-attachment: fixed;
+            background-color: white;
+        }
 
-    .menu-bar {
-        background: #f18b05;
-        text-align: right;
-        height: 40px;
-        margin-right: 10%;
-        padding-right: 5px;
-        font-size: large;
-    }
+        .menu-bar {
+            background: #f18b05;
+            text-align: right;
+            height: 40px;
+            margin-right: 10%;
+            padding-right: 5px;
+            font-size: large;
+        }
 
-    .menu-bar ul {
-        display: inline-flex;
-        list-style: none;
-        color: #fff;
-    }
+        .menu-bar ul {
+            display: inline-flex;
+            list-style: none;
+            color: #fff;
+        }
 
-    .menu-bar ul li {
-        width: 120px;
-        margin: 0px;
-        padding: 10px 0px;
-        text-align: center;
-    }
+        .menu-bar ul li {
+            width: 120px;
+            margin: 0px;
+            padding: 10px 0px;
+            text-align: center;
+        }
 
-    .menu-bar ul li a {
-        text-decoration: none;
-        color: #fff;
-        padding-right: 10px;
-    }
+        .menu-bar ul li a {
+            text-decoration: none;
+            color: #fff;
+            padding-right: 10px;
+        }
 
-    .menu,
-    .user {
-        display: none;
-    }
+        .menu,
+        .user {
+            display: none;
+        }
 
-    .menu-bar ul li:hover {
-        background-color: #fda025;
-    }
+        .menu-bar ul li:hover {
+            background-color: #fda025;
+        }
 
-    .menu-bar ul li:hover .menu,
-    .menu-bar ul li:hover .user {
-        display: block;
-        position: absolute;
-        background-color: #FBB202;
-        margin-top: 10px;
-        margin-left: -20px;
-    }
+        .menu-bar ul li:hover .menu,
+        .menu-bar ul li:hover .user {
+            display: block;
+            position: absolute;
+            background-color: #FBB202;
+            margin-top: 10px;
+            margin-left: -20px;
+        }
 
-    .menu-bar ul li:hover .menu ul,
-    .menu-bar ul li:hover .user ul {
-        display: block;
-    }
+        .menu-bar ul li:hover .menu ul,
+        .menu-bar ul li:hover .user ul {
+            display: block;
+        }
 
-    .menu-bar ul li:hover .menu ul li,
-    .menu-bar ul li:hover .user ul li {
-        width: 150px;
-        padding: 10px;
-        border-bottom: 1px dotted #fff;
-        background: transparent;
-        border-radius: 0;
-        text-align: center;
-    }
+        .menu-bar ul li:hover .menu ul li,
+        .menu-bar ul li:hover .user ul li {
+            width: 150px;
+            padding: 10px;
+            border-bottom: 1px dotted #fff;
+            background: transparent;
+            border-radius: 0;
+            text-align: center;
+        }
 
-    .menu-bar ul li:hover .menu ul li:last-child,
-    .menu-bar ul li:hover .user ul li:last-child {
-        border-bottom: none;
-    }
+        .menu-bar ul li:hover .menu ul li:last-child,
+        .menu-bar ul li:hover .user ul li:last-child {
+            border-bottom: none;
+        }
 
-    .menu-bar ul li:hover .menu ul li a:hover,
-    .menu-bar ul li:hover .user ul li a:hover {
-        color: rgb(124, 17, 17);
-    }
+        .menu-bar ul li:hover .menu ul li a:hover,
+        .menu-bar ul li:hover .user ul li a:hover {
+            color: rgb(124, 17, 17);
+        }
 
-    .logo {
-        width: 10%;
-        height: 40px;
-        right: 0;
-        position: absolute;
-    }
+        .logo {
+            width: 10%;
+            height: 40px;
+            right: 0;
+            position: absolute;
+        }
 
-    .table {
-        font-size: 18px;
-        width: 100%;
-        color: rgb(124, 17, 17);
-        height: auto;
-    }
+        .table {
+            font-size: 18px;
+            width: 100%;
+            color: rgb(124, 17, 17);
+            height: auto;
+        }
 
-    .table td {
-        text-align: center;
-    }
+        .table td {
+            text-align: center;
+        }
 
-    tr {
-        height: 30px;
-    }
+        tr {
+            height: 30px;
+        }
 
-    thead,
-    tfoot {
-        height: 30px;
-    }
+        thead,
+        tfoot {
+            height: 30px;
+        }
 
-    footer {
-        background: #f18b05;
-        color: white;
-        text-align: center;
-        padding: 10px;
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-    }
+        footer {
+            background: #f18b05;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+        }
 
-    a .cart-icon {
-        display: inline-block;
-        width: 18px;
-        height: 18px;
-        background-image: url("cart-icon.png");
-        background-size: contain;
-    }
+        a .cart-icon {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            background-image: url("cart-icon.png");
+            background-size: contain;
+        }
 
-    .user-icon {
-        display: inline-block;
-        width: 18px;
-        height: 18px;
-        background-image: url("user.png");
-        background-size: contain;
-    }
+        .user-icon {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            background-image: url("user.png");
+            background-size: contain;
+        }
 
-    .intro {
-        background-color: #fda025;
-        width: 100%;
-        color: white;
-        padding: 2% 0;
-        font-size: xx-large;
-        text-align: center;
-    }
+        .intro {
+            background-color: #fda025;
+            width: 100%;
+            color: white;
+            padding: 2% 0;
+            font-size: xx-large;
+            text-align: center;
+        }
 
-    .button {
-        cursor: pointer;
-        padding: 6px;
-        width: 40%;
-        background: red;
-        color: white;
-        border: 0;
-        border-radius: 5px;
-    }
+        .button {
+            cursor: pointer;
+            padding: 6px;
+            width: 40%;
+            background: red;
+            color: white;
+            border: 0;
+            border-radius: 5px;
+        }
 
-    .subbutton {
-        display: block;
-        width: 150px;
-        padding: 12px;
-        background: #f18b05;
-        color: #fff;
-        border: 0;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: x-large;
-        margin: 3% auto 3% 45%;
-    }
+        .subbutton {
+            display: block;
+            width: 150px;
+            padding: 12px;
+            background: #f18b05;
+            color: #fff;
+            border: 0;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: x-large;
+            margin: 3% auto 3% 45%;
+        }
 
-    .subbutton:hover {
-        background: #fda735;
-    }
+        .subbutton:hover {
+            background: #fda735;
+        }
 
-    .desc {
-        margin: 0px 100px 20px 77%;
-        overflow: auto;
-        text-align: right;
-        font-size: 16px;
-        color: rgb(124, 17, 17);
-    }
+        .desc {
+            margin: 0px 100px 20px 77%;
+            overflow: auto;
+            text-align: right;
+            font-size: 16px;
+            color: rgb(124, 17, 17);
+        }
 
-    .box {
-        overflow: auto;
-        text-align: right;
-        margin-left: 57%;
-    }
+        .box {
+            overflow: auto;
+            text-align: right;
+            margin-left: 57%;
+        }
 
-    .section {
-        width: 40%;
-        color: white;
-        font-size: 28px;
-        background-color: rgb(241, 238, 238);
-        height: auto;
-        margin: 30px 75px 30px 20px;
-    }
+        .section {
+            width: 40%;
+            color: white;
+            font-size: 28px;
+            background-color: rgb(241, 238, 238);
+            height: auto;
+            margin: 30px 75px 30px 20px;
+        }
 
-    h4 {
-        background-color: #f18b05;
-        text-align: center;
-        padding: 5px;
-        width: 50%;
-        margin-left: 110px;
-    }
+        h4 {
+            background-color: #f18b05;
+            text-align: center;
+            padding: 5px;
+            width: 50%;
+            margin-left: 110px;
+        }
 
-    .center {
-        display: flex;
-        flex-direction: row-reverse;
-        flex-wrap: wrap;
-    }
+        .center {
+            display: flex;
+            flex-direction: row-reverse;
+            flex-wrap: wrap;
+        }
     </style>
 </head>
 
