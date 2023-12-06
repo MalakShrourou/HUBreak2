@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 if (!$database = mysqli_connect("localhost", "root", "12345678"))
     die("Sorry, could not connect to the server.");
 if (!mysqli_select_db($database, "hubreak2_db"))
@@ -15,8 +14,21 @@ if (isset($submit)) {
         $row = mysqli_fetch_assoc($result);
         if ($password == $row['password']) {
             $_SESSION['username'] = $username;
+            $_SESSION['logged_in'] = true;
+            $_SESSION['ID'] = $row['ID'];
             $error = "";
-            header("Location:Index.php");
+            if ($_SESSION['ID'] == 1)
+                header("Location:Eastern.php");
+            elseif ($_SESSION['ID'] == 2)
+                header("Location:Espresso.php");
+            elseif ($_SESSION['ID'] == 3)
+                header("Location:Medicine.php");
+            elseif ($_SESSION['ID'] == 4)
+                header("Location:Village.php");
+            elseif ($_SESSION['ID'] == 5)
+                header("Location:Zaza.php");
+            elseif ($_SESSION['ID'] == 6)
+                header("Location:Western.php");
         } else {
             $error = "Wrong Password";
         }
