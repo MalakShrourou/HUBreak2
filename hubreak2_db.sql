@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 24, 2023 at 09:55 PM
+-- Generation Time: Dec 11, 2023 at 03:59 PM
 -- Server version: 8.0.17
 -- PHP Version: 7.3.10
 
@@ -57,6 +57,14 @@ CREATE TABLE `carts` (
   `Time` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Dumping data for table `carts`
+--
+
+INSERT INTO `carts` (`ID`, `CustomerID`, `ResturantID`, `TotalPrice`, `Payed`, `Description`, `Time`) VALUES
+(8, 3, 4, 6, 0, '', 20),
+(9, 3, 5, 1, 0, '', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -99,6 +107,15 @@ CREATE TABLE `orders` (
   `Quantity` int(11) NOT NULL,
   `price` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`ID`, `ProductID`, `resturantID`, `Quantity`, `price`) VALUES
+(1, 3, 4, 1, 2),
+(2, 7, 4, 2, 2),
+(4, 18, 5, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -432,7 +449,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `customers`
@@ -444,7 +461,7 @@ ALTER TABLE `customers`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `products`

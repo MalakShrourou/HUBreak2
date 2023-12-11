@@ -5,60 +5,60 @@
     <title>Cart</title>
     <meta charset="UTF-8">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            font-family: 'Times New Roman', Times, serif;
-            box-sizing: border-box;
-        }
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: 'Times New Roman', Times, serif;
+        box-sizing: border-box;
+    }
 
-        body {
-            background-attachment: fixed;
-            background-image: url("cover.jpg");
-        }
+    body {
+        background-attachment: fixed;
+        background-image: url("cover.jpg");
+    }
 
-        .section {
-            width: 30%;
-            font-size: 28px;
-            background-color: transparent;
-            backdrop-filter: blur(30px);
-            height: auto;
-            margin: 50px 150px 30px 20px;
-            border: 2px solid #f18b05;
-            border-radius: 15px;
-            padding-bottom: 20px;
-        }
+    .section {
+        width: 30%;
+        font-size: 28px;
+        background-color: transparent;
+        backdrop-filter: blur(30px);
+        height: auto;
+        margin: 50px 150px 30px 20px;
+        border: 2px solid #f18b05;
+        border-radius: 15px;
+        padding-bottom: 20px;
+    }
 
-        h4 {
-            background-color: #f18b05;
-            text-align: center;
-            padding: 5px;
-            width: 50%;
-            margin-left: 100px;
-            margin-top: 0;
-            color: white;
-        }
+    h4 {
+        background-color: #f18b05;
+        text-align: center;
+        padding: 5px;
+        width: 50%;
+        margin-left: 100px;
+        margin-top: 0;
+        color: white;
+    }
 
-        .table {
-            font-size: 22px;
-            width: 100%;
-            color: rgb(124, 17, 17);
-            height: auto;
-        }
+    .table {
+        font-size: 22px;
+        width: 100%;
+        color: rgb(124, 17, 17);
+        height: auto;
+    }
 
-        .table td {
-            text-align: center;
-        }
+    .table td {
+        text-align: center;
+    }
 
-        tr {
-            height: 50px;
-        }
+    tr {
+        height: 50px;
+    }
 
-        .center {
-            display: flex;
-            flex-direction: row-reverse;
-            flex-wrap: wrap;
-        }
+    .center {
+        display: flex;
+        flex-direction: row-reverse;
+        flex-wrap: wrap;
+    }
     </style>
 </head>
 
@@ -210,19 +210,23 @@
         ?>
     </div>
     <script>
-        var millis = <?php echo $dbSessionDurationTime ?>;
+    var millis = <?php echo $dbSessionDurationTime ?>;
 
-        function displaytimer() {
-            var hours = Math.floor(millis / 36e5),
-                mins = Math.floor((millis % 36e5) / 6e4),
-                secs = Math.floor((millis % 6e4) / 1000);
+    function displaytimer() {
+        var hours = Math.floor(millis / 36e5),
+            mins = Math.floor((millis % 36e5) / 6e4),
+            secs = Math.floor((millis % 6e4) / 1000);
+        if (mins <= 0 && secs <= 0) {
+            document.getElementById("demo").innerHTML = "الطلب جاهز للاستيلام";
+        } else {
             var remainingTime = mins + ':' + secs + ' minutes';
             document.getElementById("demo").innerHTML = remainingTime;
         }
-        setInterval(function () {
-            millis -= 1000;
-            displaytimer();
-        }, 1000);
+    }
+    setInterval(function() {
+        millis -= 1000;
+        displaytimer();
+    }, 1000);
     </script>
 
 
