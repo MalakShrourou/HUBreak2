@@ -33,9 +33,9 @@
         background-color: #f18b05;
         text-align: center;
         padding: 5px;
-        width: 50%;
-        margin-left: 100px;
+        width: 60%;
         margin-top: 0;
+        margin-left: 75px;
         color: white;
     }
 
@@ -70,166 +70,70 @@
         extract($_POST);
         $query = "SELECT DISTINCT ResturantID FROM carts";
         $result = mysqli_query($database, $query);
+        $dictionary1 = array();
         while ($row = mysqli_fetch_row($result)) {
             foreach ($row as $value) {
-                if ($value == 1) {
-                    print("<div class='section'><h4>مطاعم الشرقي</h4>");
-                    $Q1 = "SELECT ID,TotalPrice,Time FROM carts WHERE ResturantID=1";
-                    $result1 = mysqli_query($database, $Q1);
-                    print("<table class='table'>");
-                    while ($row = mysqli_fetch_row($result1)) {
-                        $x = 0;
-                        foreach ($row as $value) {
-                            if ($x == 0) {
-                                print("<tr><td>$value </td>");
-                                print("<td>رقم الطلب</td></tr>");
-                            } elseif ($x == 1) {
-                                print("<tr><td>$value JD</td>");
-                                print("<td>المبلغ الإجمالي</td></tr>");
-                            } else {
-                                $dbSessionDurationTime = $value * 60 * 1000;
-                                print("<tr><td id='demo'></td>");
-                                print("<td>الوقت المتبقي</td></tr></table></div>");
-                            }
-                            $x++;
+                print("<div class='section'>");
+                $Q = "SELECT Name,carts.ID,TotalPrice,Time FROM carts,resturants WHERE ResturantID = $value && resturants.ID= $value ";
+                $r = mysqli_query($database, $Q);
+                print("<table class='table'>");
+                while ($R = mysqli_fetch_row($r)) {
+                    $x = 0;
+                    $label = "";
+                    foreach ($R as $v) {
+                        if ($x == 0) {
+                            print("<h4>$v</h4>");
+                        } elseif ($x == 1) {
+                            $label = "demo" . $v;
+                            print("<tr><td>$v </td>");
+                            print("<td>رقم الطلب</td></tr>");
+                        } elseif ($x == 2) {
+                            print("<tr><td>$v JD</td>");
+                            print("<td>المبلغ الإجمالي</td></tr>");
+                        } else {
+                            $dictionary1[$label] = $v * 60 * 1000;
+                            print("<tr><td id='$label'></td>");
+                            print("<td>الوقت المتبقي</td></tr></table></div>");
                         }
-                    }
-                } elseif ($value == 2) {
-                    print("<div class='section'><h4>مطاعم اسبريسو</h4>");
-                    $Q2 = "SELECT ID,TotalPrice,Time FROM carts WHERE ResturantID=2";
-                    $result2 = mysqli_query($database, $Q2);
-                    print("<table class='table'>");
-                    while ($row2 = mysqli_fetch_row($result2)) {
-                        $x = 0;
-                        foreach ($row2 as $value) {
-                            if ($x == 0) {
-                                print("<tr><td>$value </td>");
-                                print("<td>رقم الطلب</td></tr>");
-                            } elseif ($x == 1) {
-                                print("<tr><td>$value JD</td>");
-                                print("<td>المبلغ الإجمالي</td></tr>");
-                            } else {
-                                $dbSessionDurationTime = $value * 60 * 1000;
-                                print("<tr><td id='demo'></td>");
-                                print("<td>الوقت المتبقي</td></tr></table></div>");
-                            }
-                            $x++;
-                        }
-                    }
-                } elseif ($value == 3) {
-                    print("<div class='section'><h4>مطاعم الطب</h4>");
-                    $Q3 = "SELECT ID,TotalPrice,Time FROM carts WHERE ResturantID=3";
-                    $result3 = mysqli_query($database, $Q3);
-                    print("<table class='table'>");
-                    while ($row3 = mysqli_fetch_row($result3)) {
-                        $x = 0;
-                        foreach ($row3 as $value) {
-                            if ($x == 0) {
-                                print("<tr><td>$value </td>");
-                                print("<td>رقم الطلب</td></tr>");
-                            } elseif ($x == 1) {
-                                print("<tr><td>$value JD</td>");
-                                print("<td>المبلغ الإجمالي</td></tr>");
-                            } else {
-                                $dbSessionDurationTime = $value * 60 * 1000;
-                                print("<tr><td id='demo'></td>");
-                                print("<td>الوقت المتبقي</td></tr></table></div>");
-                            }
-                            $x++;
-                        }
-                    }
-                } elseif ($value == 4) {
-                    print("<div class='section'><h4>مطاعم القرية الطلابية</h4>");
-                    $Q4 = "SELECT ID,TotalPrice,Time FROM carts WHERE ResturantID=4";
-                    $result4 = mysqli_query($database, $Q4);
-                    print("<table class='table'>");
-                    while ($row4 = mysqli_fetch_row($result4)) {
-                        $x = 0;
-                        foreach ($row4 as $value) {
-                            if ($x == 0) {
-                                print("<tr><td>$value </td>");
-                                print("<td>رقم الطلب</td></tr>");
-                            } elseif ($x == 1) {
-                                print("<tr><td>$value JD</td>");
-                                print("<td>المبلغ الإجمالي</td></tr>");
-                            } else {
-                                $dbSessionDurationTime = $value * 60 * 1000;
-                                print("<tr><td id='demo'></td>");
-                                print("<td>الوقت المتبقي</td></tr></table></div>");
-                            }
-                            $x++;
-                        }
-                    }
-                } elseif ($value == 5) {
-                    print("<div class='section'><h4>مطاعم ظاظا</h4>");
-                    $Q5 = "SELECT ID,TotalPrice,Time FROM carts WHERE ResturantID=5";
-                    $result5 = mysqli_query($database, $Q5);
-                    print("<table class='table'>");
-                    while ($row5 = mysqli_fetch_row($result5)) {
-                        $x = 0;
-                        foreach ($row5 as $value) {
-                            if ($x == 0) {
-                                print("<tr><td>$value </td>");
-                                print("<td>رقم الطلب</td></tr>");
-                            } elseif ($x == 1) {
-                                print("<tr><td>$value JD</td>");
-                                print("<td>المبلغ الإجمالي</td></tr>");
-                            } else {
-                                $dbSessionDurationTime = $value * 60 * 1000;
-                                print("<tr><td id='demo'></td>");
-                                print("<td>الوقت المتبقي</td></tr></table></div>");
-                            }
-                            $x++;
-                        }
-                    }
-                } elseif ($value == 6) {
-                    print("<div class='section'><h4>مطاعم الغربي</h4>");
-                    $Q6 = "SELECT ID,TotalPrice,Time FROM carts WHERE ResturantID=6";
-                    $result6 = mysqli_query($database, $Q6);
-                    print("<table class='table'>");
-                    while ($row6 = mysqli_fetch_row($result6)) {
-                        $x = 0;
-                        foreach ($row6 as $value) {
-                            if ($x == 0) {
-                                print("<tr><td>$value </td>");
-                                print("<td>رقم الطلب</td></tr>");
-                            } elseif ($x == 1) {
-                                print("<tr><td>$value JD</td>");
-                                print("<td>المبلغ الإجمالي</td></tr>");
-                            } else {
-                                $dbSessionDurationTime = $value * 60 * 1000;
-                                print("<tr><td id='demo'></td>");
-                                print("<td>الوقت المتبقي</td></tr></table></div>");
-                            }
-                            $x++;
-                        }
+                        $x++;
                     }
                 }
             }
         }
+        $jsonDictionary = json_encode($dictionary1);
         ?>
     </div>
     <script>
-    var millis = <?php echo $dbSessionDurationTime ?>;
+    jsObject = <?php echo $jsonDictionary; ?>;
 
     function displaytimer() {
-        var hours = Math.floor(millis / 36e5),
-            mins = Math.floor((millis % 36e5) / 6e4),
-            secs = Math.floor((millis % 6e4) / 1000);
-        if (mins <= 0 && secs <= 0) {
-            document.getElementById("demo").innerHTML = "الطلب جاهز للاستيلام";
-        } else {
-            var remainingTime = mins + ':' + secs + ' minutes';
-            document.getElementById("demo").innerHTML = remainingTime;
+        for (var key in jsObject) {
+            if (jsObject.hasOwnProperty(key)) {
+                var millis = jsObject[key];
+                jsObject[key] -= 1000;
+                var hours = Math.floor(millis / 36e5),
+                    mins = Math.floor((millis % 36e5) / 6e4),
+                    secs = Math.floor((millis % 6e4) / 1000);
+                if (mins <= 9) {
+                    mins = "0" + mins;
+                }
+                if (secs <= 9) {
+                    secs = "0" + secs;
+                }
+                if (mins <= 0 && secs <= 0) {
+                    document.getElementById(key).innerHTML = "الطلب جاهز للاستلام";
+                } else {
+                    var remainingtime = mins + ':' + secs;
+                    document.getElementById(key).innerHTML = remainingtime;
+                }
+            }
         }
     }
+
     setInterval(function() {
-        millis -= 1000;
         displaytimer();
     }, 1000);
     </script>
-
-
 </body>
 
 </html>
