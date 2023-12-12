@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    header('Location: login.php');
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -9,179 +13,179 @@ session_start();
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <style>
-    * {
-        margin: 0;
-        padding: 0;
-        font-family: 'Times New Roman', Times, serif;
-        box-sizing: border-box;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Times New Roman', Times, serif;
+            box-sizing: border-box;
+        }
 
-    body {
-        color: rgb(124, 17, 17);
-        background-attachment: fixed;
-    }
+        body {
+            color: rgb(124, 17, 17);
+            background-attachment: fixed;
+        }
 
-    .menu-bar {
-        background: #f18b05;
-        text-align: right;
-        height: 40px;
-        margin-right: 10%;
-        padding-right: 5px;
-        font-size: large;
-    }
+        .menu-bar {
+            background: #f18b05;
+            text-align: right;
+            height: 40px;
+            margin-right: 10%;
+            padding-right: 5px;
+            font-size: large;
+        }
 
-    .menu-bar ul {
-        display: inline-flex;
-        list-style: none;
-        color: #fff;
-    }
+        .menu-bar ul {
+            display: inline-flex;
+            list-style: none;
+            color: #fff;
+        }
 
-    .menu-bar ul li {
-        width: 150px;
-        margin: 0px;
-        padding: 10px 0px;
-        text-align: center;
-    }
+        .menu-bar ul li {
+            width: 150px;
+            margin: 0px;
+            padding: 10px 0px;
+            text-align: center;
+        }
 
-    .menu-bar ul li a {
-        text-decoration: none;
-        color: #fff;
-    }
+        .menu-bar ul li a {
+            text-decoration: none;
+            color: #fff;
+        }
 
-    .menu {
-        display: none;
-    }
+        .menu {
+            display: none;
+        }
 
-    .menu-bar ul li:hover {
-        background-color: #fda025;
-    }
+        .menu-bar ul li:hover {
+            background-color: #fda025;
+        }
 
-    .menu-bar ul li:hover .menu {
-        display: block;
-        position: absolute;
-        background-color: #FBB202;
-        margin-top: 10px;
-    }
+        .menu-bar ul li:hover .menu {
+            display: block;
+            position: absolute;
+            background-color: #FBB202;
+            margin-top: 10px;
+        }
 
-    .menu-bar ul li:hover .menu ul {
-        display: block;
-    }
+        .menu-bar ul li:hover .menu ul {
+            display: block;
+        }
 
-    .menu-bar ul li:hover .menu ul li {
-        width: 150px;
-        padding: 10px;
-        border-bottom: 1px dotted #fff;
-        background: transparent;
-        border-radius: 0;
-        text-align: center;
-    }
+        .menu-bar ul li:hover .menu ul li {
+            width: 150px;
+            padding: 10px;
+            border-bottom: 1px dotted #fff;
+            background: transparent;
+            border-radius: 0;
+            text-align: center;
+        }
 
-    .menu-bar ul li:hover .menu ul li:last-child {
-        border-bottom: none;
-    }
+        .menu-bar ul li:hover .menu ul li:last-child {
+            border-bottom: none;
+        }
 
-    .menu-bar ul li:hover .menu ul li a:hover {
-        color: rgb(124, 17, 17);
-    }
+        .menu-bar ul li:hover .menu ul li a:hover {
+            color: rgb(124, 17, 17);
+        }
 
-    .logo {
-        width: 10%;
-        height: 40px;
-        right: 0;
-        position: absolute;
-    }
+        .logo {
+            width: 10%;
+            height: 40px;
+            right: 0;
+            position: absolute;
+        }
 
 
-    .product {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 20%;
-        height: 30%;
-        border-radius: 15px;
-        background-color: rgb(241, 238, 238);
-        margin: 70px 50px 0 0;
-        font-size: 20px;
-    }
+        .product {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 20%;
+            height: 30%;
+            border-radius: 15px;
+            background-color: rgb(241, 238, 238);
+            margin: 70px 50px 0 0;
+            font-size: 20px;
+        }
 
-    .food {
-        width: 200px;
-        height: 200px;
-        object-fit: cover;
-        border-radius: 15px;
-        margin: 20px 20px 5px 20px;
-    }
+        .food {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin: 20px 20px 5px 20px;
+        }
 
-    .section {
-        margin-bottom: 50px;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        margin-left: 12%;
-    }
+        .section {
+            margin-bottom: 50px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            margin-left: 12%;
+        }
 
-    h1,
-    h2,
-    h3 {
-        text-align: center;
-    }
+        h1,
+        h2,
+        h3 {
+            text-align: center;
+        }
 
-    footer {
-        background: #f18b05;
-        color: white;
-        text-align: center;
-        padding: 10px;
-    }
+        footer {
+            background: #f18b05;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
 
-    .intro {
-        background-color: #fda025;
-        width: 100%;
-        color: white;
-        padding: 2% 0;
-        font-size: xx-large;
-    }
+        .intro {
+            background-color: #fda025;
+            width: 100%;
+            color: white;
+            padding: 2% 0;
+            font-size: xx-large;
+        }
 
-    h2 {
-        padding: 30px;
-    }
+        h2 {
+            padding: 30px;
+        }
 
-    .submit {
-        margin-left: 47%;
-        margin-bottom: 3%;
-        background-color: #f18b05;
-        width: 70px;
-        border: 0;
-        padding: 10px;
-        color: white;
-        border-radius: 10px;
-    }
+        .submit {
+            margin-left: 47%;
+            margin-bottom: 3%;
+            background-color: #f18b05;
+            width: 70px;
+            border: 0;
+            padding: 10px;
+            color: white;
+            border-radius: 10px;
+        }
 
-    .product .button {
-        display: block;
-        width: 130px;
-        padding: 12px;
-        background: #f18b05;
-        color: #fff;
-        font-size: large;
-        font-weight: bold;
-        border: 0;
-        border-radius: 5px;
-        cursor: pointer;
-    }
+        .product .button {
+            display: block;
+            width: 130px;
+            padding: 12px;
+            background: #f18b05;
+            color: #fff;
+            font-size: large;
+            font-weight: bold;
+            border: 0;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 
-    .product .button:hover {
-        background: #fda735;
-    }
+        .product .button:hover {
+            background: #fda735;
+        }
 
-    .sub {
-        background-color: #f18b05;
-        width: 70px;
-        border: 0;
-        color: white;
-        border-radius: 10px;
-        padding: 10px;
-        margin-top: 2px;
-    }
+        .sub {
+            background-color: #f18b05;
+            width: 70px;
+            border: 0;
+            color: white;
+            border-radius: 10px;
+            padding: 10px;
+            margin-top: 2px;
+        }
     </style>
 </head>
 
@@ -274,7 +278,7 @@ session_start();
                 elseif ($x == 3) {
                     print("<input type='hidden' name='price' value='$value'>");
                     print("<span >$value JD : السعر الحالي</span>");
-                }elseif ($x == 4)
+                } elseif ($x == 4)
                     print("<input type='hidden' name='RestID' value='$value'>");
                 else {
                     print("<span>$value</span>");
@@ -294,9 +298,9 @@ session_start();
     </footer>
 
     <script>
-    function myFunction() {
-        alert("تم التعديل بنجاح!");
-    }
+        function myFunction() {
+            alert("تم التعديل بنجاح!");
+        }
     </script>
 
 </body>

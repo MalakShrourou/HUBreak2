@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    header('Location: login.php');
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -252,7 +256,7 @@ session_start();
                 elseif ($x == 3) {
                     print("<input type='hidden' name='price' value='$value'>");
                     print("<span >$value JD</span>");
-                }elseif ($x == 4)
+                } elseif ($x == 4)
                     print("<input type='hidden' name='RestID' value='$value'>");
                 else {
                     print("<span >$value</span>");

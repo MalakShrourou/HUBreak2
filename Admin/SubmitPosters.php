@@ -1,143 +1,151 @@
+<?php
+session_start();
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    header('Location: login.php');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 
 <head>
     <title>Add Posters</title>
     <meta charset="UTF-8">
     <style type="text/css">
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Times New Roman', Times, serif;
-        }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Times New Roman', Times, serif;
+    }
 
-        body {
-            background-image: url('cover.jpg');
-        }
+    body {
+        background-image: url('cover.jpg');
+    }
 
-        .res img:hover {
-            filter: brightness(65%);
-        }
+    .res img:hover {
+        filter: brightness(65%);
+    }
 
-        .res {
-            width: 27%;
-            margin: 20px;
-            text-align: center;
-            border-style: solid;
-            border-color: #fff;
-            background: #fff;
-            border-radius: 30px;
-            color: white;
-            box-shadow: -30px 30px 20px rgba(0, 0, 0, 0.3);
-        }
+    .res {
+        width: 27%;
+        margin: 20px;
+        text-align: center;
+        border-style: solid;
+        border-color: #fff;
+        background: #fff;
+        border-radius: 30px;
+        color: white;
+        box-shadow: -30px 30px 20px rgba(0, 0, 0, 0.3);
+    }
 
-        .res img {
-            width: 70%;
-            height: auto;
-            border-radius: 200px;
-            border-style: solid;
-            margin: 20px;
-        }
+    .res img {
+        width: 70%;
+        height: auto;
+        border-radius: 200px;
+        border-style: solid;
+        margin: 20px;
+    }
 
-        .center {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            margin: 100px 0 100px 11%;
-        }
+    .center {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: 100px 0 100px 11%;
+    }
 
-        .name {
-            text-align: center;
-            font-size: 24px;
-            color: rgb(124, 17, 17);
-        }
+    .name {
+        text-align: center;
+        font-size: 24px;
+        color: rgb(124, 17, 17);
+    }
 
-        a {
-            text-decoration: none;
-            color: transparent;
-        }
+    a {
+        text-decoration: none;
+        color: transparent;
+    }
 
-        .head h1 {
-            text-align: center;
-            background-color: #f18b05;
-            padding-top: 2%;
-            padding-bottom: 2%;
-            margin-top: 2%;
-            font-size: 250%;
-            color: white;
-            margin-right: 24%;
-            margin-left: 25%;
-        }
+    .head h1 {
+        text-align: center;
+        background-color: #f18b05;
+        padding-top: 2%;
+        padding-bottom: 2%;
+        margin-top: 2%;
+        font-size: 250%;
+        color: white;
+        margin-right: 24%;
+        margin-left: 25%;
+    }
 
-        .menu-bar {
-            background: #f18b05;
-            text-align: right;
-            height: 40px;
-            margin-right: 10%;
-            padding-right: 5px;
-            font-size: large;
-        }
+    .menu-bar {
+        background: #f18b05;
+        text-align: right;
+        height: 40px;
+        margin-right: 10%;
+        padding-right: 5px;
+        font-size: large;
+    }
 
-        .menu-bar ul {
-            display: inline-flex;
-            list-style: none;
-            color: #fff;
-        }
+    .menu-bar ul {
+        display: inline-flex;
+        list-style: none;
+        color: #fff;
+    }
 
-        .menu-bar ul li {
-            width: 150px;
-            margin: 0px;
-            padding: 10px 0px;
-            text-align: center;
-        }
+    .menu-bar ul li {
+        width: 150px;
+        margin: 0px;
+        padding: 10px 0px;
+        text-align: center;
+    }
 
-        .menu-bar ul li a {
-            text-decoration: none;
-            color: #fff;
-        }
+    .menu-bar ul li a {
+        text-decoration: none;
+        color: #fff;
+    }
 
-        .menu {
-            display: none;
-        }
+    .menu {
+        display: none;
+    }
 
-        .menu-bar ul li:hover {
-            background-color: #fda025;
-        }
+    .menu-bar ul li:hover {
+        background-color: #fda025;
+    }
 
-        .menu-bar ul li:hover .menu {
-            display: block;
-            position: absolute;
-            background-color: #FBB202;
-            margin-top: 10px;
-        }
+    .menu-bar ul li:hover .menu {
+        display: block;
+        position: absolute;
+        background-color: #FBB202;
+        margin-top: 10px;
+    }
 
-        .menu-bar ul li:hover .menu ul {
-            display: block;
-        }
+    .menu-bar ul li:hover .menu ul {
+        display: block;
+    }
 
-        .menu-bar ul li:hover .menu ul li {
-            width: 150px;
-            padding: 10px;
-            border-bottom: 1px dotted #fff;
-            background: transparent;
-            border-radius: 0;
-            text-align: center;
-        }
+    .menu-bar ul li:hover .menu ul li {
+        width: 150px;
+        padding: 10px;
+        border-bottom: 1px dotted #fff;
+        background: transparent;
+        border-radius: 0;
+        text-align: center;
+    }
 
-        .menu-bar ul li:hover .menu ul li:last-child {
-            border-bottom: none;
-        }
+    .menu-bar ul li:hover .menu ul li:last-child {
+        border-bottom: none;
+    }
 
-        .menu-bar ul li:hover .menu ul li a:hover {
-            color: rgb(124, 17, 17);
-        }
+    .menu-bar ul li:hover .menu ul li a:hover {
+        color: rgb(124, 17, 17);
+    }
 
-        .logo {
-            width: 10%;
-            height: 40px;
-            right: 0;
-            position: absolute;
-        }
+    .logo {
+        width: 10%;
+        height: 40px;
+        right: 0;
+        position: absolute;
+    }
     </style>
 </head>
 
