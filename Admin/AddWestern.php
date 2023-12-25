@@ -4,6 +4,33 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     header('Location: login.php');
     exit();
 }
+if (!$database = mysqli_connect("localhost", "root", "12345678", "hubreak2_db"))
+    die("Sorry, could not connect to the server.");
+extract($_POST);
+error_reporting(0);
+$msg = "";
+if (isset($_POST['upload'])) {
+    $filename = $_FILES["uploadfile"]["name"];
+    $tempname = $_FILES["uploadfile"]["tmp_name"];
+    $folder = "./image/" . $filename;
+    $sql = "INSERT INTO products (Image, Name, Time) VALUES ('$filename','$meal_name','$meal_time')";
+    mysqli_query($database, $sql);
+    $sql2 = "insert into resturantproducts values ((SELECT MAX(ID) FROM products),'$RestID','$meal_price')";
+    mysqli_query($database, $sql2);
+    if (move_uploaded_file($tempname, $folder)) {
+        echo "
+        <script>
+            alert('تمت الإضافة بنجاح!');
+        </script>
+        ";
+    } else {
+        echo "
+        <script>
+            alert('Failed to upload image!');
+        </script>
+        ";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -241,11 +268,11 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     </div>
     <div class="container">
         <h2>إضافة وجبة</h2>
-        <form action="Add.php" method="post">
+        <form enctype="multipart/form-data" method="post">
             <input type="hidden" name="RestID" value="6">
             <div class="form-group">
                 <label>
-                    <input type="file" name="meal_image" id="image" accept="image/*" required>أرفق صورة الوجبة
+                    <input type="file" name="uploadfile" accept="image/*" required>أرفق صورة الوجبة
                 </label>
                 <p>
                     <label>
@@ -267,7 +294,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                     </label>
                 </p>
                 <br>
-                <input type="submit" value="إضافة" onclick="myFunction()">
+                <input type="submit" value="إضافة">
             </div>
         </form>
     </div>
@@ -275,13 +302,6 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
         <p>Developed By</p>
         <p>HU Break Team &copy;</p>
     </footer>
-
-    <script>
-        function myFunction() {
-            alert("تمت الإضافة بنجاح!");
-        }
-    </script>
-
 </body>
 
 </html>

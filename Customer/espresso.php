@@ -417,17 +417,21 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
         if (!$database = mysqli_connect("localhost", "root", "12345678", "hubreak2_db"))
             die("Sorry, could not connect to the server.");
         extract($_POST);
-        $query = "select products.Image,products.ID,products.name,resturantproducts.price,resturantproducts.resturantId from products join resturantproducts on products.ID = productId WHERE resturantproducts.resturantId = 2";
+        $query = "select products.ID,products.Image,products.name,resturantproducts.price,resturantproducts.resturantId from products join resturantproducts on products.ID = productId WHERE resturantproducts.resturantId = 2 ";
         $result = mysqli_query($database, $query);
         while ($row = mysqli_fetch_row($result)) {
             print("<form class='product' method='post' action='addtocart.php'>");
             $x = 0;
             foreach ($row as $value) {
-                if ($x == 0)
-                    print("<img src='$value' class='food'></img>");
-                elseif ($x == 1)
+                if ($x == 0) {
                     print("<input type='hidden' name='ID' value='$value'>");
-                elseif ($x == 3) {
+                    $ID = $value;
+                } elseif ($x == 1) {
+                    if ($ID <= 20)
+                        print("<img src='$value' class='food'></img>");
+                    else
+                        print("<img src='../Admin/image/$value' class='food'>");
+                } elseif ($x == 3) {
                     print("<input type='hidden' name='price' value='$value'>");
                     print("<span>$value JD</span>");
                 } elseif ($x == 4)

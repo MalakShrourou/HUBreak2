@@ -14,367 +14,367 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     <meta charset=utf8>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <style>
-    * {
-        margin: 0;
-        padding: 0;
-        font-family: 'Times New Roman', Times, serif;
-        box-sizing: border-box;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Times New Roman', Times, serif;
+            box-sizing: border-box;
+        }
 
-    body {
-        color: rgb(124, 17, 17);
-        background-attachment: fixed;
-    }
+        body {
+            color: rgb(124, 17, 17);
+            background-attachment: fixed;
+        }
 
-    .menu-bar {
-        background: #f18b05;
-        text-align: right;
-        height: 40px;
-        margin-right: 10%;
-        padding-right: 5px;
-        font-size: large;
-    }
+        .menu-bar {
+            background: #f18b05;
+            text-align: right;
+            height: 40px;
+            margin-right: 10%;
+            padding-right: 5px;
+            font-size: large;
+        }
 
-    .menu-bar ul {
-        display: inline-flex;
-        list-style: none;
-        color: #fff;
-    }
+        .menu-bar ul {
+            display: inline-flex;
+            list-style: none;
+            color: #fff;
+        }
 
-    .menu-bar ul li {
-        width: 120px;
-        margin: 0px;
-        padding: 10px 0px;
-        text-align: center;
-    }
+        .menu-bar ul li {
+            width: 120px;
+            margin: 0px;
+            padding: 10px 0px;
+            text-align: center;
+        }
 
-    .menu-bar ul li a {
-        text-decoration: none;
-        color: #fff;
-        padding-right: 10px;
-    }
+        .menu-bar ul li a {
+            text-decoration: none;
+            color: #fff;
+            padding-right: 10px;
+        }
 
-    .menu,
-    .user {
-        display: none;
-    }
+        .menu,
+        .user {
+            display: none;
+        }
 
-    .menu-bar ul li:hover {
-        background-color: #fda025;
-    }
+        .menu-bar ul li:hover {
+            background-color: #fda025;
+        }
 
-    .menu-bar ul li:hover .menu,
-    .menu-bar ul li:hover .user {
-        display: block;
-        position: absolute;
-        background-color: #FBB202;
-        margin-top: 10px;
-        margin-left: -20px;
-    }
+        .menu-bar ul li:hover .menu,
+        .menu-bar ul li:hover .user {
+            display: block;
+            position: absolute;
+            background-color: #FBB202;
+            margin-top: 10px;
+            margin-left: -20px;
+        }
 
-    .menu-bar ul li:hover .menu ul,
-    .menu-bar ul li:hover .user ul {
-        display: block;
-    }
+        .menu-bar ul li:hover .menu ul,
+        .menu-bar ul li:hover .user ul {
+            display: block;
+        }
 
-    .menu-bar ul li:hover .menu ul li,
-    .menu-bar ul li:hover .user ul li {
-        width: 150px;
-        padding: 10px;
-        border-bottom: 1px dotted #fff;
-        background: transparent;
-        border-radius: 0;
-        text-align: center;
-    }
+        .menu-bar ul li:hover .menu ul li,
+        .menu-bar ul li:hover .user ul li {
+            width: 150px;
+            padding: 10px;
+            border-bottom: 1px dotted #fff;
+            background: transparent;
+            border-radius: 0;
+            text-align: center;
+        }
 
-    .menu-bar ul li:hover .menu ul li:last-child,
-    .menu-bar ul li:hover .user ul li:last-child {
-        border-bottom: none;
-    }
+        .menu-bar ul li:hover .menu ul li:last-child,
+        .menu-bar ul li:hover .user ul li:last-child {
+            border-bottom: none;
+        }
 
-    .menu-bar ul li:hover .menu ul li a:hover,
-    .menu-bar ul li:hover .user ul li a:hover {
-        color: rgb(124, 17, 17);
-    }
+        .menu-bar ul li:hover .menu ul li a:hover,
+        .menu-bar ul li:hover .user ul li a:hover {
+            color: rgb(124, 17, 17);
+        }
 
-    .logo {
-        width: 10%;
-        height: 40px;
-        right: 0;
-        position: absolute;
-    }
+        .logo {
+            width: 10%;
+            height: 40px;
+            right: 0;
+            position: absolute;
+        }
 
-    .product {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 20%;
-        height: 30%;
-        border-radius: 15px;
-        background-color: rgb(241, 238, 238);
-        margin: 70px 50px 0 0;
-        font-size: 20px;
-    }
+        .product {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 20%;
+            height: 30%;
+            border-radius: 15px;
+            background-color: rgb(241, 238, 238);
+            margin: 70px 50px 0 0;
+            font-size: 20px;
+        }
 
-    .food {
-        width: 200px;
-        height: 200px;
-        object-fit: cover;
-        border-radius: 15px;
-        margin: 20px 20px 5px 20px;
-    }
+        .food {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin: 20px 20px 5px 20px;
+        }
 
-    .section {
-        margin-bottom: 50px;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        margin-left: 12%;
-    }
+        .section {
+            margin-bottom: 50px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            margin-left: 12%;
+        }
 
-    h1,
-    h2,
-    h3 {
-        text-align: center;
-    }
+        h1,
+        h2,
+        h3 {
+            text-align: center;
+        }
 
-    .cart-icon {
-        display: inline-block;
-        width: 18px;
-        height: 18px;
-        background-image: url("cart-icon.png");
-        background-size: contain;
-    }
+        .cart-icon {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            background-image: url("cart-icon.png");
+            background-size: contain;
+        }
 
-    footer {
-        background: #f18b05;
-        color: white;
-        text-align: center;
-        padding: 10px;
-    }
+        footer {
+            background: #f18b05;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
 
-    .intro {
-        background-color: #fda025;
-        width: 100%;
-        color: white;
-        padding: 2% 0;
-        font-size: xx-large;
-    }
+        .intro {
+            background-color: #fda025;
+            width: 100%;
+            color: white;
+            padding: 2% 0;
+            font-size: xx-large;
+        }
 
-    h2 {
-        padding: 30px;
-    }
+        h2 {
+            padding: 30px;
+        }
 
-    .submit {
-        margin-left: 47%;
-        margin-bottom: 3%;
-        background-color: #f18b05;
-        width: 70px;
-        border: 0;
-        padding: 10px;
-        color: white;
-        border-radius: 10px;
-    }
+        .submit {
+            margin-left: 47%;
+            margin-bottom: 3%;
+            background-color: #f18b05;
+            width: 70px;
+            border: 0;
+            padding: 10px;
+            color: white;
+            border-radius: 10px;
+        }
 
-    .user-icon {
-        display: inline-block;
-        width: 18px;
-        height: 18px;
-        background-image: url("user.png");
-        background-size: contain;
-    }
+        .user-icon {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            background-image: url("user.png");
+            background-size: contain;
+        }
 
-    .product .button {
-        display: block;
-        width: 130px;
-        padding: 12px;
-        background: #f18b05;
-        color: #fff;
-        border: 0;
-        border-radius: 5px;
-        cursor: pointer;
-    }
+        .product .button {
+            display: block;
+            width: 130px;
+            padding: 12px;
+            background: #f18b05;
+            color: #fff;
+            border: 0;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 
-    .product .button:hover {
-        background: #fda735;
-    }
+        .product .button:hover {
+            background: #fda735;
+        }
 
-    .rate_sec {
-        display: flex;
-        flex-direction: row;
-        margin-left: 20%;
-        margin-bottom: 50px;
-    }
+        .rate_sec {
+            display: flex;
+            flex-direction: row;
+            margin-left: 20%;
+            margin-bottom: 50px;
+        }
 
-    .show_rate {
-        display: flex;
-        flex-direction: column;
-        width: 40%;
-        text-align: center;
-    }
+        .show_rate {
+            display: flex;
+            flex-direction: column;
+            width: 40%;
+            text-align: center;
+        }
 
-    .total-rate {
-        width: 75%;
-        border-radius: 15px;
-        background-color: rgb(241, 238, 238);
-        font-size: 20px;
-        padding: 20px;
-        padding-left: 50px;
-    }
+        .total-rate {
+            width: 75%;
+            border-radius: 15px;
+            background-color: rgb(241, 238, 238);
+            font-size: 20px;
+            padding: 20px;
+            padding-left: 50px;
+        }
 
-    .rating3 {
-        position: absolute;
-        width: 35px;
-        height: 50px;
-        cursor: pointer;
-        transform: translateX(52px);
-        opacity: 0;
-        z-index: 5;
-    }
+        .rating3 {
+            position: absolute;
+            width: 35px;
+            height: 50px;
+            cursor: pointer;
+            transform: translateX(52px);
+            opacity: 0;
+            z-index: 5;
+        }
 
-    .star3 {
-        font-family: FontAwesome;
-        font-size: 30px;
-        color: #FBB202;
-        cursor: pointer;
-        margin: 0;
-        padding: 5px;
-    }
+        .star3 {
+            font-family: FontAwesome;
+            font-size: 30px;
+            color: #FBB202;
+            cursor: pointer;
+            margin: 0;
+            padding: 5px;
+        }
 
-    .star3::after {
-        content: '\f005';
-    }
+        .star3::after {
+            content: '\f005';
+        }
 
-    .rate {
-        width: 75%;
-        height: auto;
-        border-radius: 15px;
-        background-color: rgb(241, 238, 238);
-        font-size: 18px;
-        padding: 10px;
-        margin: 30px 10px 10px 0;
-    }
+        .rate {
+            width: 75%;
+            height: auto;
+            border-radius: 15px;
+            background-color: rgb(241, 238, 238);
+            font-size: 18px;
+            padding: 10px;
+            margin: 30px 10px 10px 0;
+        }
 
-    .show {
-        position: absolute;
-        width: 35px;
-        height: 50px;
-        cursor: pointer;
-        transform: translateX(52px);
-        opacity: 0;
-        z-index: 5;
-    }
+        .show {
+            position: absolute;
+            width: 35px;
+            height: 50px;
+            cursor: pointer;
+            transform: translateX(52px);
+            opacity: 0;
+            z-index: 5;
+        }
 
-    .star2 {
-        display: inline-block;
-        font-family: FontAwesome;
-        font-size: 30px;
-        color: #FBB202;
-        cursor: pointer;
-        margin: 0;
-        padding: 0;
-    }
+        .star2 {
+            display: inline-block;
+            font-family: FontAwesome;
+            font-size: 30px;
+            color: #FBB202;
+            cursor: pointer;
+            margin: 0;
+            padding: 0;
+        }
 
-    .star2::after {
-        content: '\f005';
-    }
+        .star2::after {
+            content: '\f005';
+        }
 
-    .rating {
-        width: 35%;
-        padding: 20px;
-        border-radius: 15px;
-        background-color: rgb(241, 238, 238);
-        text-align: center;
-    }
+        .rating {
+            width: 35%;
+            padding: 20px;
+            border-radius: 15px;
+            background-color: rgb(241, 238, 238);
+            text-align: center;
+        }
 
-    .rating .emo {
-        position: absolute;
-        font-family: FontAwesome;
-        color: #f18b05;
-        font-size: 90px;
-        transform: translateX(-50%);
-        margin-bottom: 20px;
-    }
+        .rating .emo {
+            position: absolute;
+            font-family: FontAwesome;
+            color: #f18b05;
+            font-size: 90px;
+            transform: translateX(-50%);
+            margin-bottom: 20px;
+        }
 
-    .rating .emo:after {
-        content: '\f118';
-    }
+        .rating .emo:after {
+            content: '\f118';
+        }
 
-    .rating div input {
-        position: absolute;
-        width: 25px;
-        height: 50px;
-        cursor: pointer;
-        transform: translateX(52px);
-        opacity: 0;
-        z-index: 5;
-    }
+        .rating div input {
+            position: absolute;
+            width: 25px;
+            height: 50px;
+            cursor: pointer;
+            transform: translateX(52px);
+            opacity: 0;
+            z-index: 5;
+        }
 
-    .rating input:nth-of-type(4):checked~.emo:after,
-    .rating input:nth-of-type(4):hover~.emo:after,
-    .rating input:nth-of-type(3):checked~.emo:after,
-    .rating input:nth-of-type(3):hover~.emo:after {
-        content: '\f11a';
-    }
+        .rating input:nth-of-type(4):checked~.emo:after,
+        .rating input:nth-of-type(4):hover~.emo:after,
+        .rating input:nth-of-type(3):checked~.emo:after,
+        .rating input:nth-of-type(3):hover~.emo:after {
+            content: '\f11a';
+        }
 
-    .rating input:nth-of-type(1):checked~.emo:after,
-    .rating input:nth-of-type(1):hover~.emo:after,
-    .rating input:nth-of-type(2):checked~.emo:after,
-    .rating input:nth-of-type(2):hover~.emo:after {
-        content: '\f118';
-    }
+        .rating input:nth-of-type(1):checked~.emo:after,
+        .rating input:nth-of-type(1):hover~.emo:after,
+        .rating input:nth-of-type(2):checked~.emo:after,
+        .rating input:nth-of-type(2):hover~.emo:after {
+            content: '\f118';
+        }
 
-    .rating input:checked~.star:after,
-    .rating input:hover~.star:after {
-        content: '\f005';
-    }
+        .rating input:checked~.star:after,
+        .rating input:hover~.star:after {
+            content: '\f005';
+        }
 
-    .rating .star {
-        display: inline-block;
-        font-family: FontAwesome;
-        font-size: 42px;
-        color: #FBB202;
-        cursor: pointer;
-        margin: 3px;
-    }
+        .rating .star {
+            display: inline-block;
+            font-family: FontAwesome;
+            font-size: 42px;
+            color: #FBB202;
+            cursor: pointer;
+            margin: 3px;
+        }
 
-    .rating .star:after {
-        content: '\f006';
-    }
+        .rating .star:after {
+            content: '\f006';
+        }
 
-    .rating .star:hover~.star:after,
-    .rating .star:hover:after {
-        content: '\f005';
-    }
+        .rating .star:hover~.star:after,
+        .rating .star:hover:after {
+            content: '\f005';
+        }
 
-    .box {
-        overflow: auto;
-        text-align: right;
-        font-size: 12px;
-        margin-top: 5px;
-        margin-right: 10px;
-    }
+        .box {
+            overflow: auto;
+            text-align: right;
+            font-size: 12px;
+            margin-top: 5px;
+            margin-right: 10px;
+        }
 
-    .sub {
-        background-color: #f18b05;
-        width: 70px;
-        border: 0;
-        color: white;
-        border-radius: 10px;
-        cursor: pointer;
-        padding: 10px;
-        margin-top: 2px;
-    }
+        .sub {
+            background-color: #f18b05;
+            width: 70px;
+            border: 0;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            padding: 10px;
+            margin-top: 2px;
+        }
 
-    .sub:hover {
-        background: #fda735;
-    }
+        .sub:hover {
+            background: #fda735;
+        }
 
-    #display-image img {
-        width: 50%;
-        margin-left: 25%;
-        margin-bottom: 3%;
-    }
+        #display-image img {
+            width: 50%;
+            margin-left: 25%;
+            margin-bottom: 3%;
+        }
     </style>
 </head>
 
@@ -417,17 +417,21 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
         if (!$database = mysqli_connect("localhost", "root", "12345678", "hubreak2_db"))
             die("Sorry, could not connect to the server.");
         extract($_POST);
-        $query = "select products.Image,products.ID,products.name,resturantproducts.price,resturantproducts.resturantId from products join resturantproducts on products.ID = productId WHERE resturantproducts.resturantId = 4 ";
+        $query = "select products.ID,products.Image,products.name,resturantproducts.price,resturantproducts.resturantId from products join resturantproducts on products.ID = productId WHERE resturantproducts.resturantId = 4 ";
         $result = mysqli_query($database, $query);
         while ($row = mysqli_fetch_row($result)) {
             print("<form class='product' method='post' action='addtocart.php'>");
             $x = 0;
             foreach ($row as $value) {
-                if ($x == 0)
-                    print("<img src='$value' class='food'></img>");
-                elseif ($x == 1)
+                if ($x == 0) {
                     print("<input type='hidden' name='ID' value='$value'>");
-                elseif ($x == 3) {
+                    $ID = $value;
+                } elseif ($x == 1) {
+                    if ($ID <= 20)
+                        print("<img src='$value' class='food'></img>");
+                    else
+                        print("<img src='../Admin/image/$value' class='food'>");
+                } elseif ($x == 3) {
                     print("<input type='hidden' name='price' value='$value'>");
                     print("<span>$value JD</span>");
                 } elseif ($x == 4)
@@ -454,8 +458,8 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
         $result = mysqli_query($database, $query);
         while ($data = mysqli_fetch_assoc($result)) {
             ?>
-        <img src="../Admin/image/<?php echo $data['filename']; ?>">
-        <?php
+            <img src="../Admin/image/<?php echo $data['filename']; ?>">
+            <?php
         }
         ?>
     </div>
@@ -556,9 +560,9 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     </footer>
 
     <script>
-    function myFunction() {
-        alert("تمت الإضافة بنجاح!");
-    }
+        function myFunction() {
+            alert("تمت الإضافة بنجاح!");
+        }
     </script>
 
 </body>
