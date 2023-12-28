@@ -222,6 +222,14 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
             flex-direction: row-reverse;
             flex-wrap: wrap;
         }
+
+        .empty {
+        color: #f18b05;
+        font-size: 40px;
+        font-weight: bold;
+        text-align: center;
+        margin: 3% auto 3% 45%;
+    }
     </style>
 </head>
 
@@ -266,6 +274,9 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
             extract($_POST);
             $query = "SELECT DISTINCT resturantID FROM Orders";
             $result = mysqli_query($database, $query);
+            $q = "SELECT * FROM orders";
+            $check = mysqli_query($database, $q);
+            if($check->num_rows > 0){
             while ($row = mysqli_fetch_row($result)) {
                 foreach ($row as $value) {
                     if ($value == 1) {
@@ -487,15 +498,22 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                     }
                 }
             }
+            print("</div>");
+            print("<input type='submit' value='تأكيد الطلب' class='subbutton'>");
             mysqli_close($database);
+            print("</form>");
+            print("<footer>");
+            print("<p>Developed By</p>");
+            print("<p>HU Break Team &copy;</p>");
+            print("</footer>");}
+            else{
+                print("<p class = 'empty'>السلة فارغة</p>");
+                print("</form>");
+                print("<footer style = 'position: absolute;'>");
+                print("<p>Developed By</p>");
+                print("<p>HU Break Team &copy;</p>");
+                print("</footer>");}
             ?>
-        </div>
-        <input type='submit' value='تأكيد الطلب' class='subbutton'>
-    </form>
-    <footer>
-        <p>Developed By</p>
-        <p>HU Break Team &copy;</p>
-    </footer>
 </body>
 
 </html>
