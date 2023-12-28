@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     header('Location: login.php');
     exit();
@@ -14,38 +13,36 @@ extract($_POST);
 $error = "";
 $success = "";
 if (isset($submit)) {
-    $query1 = "SELECT * from customers where email = '$email'";
+    $query1 = "SELECT * from customers where Email = '$email'";
     if (!$result = mysqli_query($database, $query1))
         die("wrong query");
     if (mysqli_num_rows($result) == 1) {
-        $query2 = "SELECT * FROM customers WHERE email = '$email'";
-        if (!$result = mysqli_query($database, $query2))
-            die("wrong query");
         $row = mysqli_fetch_assoc($result);
-        if ($currentpass = $row['Password'])
-            if (preg_match('/^(?=.*\d){8,}/', $newpass))
+        if ($currentpass == $row['Password'])
+            if (preg_match('/^([0-9A-Za-z_$]{8,})$/', $newpass))
                 if ($newpass != $currentpass)
                     if ($newpass == $confirmnewpass) {
-                        $query3 = "UPDATE customers SET password = '$newpass' WHERE email = '$email' AND password = '$currentpass'";
+                        $query2 = "UPDATE customers SET Password = '$newpass' WHERE Email = '$email' AND Password = '$currentpass'";
                         $success = "Password Changed";
-                        mysqli_query($database, $query3);}
+                        mysqli_query($database, $query2);}
                     else
                         $error = "Dismatch";
                 else
-                    $error = "Please enter a new password";
+                    $error = "Please Enter a New Password";
             else
-                $error = "Password must contain at least 8 digits";
+                $error = "Password Must Contain at Least 8 Digits";
         else
-            $error = "Wrong password";
-    } else
-        $error = "Email not found";
+            $error = "Wrong Password";
+    }
+    else
+        $error = "Email Not Found";
 }
 mysqli_close($database);
 ?>
 
 <!DOCTYPE html>
 <html>
-
+    <title>Change Password</title>
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
     <style>
