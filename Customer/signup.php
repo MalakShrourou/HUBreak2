@@ -1,27 +1,30 @@
 <?php
-session_start();
-if (!$database = mysqli_connect("localhost", "root", "12345678", "hubreak2_db"))
-    die("Sorry, could not connect to the server.");
-extract($_POST);
-$error = "";
-$success = "";
-if (isset($submit)) {
-    $sequery = "SELECT * FROM customers WHERE email = '$email'";
-    if (!$result = mysqli_query($database, $sequery))
-        die("wrong query");
-    if (mysqli_num_rows($result) == 0)
-        if (preg_match('/^([0-9A-Za-z_$]{8})$/', $password)) {
+    session_start();
+    if (!$database = mysqli_connect("localhost", "root", "12345678", "hubreak2_db"))
+        die("Sorry, could not connect to the server.");
+    extract($_POST);
+    $error = "";
+    $success = "";
+    if (isset($submit)) {
+        $sequery = "SELECT * FROM customers WHERE email = '$email'";
+        if (!$result = mysqli_query($database, $sequery))
+            die("wrong query");
+        if (mysqli_num_rows($result) == 0)
             if (preg_match('/@gmail\.com$/i', $email)) {
-                $inquery = "INSERT INTO customers (Name, Email, Password) VALUES ('$name','$email','$password')";
-                mysqli_query($database, $inquery);
-                $success = "Account Created";
+                if (preg_match('/^([0-9A-Za-z_$]{8,})$/', $password))
+                    if ($password == $confirmpassword){
+                        $inquery = "INSERT INTO customers (Name, Email, Password) VALUES ('$name','$email','$password')";
+                        mysqli_query($database, $inquery);
+                        $success = "Account Created";}
+                    else
+                        $error = "Dismatch";
+                else
+                    $error = "Invalid Password";
             } else
-                $error = "Invalid email";
-        } else
-            $error = "Try Another Password";
-    else
-        $error = "Email Already Exists";
-}
+                $error = "Invalid Email";
+        else
+            $error = "Email Already Exists";
+    }
 mysqli_close($database);
 ?>
 
@@ -169,8 +172,11 @@ mysqli_close($database);
             <form class="login-form" method="POST" autocomplete="off">
                 <input type="text" name="name" class="inputt" placeholder="Name" required />
                 <input type="email" name="email" class="inputt" placeholder="Email" required />
-                <input type="password" name="password" class="inputt" placeholder="Password (must contain 8 digits)" required
+                <input type="password" name="password" class="inputt" placeholder="Password (Must Contain 8 Digits)" required
                     spellcheck="false" style="margin-left: -10px; " required id="id_password" />
+                <i class="far fa-eye" id="togglePassword" style="margin-left: -35px; cursor: pointer;"></i>
+                <input type="password" name="confirmpassword" class="inputt" placeholder="Confirm Password" required
+                    spellcheck="false" style="margin-left: -10px; " required id="id_confirmpassword" />
                 <i class="far fa-eye" id="togglePassword" style="margin-left: -35px; cursor: pointer;"></i>
                 <script>
                     const togglePassword = document.querySelector('#togglePassword');
