@@ -155,6 +155,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
             $result = mysqli_query($database, $query);
             while ($row = mysqli_fetch_row($result)) {
                 print("<form method='post' action='addtocart.php'>");
+                print("<input type='hidden' name='link' value='Village.php'>");
                 $x = 0;
                 foreach ($row as $value) {
                     if ($x == 0)
@@ -188,7 +189,8 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
             $total = 0;
             while ($row = mysqli_fetch_row($result)) {
                 print("<tr>");
-                print("<form method='get' action='deletecart.php'>");
+                print("<form method='post' action='deletecart.php'>");
+                print("<input type='hidden' name='link' value='Village.php'>");
                 print("<td><input type='submit' class='buttond' value='X'></td>");
                 $x = 0;
                 foreach ($row as $value) {

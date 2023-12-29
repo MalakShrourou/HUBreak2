@@ -5,5 +5,5 @@ extract($_POST);
 $query = "INSERT INTO Orders (ProductID , resturantID , price) VALUES ($ID, $restID ,$price)";
 mysqli_query($database, $query);
 mysqli_close($database);
-header("location:javascript://history.go(-1)");
+header("Refresh:0; url=$link");
 ?>
