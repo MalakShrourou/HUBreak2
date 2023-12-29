@@ -15,7 +15,7 @@ $result = mysqli_query($database, $query);
 while ($row = mysqli_fetch_row($result)) {
     foreach ($row as $value) {
         if ($value == 1) {
-            $qu1 = "SELECT Time from Orders join products where Orders.ProductID= Products.ID AND resturantID=1";
+            $qu1 = "SELECT Time from Orders join products where Orders.ProductID = Products.ID AND resturantID = 1";
             $max = 0;
             $result1 = mysqli_query($database, $qu1);
             while ($row = mysqli_fetch_row($result1)) {
