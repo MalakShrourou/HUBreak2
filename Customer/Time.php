@@ -122,15 +122,15 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                 var hours = Math.floor(millis / 36e5),
                     mins = Math.floor((millis % 36e5) / 6e4),
                     secs = Math.floor((millis % 6e4) / 1000);
-                if (mins <= 9) {
-                    mins = "0" + mins;
-                }
-                if (secs <= 9) {
-                    secs = "0" + secs;
-                }
                 if (mins <= 0 && secs <= 0) {
                     document.getElementById(key).innerHTML = "الطلب جاهز للاستلام";
                 } else {
+                    if (mins <= 9)
+                        mins = "0" + mins;
+                    if (secs <= 9)
+                        secs = "0" + secs;
+                    if (mins == 09 && secs == 59)
+                        alert("أوشك الطلب على الانتهاء \nالرجاء التوجه للمطعم");
                     var remainingtime = mins + ':' + secs;
                     document.getElementById(key).innerHTML = remainingtime;
                 }
