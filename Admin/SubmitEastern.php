@@ -215,7 +215,7 @@ if (isset($_POST['upload'])) {
                     </ul>
                 </div>
             </li>
-            <li><a href="Admin.html">الصفحة الرئيسية</a></li>
+            <li><a href="Admin.php">الصفحة الرئيسية</a></li>
         </ul>
     </nav>
     <div id="content">
@@ -227,17 +227,6 @@ if (isset($_POST['upload'])) {
                 <button class="upload" type="submit" name="upload">تحميل</button>
             </div>
         </form>
-    </div>
-    <div id="display-image">
-        <?php
-        $query = "select filename from resturants where ID=1";
-        $result = mysqli_query($db, $query);
-        while ($data = mysqli_fetch_assoc($result)) {
-            ?>
-            <img src="./image/<?php echo $data['filename']; ?>">
-            <?php
-        }
-        ?>
     </div>
 </body>
 

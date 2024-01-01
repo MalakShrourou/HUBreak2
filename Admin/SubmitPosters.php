@@ -5,7 +5,6 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     exit();
 }
 ?>
-
 <!DOCTYPE html>
 
 <head>
@@ -213,7 +212,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                     </ul>
                 </div>
             </li>
-            <li><a href="Admin.html">الصفحة الرئيسية</a></li>
+            <li><a href="Admin.php">الصفحة الرئيسية</a></li>
         </ul>
     </nav>
     <div class="head">
