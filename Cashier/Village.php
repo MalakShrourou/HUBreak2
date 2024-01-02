@@ -151,7 +151,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
             if (!$database = mysqli_connect("localhost", "root", "12345678", "hubreak2_db"))
                 die("Sorry, could not connect to the server.");
             extract($_POST);
-            $query = "select products.ID,products.name,resturantproducts.price,resturantproducts.resturantId from products join resturantproducts on products.ID = productId WHERE resturantproducts.resturantId = 4 ";
+            $query = "select products.ID,products.name,resturantproducts.price,resturantproducts.resturantId from products join resturantproducts on products.ID = productId WHERE resturantproducts.resturantId = 4";
             $result = mysqli_query($database, $query);
             while ($row = mysqli_fetch_row($result)) {
                 print("<form method='post' action='addtocart.php'>");
@@ -206,15 +206,20 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
             }
             print("<tfoot style='margin-top:30px;'>");
             print("<th></th>");
+            print(" <form method='POST' action='placeorder.php'>");
             print("<th>$total</th>");
             print("<th colspan='2'>المبلغ الاجمالي</th>");
             print("</tfoot>");
             print("</table><br>");
-            print("<label class='desc'> :أضف ملاحظة<br><textarea rows='5' cols='25' name='desc' class='box' placeholder='...أكتب ملاحظتك هنا'></textarea></label>");
+        
+            print("<label class='desc'> : أضف ملاحظة<br><textarea rows='5' cols='25' id='dd' name='desc' class='box' placeholder='...أكتب ملاحظتك هنا'></textarea></label>");
+
             mysqli_close($database);
+
             ?>
-            <form method='post' action='placeorder.php'>
-                <input type="submit" value="تأكيد الطلب" class="subbutton">
+                <input type="hidden" name="RestId" value=4>
+                <input type="hidden" name="t" value=<?php echo$total;?>>
+                <input type="submit" value="تأكيد الطلب" class="subbutton" onclick="calc()">
             </form>
         </div>
     </div>
@@ -226,6 +231,14 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     <script>
     function myFunction() {
         alert("تمت الإضافة بنجاح!");
+    }
+    function calc(){
+var m=prompt("أدخل المبلغ المدفوع لمعرفة المبلغ المتبقي");
+var t=m - <?php echo $total;?> ;
+alert("المبلغ المتبقي = "+ t);
+    }
+    function d(){
+        var x=document.getElementById("dd").value;
     }
     </script>
 
