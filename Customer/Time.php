@@ -27,8 +27,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     .section {
         width: 30%;
         font-size: 28px;
-        background-color: transparent;
-        backdrop-filter: blur(30px);
+        background-color: white;
         height: auto;
         margin: 50px 150px 30px 20px;
         border: 2px solid #f18b05;
