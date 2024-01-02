@@ -18,18 +18,18 @@ extract($_POST);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Invoice</title>
     <style>
-    .result {
-        color: red;
-    }
+        .result {
+            color: red;
+        }
 
-    .notes {
-        position: absolute;
-        right: 0px;
-    }
+        .notes {
+            position: absolute;
+            right: 0px;
+        }
 
-    td {
-        text-align: center;
-    }
+        td {
+            text-align: center;
+        }
     </style>
 </head>
 
@@ -49,17 +49,16 @@ extract($_POST);
                         <div class="text-center">
                             <h4>فاتورة</h4>
                         </div>
-                        <span class="mt-4" >Time : </span><span class="mt-4" id="time"></span>
+                        <span class="mt-4">Time : </span><span class="mt-4" id="time"></span>
                         <div class="row">
                             <div class="col-xs-6 col-sm-6 col-md-6 ">
                                 <span id="day"></span> : <span id="year"></span>
                             </div>
                             <div class="col-xs-6 col-sm-6 col-md-6 text-right">
                                 <?php
-                                $q = "select ID from carts where ResturantID =1 and frompos=1";
+                                $q = "select ID from carts where ResturantID = 1 and frompos=1";
                                 $result = mysqli_query($database, $q);
                                 $row = mysqli_fetch_row($result);
-                                $x=0;
                                 foreach ($row as $value)
                                     print("<p>رقم الطلب : $value</p>");
                                 ?>
@@ -76,7 +75,7 @@ extract($_POST);
                                 </thead>
                                 <tbody id="new">
                                     <?php
-                                    $query = "select products.Name,Quantity,orders.price from products join orders on products.ID = orders.ProductID where ResturantID = 1";
+                                    $query = "select products.Name,Quantity,orders.price from products join orders on products.ID = orders.ProductID where ResturantID =1";
                                     $result = mysqli_query($database, $query);
                                     while ($row = mysqli_fetch_row($result)) {
                                         print("<tr>");
@@ -97,18 +96,20 @@ extract($_POST);
                                     ?>
                                 </tbody>
                                 <tfoot>
-                                <div>
-                                    <?php
-                                    $qq="select Description from carts where resturantId = 1";
-                                    $result = mysqli_query($database, $qq);
-                                    $row = mysqli_fetch_row($result);
-                                    if(mysqli_num_rows($result) != 0){
-                                        print("<tr colspan=3><td class='notes'>الملاحظات : ");
-                                        foreach ($row as $value) 
-                                            print($value);}
+                                    <div>
+                                        <?php
+                                        $qq = "select Description from carts where resturantId = 1";
+                                        $result = mysqli_query($database, $qq);
+                                        $row = mysqli_fetch_row($result);
+                                        if (mysqli_num_rows($result) > 0) {
+                                            print("<tr colspan=3><td class='notes'>الملاحظات : ");
+                                            foreach ($row as $value)
+                                                print($value);
+                                        }
                                         print("</td></tr>");
-                                    ?>
-                                    </div></tfoot>
+                                        ?>
+                                    </div>
+                                </tfoot>
                             </table>
                         </div>
                     </div>
@@ -119,94 +120,95 @@ extract($_POST);
 
 </html>
 <script>
-$(document).ready(function() {
-    $('#vegitable').change(function() {
-        var id = $(this).find(':selected')[0].id;
-        $.ajax({
-            method: 'POST',
-            url: 'fetch_product.php',
-            data: {
-                id: id
-            },
-            dataType: 'json',
-            success: function(data) {
-                $('#price').text(data.product_price);
+    $(document).ready(function () {
+        $('#vegitable').change(function () {
+            var id = $(this).find(':selected')[0].id;
+            $.ajax({
+                method: 'POST',
+                url: 'fetch_product.php',
+                data: {
+                    id: id
+                },
+                dataType: 'json',
+                success: function (data) {
+                    $('#price').text(data.product_price);
+                }
+            });
+        });
+        var count = 1;
+        $('#add').on('click', function () {
+            var name = $('#vegitable').val();
+            var qty = $('#qty').val();
+            var price = $('#price').text();
+            if (qty == 0) {
+                var erroMsg =
+                    '<span class="alert alert-danger ml-5">Minimum Qty should be 1 or More than 1</span>';
+                $('#errorMsg').html(erroMsg).fadeOut(9000);
+            } else {
+                billFunction();
+            }
+
+            function billFunction() {
+                var total = 0;
+                $("#receipt_bill").each(function () {
+                    var total = price * qty;
+                    var subTotal = 0;
+                    subTotal += parseInt(total);
+                    var table = '<tr><td>' + count + '</td><td>' + name + '</td><td>' + qty +
+                        '</td><td>' + price +
+                        '</td><td><strong><input type="hidden" id="total" value="' + total + '">' +
+                        total + '</strong></td></tr>';
+                    $('#new').append(table)
+                    var total = 0;
+                    $('tbody tr td:last-child').each(function () {
+                        var value = parseInt($('#total', this).val());
+                        if (!isNaN(value)) {
+                            total += value;
+                        }
+                    });
+                    $('#subTotal').text(total);
+                    var Tax = (total * 5) / 100;
+                    $('#taxAmount').text(Tax.toFixed(2));
+                    var Subtotal = $('#subTotal').text();
+                    var taxAmount = $('#taxAmount').text();
+                    var totalPayment = parseFloat(Subtotal) + parseFloat(taxAmount);
+                    $('#totalPayment').text(totalPayment.toFixed(2));
+                });
+                count++;
             }
         });
-    });
-    var count = 1;
-    $('#add').on('click', function() {
-        var name = $('#vegitable').val();
-        var qty = $('#qty').val();
-        var price = $('#price').text();
-        if (qty == 0) {
-            var erroMsg =
-                '<span class="alert alert-danger ml-5">Minimum Qty should be 1 or More than 1</span>';
-            $('#errorMsg').html(erroMsg).fadeOut(9000);
-        } else {
-            billFunction();
-        }
-        function billFunction() {
-            var total = 0;
-            $("#receipt_bill").each(function() {
-                var total = price * qty;
-                var subTotal = 0;
-                subTotal += parseInt(total);
-                var table = '<tr><td>' + count + '</td><td>' + name + '</td><td>' + qty +
-                    '</td><td>' + price +
-                    '</td><td><strong><input type="hidden" id="total" value="' + total + '">' +
-                    total + '</strong></td></tr>';
-                $('#new').append(table)
-                var total = 0;
-                $('tbody tr td:last-child').each(function() {
-                    var value = parseInt($('#total', this).val());
-                    if (!isNaN(value)) {
-                        total += value;
-                    }
-                });
-                $('#subTotal').text(total);
-                var Tax = (total * 5) / 100;
-                $('#taxAmount').text(Tax.toFixed(2));
-                var Subtotal = $('#subTotal').text();
-                var taxAmount = $('#taxAmount').text();
-                var totalPayment = parseFloat(Subtotal) + parseFloat(taxAmount);
-                $('#totalPayment').text(totalPayment.toFixed(2));
-            });
-            count++;
-        }
-    });
-    var currentdate = new Date();
-    var datetime = currentdate.getDate() + "/" +
-        (currentdate.getMonth() + 1) + "/" +
-        currentdate.getFullYear();
-    $('#year').text(datetime);
+        var currentdate = new Date();
+        var datetime = currentdate.getDate() + "/" +
+            (currentdate.getMonth() + 1) + "/" +
+            currentdate.getFullYear();
+        $('#year').text(datetime);
 
-    // Code for extract Weekday     
-    function myFunction() {
-        var d = new Date();
-        var weekday = new Array(7);
-        weekday[0] = "Sunday";
-        weekday[1] = "Monday";
-        weekday[2] = "Tuesday";
-        weekday[3] = "Wednesday";
-        weekday[4] = "Thursday";
-        weekday[5] = "Friday";
-        weekday[6] = "Saturday";
-        var day = weekday[d.getDay()];
-        return day;
-    }
-    var day = myFunction();
-    $('#day').text(day);
-});
+        // Code for extract Weekday     
+        function myFunction() {
+            var d = new Date();
+            var weekday = new Array(7);
+            weekday[0] = "Sunday";
+            weekday[1] = "Monday";
+            weekday[2] = "Tuesday";
+            weekday[3] = "Wednesday";
+            weekday[4] = "Thursday";
+            weekday[5] = "Friday";
+            weekday[6] = "Saturday";
+            var day = weekday[d.getDay()];
+            return day;
+        }
+        var day = myFunction();
+        $('#day').text(day);
+    });
 </script>
 
 <!-- // Code for TIME -->
 <script>
-window.onload = displayClock();
+    window.onload = displayClock();
 
-function displayClock() {
-    var time = new Date().toLocaleTimeString();
-    document.getElementById("time").innerHTML = time;
-    setTimeout(displayClock, 1000);
-}
+    function displayClock() {
+        var time = new Date().toLocaleTimeString();
+        document.getElementById("time").innerHTML = time;
+        setTimeout(displayClock, 1000);
+    }
 </script>
