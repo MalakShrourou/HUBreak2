@@ -36,8 +36,8 @@ extract($_POST);
 <body>
     <section class="mt-3">
         <div class="container-fluid">
-            <h4 class="text-center" style="color:#f18b05"> HUBreak </h4>
-            <h6 class="text-center">مطاعم اسبريسو</h6>
+            <h4 class="text-center" style="color:green"> HUBreak </h4>
+            <h6 class="text-center">Hashemite University</h6>
             <div class="row" style="margin-right:370px;">
                 <div class="col-md-5  mt-4 ">
                     <div role="alert" id="errorMsg" class="mt-5">
@@ -58,8 +58,10 @@ extract($_POST);
                                 $q = "select ID from carts where ResturantID = 2 and frompos=1";
                                 $result = mysqli_query($database, $q);
                                 $row = mysqli_fetch_row($result);
-                                foreach ($row as $value)
+                                foreach ($row as $value) {
+                                    $id = $value;
                                     print("<p>رقم الطلب : $value</p>");
+                                }
                                 ?>
                             </div>
                         </div>
@@ -67,49 +69,46 @@ extract($_POST);
                             <table id="receipt_bill" class="table">
                                 <thead>
                                     <tr>
-                                        <th class="text-center">الوجبة</th>
-                                        <th class="text-center">الكمية</th>
                                         <th class="text-center">السعر</th>
+                                        <th class="text-center">الوجبة</th>
                                     </tr>
                                 </thead>
                                 <tbody id="new">
                                     <?php
-                                    $query = "select products.Name,Quantity,orders.price from products join orders on products.ID = orders.ProductID where ResturantID =2";
+                                    $query = "select orders.price,products.Name from products join orders on products.ID = orders.ProductID where ResturantID =2";
                                     $result = mysqli_query($database, $query);
                                     while ($row = mysqli_fetch_row($result)) {
-                                        print("<tr>");
-                                        $x = 0;
-                                        foreach ($row as $value) {
-                                            if ($x == 1) {
-                                                print("<td>$value</td>");
-                                                $quan = $value;
-                                            } else if ($x == 2) {
-                                                $p = $value * $quan;
-                                                print("<td>$p</td>");
-                                            } else
-                                                print("<td>$value</td>");
-                                            $x++;
-                                        }
+                                        print("<tr style='width:100%;'>");
+                                        foreach ($row as $value)
+                                            print("<td style='width:50%;'>$value</td>");
                                         print("</tr>");
                                     }
+                                    $query1 = "select totalprice from carts where ID = $id";
+                                    $result = mysqli_query($database, $query1);
+                                    $row = mysqli_fetch_row($result);
+                                    if (mysqli_num_rows($result) > 0) {
+                                        foreach ($row as $value)
+                                            print("<tr><td>$value</td>");
+                                    }
+                                    print("<td>المبلغ الاجمالي</td></tr>");
+                                    $query2 = "UPDATE carts SET Payed=1 where ID = $id";
+                                    $result = mysqli_query($database, $query2);
                                     ?>
                                 </tbody>
-                                <tfoot>
-                                    <div>
-                                        <?php
-                                        $qq = "select Description from carts where resturantId = 2";
-                                        $result = mysqli_query($database, $qq);
-                                        $row = mysqli_fetch_row($result);
-                                        if (mysqli_num_rows($result) > 0) {
-                                            print("<tr colspan=3><td class='notes'>الملاحظات : ");
-                                            foreach ($row as $value)
-                                                print($value);
-                                        }
-                                        print("</td></tr>");
-                                        ?>
-                                    </div>
-                                </tfoot>
                             </table>
+                        </div>
+                        <div style="margin-left:65%;">
+                            <?php
+                            $qq = "select Description from carts where resturantId = 2";
+                            $result = mysqli_query($database, $qq);
+                            $row = mysqli_fetch_row($result);
+                            if (mysqli_num_rows($result) > 0) {
+                                print("<tr colspan=3><td class='notes'>الملاحظات : ");
+                                foreach ($row as $value)
+                                    print($value);
+                            }
+                            print("</td></tr>");
+                            ?>
                         </div>
                     </div>
                 </div>
