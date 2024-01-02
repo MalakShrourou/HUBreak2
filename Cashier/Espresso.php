@@ -235,7 +235,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     function calc(){
 var m=prompt("أدخل المبلغ المدفوع لمعرفة المبلغ المتبقي");
 var t=m - <?php echo $total;?> ;
-alert(t);
+alert("المبلغ المتبقي = "+ t);
     }
     function d(){
         var x=document.getElementById("dd").value;
