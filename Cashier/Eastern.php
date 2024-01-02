@@ -161,7 +161,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                     if ($x == 0)
                         print("<input type='hidden' name='ID' value='$value'>");
                     elseif ($x == 1)
-                        print("<input type='submit' class='product button' value='$value' onclick='myFunction()'>");
+                        print("<input type='submit' class='product button' value='$value' >");
                     elseif ($x == 2)
                         print("<input type='hidden' name='price' value='$value'>");
                     elseif ($x == 3)
@@ -211,15 +211,12 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
             print("<th colspan='2'>المبلغ الاجمالي</th>");
             print("</tfoot>");
             print("</table><br>");
-        
             print("<label class='desc'> : أضف ملاحظة<br><textarea rows='5' cols='25' id='dd' name='desc' class='box' placeholder='...أكتب ملاحظتك هنا'></textarea></label>");
-
             mysqli_close($database);
-
             ?>
-                <input type="hidden" name="RestId" value=1>
-                <input type="hidden" name="t" value=<?php echo$total;?>>
-                <input type="submit" value="تأكيد الطلب" class="subbutton" onclick="calc()">
+            <input type="hidden" name="RestId" value=1>
+            <input type="hidden" name="t" value=<?php echo$total;?>>
+            <input type="submit" value="تأكيد الطلب" class="subbutton" onclick="calc()">
             </form>
         </div>
     </div>
@@ -229,16 +226,10 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     </footer>
 
     <script>
-    function myFunction() {
-        alert("تمت الإضافة بنجاح!");
-    }
-    function calc(){
-var m = prompt("أدخل المبلغ المدفوع لمعرفة المبلغ المتبقي");
-var t=m - <?php echo $total;?> ;
-alert("المبلغ المتبقي = "+ t);
-    }
-    function d(){
-        var x=document.getElementById("dd").value;
+    function calc() {
+        var m = prompt("أدخل المبلغ المدفوع لمعرفة المبلغ المتبقي");
+        var t = m - <?php echo $total;?>;
+        alert("المبلغ المتبقي = " + t);
     }
     </script>
 

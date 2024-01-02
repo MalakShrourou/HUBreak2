@@ -41,7 +41,6 @@ extract($_POST);
             <div class="row" style="margin-right:370px;">
                 <div class="col-md-5  mt-4 ">
                     <div role="alert" id="errorMsg" class="mt-5">
-                        <!-- Error msg  -->
                     </div>
                 </div>
                 <div class="col-md-7  mt-4" style="background-color:#f5f5f5;">
