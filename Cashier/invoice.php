@@ -22,6 +22,11 @@ extract($_POST);
         color: red;
     }
 
+    .notes {
+        position: absolute;
+        right: 0px;
+    }
+
     td {
         text-align: center;
     }
@@ -42,46 +47,45 @@ extract($_POST);
                 <div class="col-md-7  mt-4" style="background-color:#f5f5f5;">
                     <div class="p-4">
                         <div class="text-center">
-                            <h4>Receipt</h4>
+                            <h4>فاتورة</h4>
                         </div>
-                        <span class="mt-4"> Time : </span><span class="mt-4" id="time"></span>
+                        <span class="mt-4" >Time : </span><span class="mt-4" id="time"></span>
                         <div class="row">
                             <div class="col-xs-6 col-sm-6 col-md-6 ">
                                 <span id="day"></span> : <span id="year"></span>
                             </div>
                             <div class="col-xs-6 col-sm-6 col-md-6 text-right">
                                 <?php
-                                $q = "select ID from carts where ResturantID =1";
+                                $q = "select ID from carts where ResturantID =1 and frompos=1";
                                 $result = mysqli_query($database, $q);
                                 $row = mysqli_fetch_row($result);
+                                $x=0;
                                 foreach ($row as $value)
-                                    print("<p>Order No: $value</p>");
+                                    print("<p>رقم الطلب : $value</p>");
                                 ?>
                             </div>
                         </div>
                         <div class="row">
-                            </span>
                             <table id="receipt_bill" class="table">
                                 <thead>
                                     <tr>
-                                        <th> No.</th>
-                                        <th>Product Name</th>
-                                        <th>Quantity</th>
-                                        <th class="text-center"> Price</th>
+                                        <th class="text-center">الوجبة</th>
+                                        <th class="text-center">الكمية</th>
+                                        <th class="text-center">السعر</th>
                                     </tr>
                                 </thead>
                                 <tbody id="new">
                                     <?php
-                                    $query = "select orders.ID,products.Name,Quantity,orders.price from products join orders on products.ID = orders.ProductID where ResturantID =1";
+                                    $query = "select products.Name,Quantity,orders.price from products join orders on products.ID = orders.ProductID where ResturantID = 1";
                                     $result = mysqli_query($database, $query);
                                     while ($row = mysqli_fetch_row($result)) {
                                         print("<tr>");
                                         $x = 0;
                                         foreach ($row as $value) {
-                                            if ($x == 2) {
+                                            if ($x == 1) {
                                                 print("<td>$value</td>");
                                                 $quan = $value;
-                                            } else if ($x == 3) {
+                                            } else if ($x == 2) {
                                                 $p = $value * $quan;
                                                 print("<td>$p</td>");
                                             } else
@@ -92,6 +96,19 @@ extract($_POST);
                                     }
                                     ?>
                                 </tbody>
+                                <tfoot>
+                                <div>
+                                    <?php
+                                    $qq="select Description from carts where resturantId = 1";
+                                    $result = mysqli_query($database, $qq);
+                                    $row = mysqli_fetch_row($result);
+                                    if(mysqli_num_rows($result) != 0){
+                                        print("<tr colspan=3><td class='notes'>الملاحظات : ");
+                                        foreach ($row as $value) 
+                                            print($value);}
+                                        print("</td></tr>");
+                                    ?>
+                                    </div></tfoot>
                             </table>
                         </div>
                     </div>
@@ -129,7 +146,6 @@ $(document).ready(function() {
         } else {
             billFunction();
         }
-
         function billFunction() {
             var total = 0;
             $("#receipt_bill").each(function() {
@@ -176,7 +192,6 @@ $(document).ready(function() {
         weekday[4] = "Thursday";
         weekday[5] = "Friday";
         weekday[6] = "Saturday";
-
         var day = weekday[d.getDay()];
         return day;
     }
