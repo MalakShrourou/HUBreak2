@@ -69,7 +69,7 @@ extract($_POST);
                             </div>
                             <div class="col-xs-6 col-sm-6 col-md-6 text-right">
                                 <?php
-                                $q = "select ID from carts where ResturantID = 4 and payed=0";
+                                $q = "SELECT max(ID) from carts where ResturantID = 4 and CustomerID !=8";
                                 $result = mysqli_query($database, $q);
                                 $row = mysqli_fetch_row($result);
                                 foreach ($row as $value) {
@@ -84,17 +84,18 @@ extract($_POST);
                                 <thead>
                                     <tr>
                                         <th class="text-center">السعر</th>
+                                        <th class="text-center">الكمية</th>
                                         <th class="text-center">الوجبة</th>
                                     </tr>
                                 </thead>
                                 <tbody id="new">
                                     <?php
-                                    $query = "select orders.price,products.Name from products join orders on products.ID = orders.ProductID where ResturantID =4 and frompos=0";
+                                    $query = "select orders.price,Quantity,products.Name from products join orders on products.ID = orders.ProductID where ResturantID =4 and frompos=0";
                                     $result = mysqli_query($database, $query);
                                     while ($row = mysqli_fetch_row($result)) {
-                                        print("<tr style='width:100%;'>");
+                                        print("<tr>");
                                         foreach ($row as $value)
-                                            print("<td style='width:50%;'>$value</td>");
+                                            print("<td>$value</td>");
                                         print("</tr>");
                                     }
                                     $query1 = "select totalprice from carts where ID = $Rid";
@@ -106,7 +107,7 @@ extract($_POST);
                                             $total = $value;
                                         }
                                     }
-                                    print("<td style='font-weight:bold;'>المبلغ الاجمالي</td></tr>");
+                                    print("<td style='font-weight:bold;' colspan='2'>المبلغ الاجمالي</td></tr>");
                                     ?>
                                 </tbody>
                             </table>
@@ -130,14 +131,13 @@ extract($_POST);
     <form method="POST" action="village.php">
         <input type="submit" onclick="calc()" value="الدفع" class="button">
         <?php
-        $query2 = "UPDATE carts SET Payed=1 where ID = $Rid";
+        $query2 = "UPDATE orders SET Payed = 1 where resturantID = 4";
         $result = mysqli_query($database, $query2);
-        $query2 = "UPDATE carts2 SET Payed=1 where ID = $Rid";
+        $query2 = "UPDATE orders2 SET Payed = 1 where resturantID = 4";
         $result = mysqli_query($database, $query2);
-        $qu = "delete from carts where payed=1";
-        $result = mysqli_query($database, $qu);
-        $qu2 = "delete from orders where resturantid=4";
-        $result = mysqli_query($database, $qu2); ?>
+        $q = "Delete from carts where ID = $Rid";
+        $result = mysqli_query($database, $q);
+        ?>
     </form>
 </body>
 
@@ -233,8 +233,11 @@ function displayClock() {
 
 function calc() {
     var m = prompt("أدخل المبلغ المدفوع لمعرفة المبلغ المتبقي");
+    while (m < <?php echo $total; ?>) {
+        alert("invalid amount");
+        m = prompt("أدخل المبلغ المدفوع لمعرفة المبلغ المتبقي");
+    }
     var t = m - <?php echo $total; ?>;
     alert("المبلغ المتبقي = " + t);
-    alert("تمت عملية الدفع بنجاح ");
 }
 </script>

@@ -75,13 +75,13 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
         if (!$database = mysqli_connect("localhost", "root", "12345678", "hubreak2_db"))
             die("Sorry, could not connect to the server.");
         extract($_POST);
-        $query = "SELECT DISTINCT ResturantID FROM carts where CustomerID=$num && Payed=0";
+        $query = "SELECT DISTINCT ResturantID FROM carts where CustomerID=$num";
         $result = mysqli_query($database, $query);
         $dictionary1 = array();
         while ($row = mysqli_fetch_row($result)) {
             foreach ($row as $value) {
                 print("<div class='section'>");
-                $Q = "SELECT Name,carts.ID,TotalPrice,Time FROM carts,resturants WHERE ResturantID = $value && resturants.ID = $value ";
+                $Q = "SELECT Name,carts.ID,TotalPrice,Time FROM carts,resturants WHERE ResturantID = $value and resturants.ID = $value and CustomerID != 8";
                 $r = mysqli_query($database, $Q);
                 print("<table class='table'>");
                 while ($R = mysqli_fetch_row($r)) {

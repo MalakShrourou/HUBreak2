@@ -69,7 +69,7 @@ extract($_POST);
                             </div>
                             <div class="col-xs-6 col-sm-6 col-md-6 text-right">
                                 <?php
-                                $q = "select ID from carts where ResturantID = 1";
+                                $q = "select max(ID) from carts where ResturantID = 1";
                                 $result = mysqli_query($database, $q);
                                 $row = mysqli_fetch_row($result);
                                 foreach ($row as $value) {
@@ -84,17 +84,18 @@ extract($_POST);
                                 <thead>
                                     <tr>
                                         <th class="text-center">السعر</th>
+                                        <th class="text-center">الكمية</th>
                                         <th class="text-center">الوجبة</th>
                                     </tr>
                                 </thead>
                                 <tbody id="new">
                                     <?php
-                                    $query = "select orders.price,products.Name from products join orders on products.ID = orders.ProductID where ResturantID =1";
+                                    $query = "select orders.price,Quantity,products.Name from products join orders on products.ID = orders.ProductID where ResturantID =1 and payed = 0 and frompos=1";
                                     $result = mysqli_query($database, $query);
                                     while ($row = mysqli_fetch_row($result)) {
-                                        print("<tr style='width:100%;'>");
+                                        print("<tr>");
                                         foreach ($row as $value)
-                                            print("<td style='width:50%;'>$value</td>");
+                                            print("<td>$value</td>");
                                         print("</tr>");
                                     }
                                     $query1 = "select totalprice from carts where ID = $Rid";
@@ -104,18 +105,14 @@ extract($_POST);
                                         foreach ($row as $value)
                                             print("<tr><td style='font-weight:bold;'>$value</td>");
                                     }
-                                    print("<td style='font-weight:bold;'>المبلغ الاجمالي</td></tr>");
-                                    $query2 = "UPDATE carts SET Payed=1 where ID = $Rid";
-                                    $result = mysqli_query($database, $query2);
-                                    $query2 = "UPDATE carts2 SET Payed=1 where ID = $Rid";
-                                    $result = mysqli_query($database, $query2);
+                                    print("<td style='font-weight:bold;' colspan='2'>المبلغ الاجمالي</td></tr>");
                                     ?>
                                 </tbody>
                             </table>
                         </div>
                         <div style="margin-left:65%;">
                             <?php
-                            $qq = "select Description from carts where resturantId = 1";
+                            $qq = "select Description from carts where ID=$Rid";
                             $result = mysqli_query($database, $qq);
                             while ($row = mysqli_fetch_row($result)) {
                                 print("<tr><td class='notes'>الملاحظات : ");
@@ -131,12 +128,8 @@ extract($_POST);
     </section>
     <form method="post">
         <input type="submit" formaction="Eastern.php" value="العودة" class="button">
-        <?php
-        $qu = "delete from carts where payed=1";
-        $result = mysqli_query($database, $qu);
-        $qu2 = "delete from orders where resturantid=1 and frompos=1";
-        $result = mysqli_query($database, $qu2);
-        ?>
+        <?php $q = "UPDATE orders set payed = 1 where resturantId=1";
+        $result = mysqli_query($database, $q); ?>
     </form>
 </body>
 

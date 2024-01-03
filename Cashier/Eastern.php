@@ -161,7 +161,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
         font-size: large;
         padding: 10px;
         margin-left: 70%;
-        margin-right: 2%;
+        margin-right: 5%;
     }
 
     a {
@@ -205,7 +205,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
             if (!$database = mysqli_connect("localhost", "root", "12345678", "hubreak2_db"))
                 die("Sorry, could not connect to the server.");
             extract($_POST);
-            $query = "select orders.ID,price,name from Orders,products where orders.productId=products.ID and resturantID=1 and frompos=1";
+            $query = "select orders.ID,price,name from Orders,products where orders.productId=products.ID and resturantID=1 and payed=0 and frompos=1";
             $result = mysqli_query($database, $query);
             print("<table class='table'>");
             print("<thead>");
@@ -248,12 +248,12 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     </div>
     <div class="inv">
         <?php
-        $qq2 = "select ID from carts where resturantId=1 and Payed=0";
+        $qq2 = "select ID from carts where resturantId=1 and customerID != 8";
         $result = mysqli_query($database, $qq2);
         while ($row = mysqli_fetch_row($result)) {
             foreach ($row as $value) {
                 $Rid = $value;
-                print("<a href='invoice.php'>رقم الطلب : $value</a><br><br>");
+                print("<a href='bill_eastern.php'>رقم الطلب : $value</a><br><br>");
             }
         }
         ?>
@@ -267,6 +267,10 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     <script>
     function calc() {
         var m = prompt("أدخل المبلغ المدفوع لمعرفة المبلغ المتبقي");
+        while (m < <?php echo $total; ?>) {
+            alert("invalid amount");
+            m = prompt("أدخل المبلغ المدفوع لمعرفة المبلغ المتبقي");
+        }
         var t = m - <?php echo $total; ?>;
         alert("المبلغ المتبقي = " + t);
     }

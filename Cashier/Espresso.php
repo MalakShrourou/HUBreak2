@@ -13,161 +13,161 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <style>
-    * {
-        margin: 0;
-        padding: 0;
-        font-family: 'Times New Roman', Times, serif;
-        box-sizing: border-box;
-        text-align: center;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Times New Roman', Times, serif;
+            box-sizing: border-box;
+            text-align: center;
+        }
 
-    body {
-        color: rgb(124, 17, 17);
-        background-attachment: fixed;
-    }
+        body {
+            color: rgb(124, 17, 17);
+            background-attachment: fixed;
+        }
 
-    .main {
-        display: flex;
-        flex-direction: row;
-    }
+        .main {
+            display: flex;
+            flex-direction: row;
+        }
 
-    .section {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        margin-left: 2%;
-        width: 70%;
-        margin-bottom: 30px;
-    }
+        .section {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            margin-left: 2%;
+            width: 70%;
+            margin-bottom: 30px;
+        }
 
-    footer {
-        background: #f18b05;
-        color: white;
-        text-align: center;
-        padding: 10px;
-        margin-top: 9%;
-    }
+        footer {
+            background: #f18b05;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 9%;
+        }
 
-    .submit {
-        margin-left: 47%;
-        margin-bottom: 3%;
-        background-color: #f18b05;
-        width: 70px;
-        border: 0;
-        padding: 10px;
-        color: white;
-        border-radius: 10px;
-    }
+        .submit {
+            margin-left: 47%;
+            margin-bottom: 3%;
+            background-color: #f18b05;
+            width: 70px;
+            border: 0;
+            padding: 10px;
+            color: white;
+            border-radius: 10px;
+        }
 
-    .product {
-        max-width: 200px;
-        min-width: 200px;
-        height: auto;
-        padding: 10px;
-        color: rgb(124, 17, 17);
-        border-radius: 5px;
-        background-color: rgb(241, 238, 238);
-        border: 2px solid rgb(241, 238, 238);
-        cursor: pointer;
-        font-size: 20px;
-        margin: 20px 5px 12px 10px;
-        text-align: center;
-    }
+        .product {
+            max-width: 200px;
+            min-width: 200px;
+            height: auto;
+            padding: 10px;
+            color: rgb(124, 17, 17);
+            border-radius: 5px;
+            background-color: rgb(241, 238, 238);
+            border: 2px solid rgb(241, 238, 238);
+            cursor: pointer;
+            font-size: 20px;
+            margin: 20px 5px 12px 10px;
+            text-align: center;
+        }
 
-    .calculate {
-        margin-top: 20px;
-        border-radius: 15px;
-        background-color: rgb(241, 238, 238);
-        width: 30%;
-        padding: 20px;
-        height: 50%;
-        margin-right: 2%;
-    }
+        .calculate {
+            margin-top: 20px;
+            border-radius: 15px;
+            background-color: rgb(241, 238, 238);
+            width: 30%;
+            padding: 20px;
+            height: 50%;
+            margin-right: 2%;
+        }
 
-    .table {
-        font-size: 25px;
-        color: rgb(124, 17, 17);
-        width: 100%;
-    }
+        .table {
+            font-size: 25px;
+            color: rgb(124, 17, 17);
+            width: 100%;
+        }
 
-    .table td {
-        text-align: center;
-    }
+        .table td {
+            text-align: center;
+        }
 
-    tr {
-        height: 50px;
-    }
+        tr {
+            height: 50px;
+        }
 
-    thead,
-    tfoot {
-        height: 30px;
-    }
+        thead,
+        tfoot {
+            height: 30px;
+        }
 
-    .desc {
-        overflow: auto;
-        text-align: right;
-        font-size: 30px;
-    }
+        .desc {
+            overflow: auto;
+            text-align: right;
+            font-size: 30px;
+        }
 
-    .box {
-        overflow: auto;
-        text-align: right;
-        font-size: 20px;
-    }
+        .box {
+            overflow: auto;
+            text-align: right;
+            font-size: 20px;
+        }
 
-    .subbutton {
-        display: block;
-        padding: 12px;
-        background: #f18b05;
-        color: #fff;
-        font-size: large;
-        font-weight: bold;
-        border: 0;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-left: 38%;
-    }
+        .subbutton {
+            display: block;
+            padding: 12px;
+            background: #f18b05;
+            color: #fff;
+            font-size: large;
+            font-weight: bold;
+            border: 0;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 38%;
+        }
 
-    .subbutton:hover {
-        background: #fda735;
-    }
+        .subbutton:hover {
+            background: #fda735;
+        }
 
-    .button {
-        display: block;
-        padding: 12px;
-        background: #f18b05;
-        color: #fff;
-        font-size: large;
-        font-weight: bold;
-        border: 0;
-        border-radius: 5px;
-        cursor: pointer;
-    }
+        .button {
+            display: block;
+            padding: 12px;
+            background: #f18b05;
+            color: #fff;
+            font-size: large;
+            font-weight: bold;
+            border: 0;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 
-    .buttond {
-        cursor: pointer;
-        padding: 6px;
-        width: 50%;
-        background: red;
-        color: white;
-        border: 0;
-        border-radius: 5px;
-    }
+        .buttond {
+            cursor: pointer;
+            padding: 6px;
+            width: 50%;
+            background: red;
+            color: white;
+            border: 0;
+            border-radius: 5px;
+        }
 
-    .inv {
-        border-radius: 15px;
-        background-color: rgb(241, 238, 238);
-        width: 30%;
-        font-size: large;
-        padding: 10px;
-        margin-left: 70%;
-        margin-right: 2%;
-    }
+        .inv {
+            border-radius: 15px;
+            background-color: rgb(241, 238, 238);
+            width: 30%;
+            font-size: large;
+            padding: 10px;
+            margin-left: 70%;
+            margin-right: 2%;
+        }
 
-    a {
-        text-decoration: none;
-        color: rgb(124, 17, 17);
-    }
+        a {
+            text-decoration: none;
+            color: rgb(124, 17, 17);
+        }
     </style>
 </head>
 
@@ -205,7 +205,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
             if (!$database = mysqli_connect("localhost", "root", "12345678", "hubreak2_db"))
                 die("Sorry, could not connect to the server.");
             extract($_POST);
-            $query = "select orders.ID,price,name from Orders,products where orders.productId=products.ID and resturantID=2 and frompos=1";
+            $query = "select orders.ID,price,name from Orders,products where orders.productId=products.ID and resturantID=2 and frompos=1 and payed=0";
             $result = mysqli_query($database, $query);
             print("<table class='table'>");
             print("<thead>");
@@ -248,7 +248,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     </div>
     <div class="inv">
         <?php
-        $qq2 = "select ID from carts where resturantId=2 and Payed=0";
+        $qq2 = "select ID from carts where resturantId=2 and and customerID != 8";
         $result = mysqli_query($database, $qq2);
         while ($row = mysqli_fetch_row($result)) {
             foreach ($row as $value) {
@@ -265,11 +265,15 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     </footer>
 
     <script>
-    function calc() {
-        var m = prompt("أدخل المبلغ المدفوع لمعرفة المبلغ المتبقي");
-        var t = m - <?php echo $total; ?>;
-        alert("المبلغ المتبقي = " + t);
-    }
+        function calc() {
+            var m = prompt("أدخل المبلغ المدفوع لمعرفة المبلغ المتبقي");
+            while (m < <?php echo $total; ?>) {
+                alert("invalid amount");
+                m = prompt("أدخل المبلغ المدفوع لمعرفة المبلغ المتبقي");
+            }
+            var t = m - <?php echo $total; ?>;
+            alert("المبلغ المتبقي = " + t);
+        }
     </script>
 
 </body>
