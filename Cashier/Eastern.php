@@ -37,7 +37,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
         flex-wrap: wrap;
         margin-left: 2%;
         width: 70%;
-        margin-bottom: 50px;
+        margin-bottom: 30px;
     }
 
     footer {
@@ -45,7 +45,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
         color: white;
         text-align: center;
         padding: 10px;
-        margin-top: 4%;
+        margin-top: 9%;
     }
 
     .submit {
@@ -70,12 +70,12 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
         border: 2px solid rgb(241, 238, 238);
         cursor: pointer;
         font-size: 20px;
-        margin: 50px 5px 0 10px;
+        margin: 20px 5px 12px 10px;
         text-align: center;
     }
 
     .calculate {
-        margin-top: 50px;
+        margin-top: 20px;
         border-radius: 15px;
         background-color: rgb(241, 238, 238);
         width: 30%;
@@ -132,6 +132,18 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
         background: #fda735;
     }
 
+    .button {
+        display: block;
+        padding: 12px;
+        background: #f18b05;
+        color: #fff;
+        font-size: large;
+        font-weight: bold;
+        border: 0;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
     .buttond {
         cursor: pointer;
         padding: 6px;
@@ -140,6 +152,21 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
         color: white;
         border: 0;
         border-radius: 5px;
+    }
+
+    .inv {
+        border-radius: 15px;
+        background-color: rgb(241, 238, 238);
+        width: 30%;
+        font-size: large;
+        padding: 10px;
+        margin-left: 70%;
+        margin-right: 2%;
+    }
+
+    a {
+        text-decoration: none;
+        color: rgb(124, 17, 17);
     }
     </style>
 </head>
@@ -161,7 +188,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
                     if ($x == 0)
                         print("<input type='hidden' name='ID' value='$value'>");
                     elseif ($x == 1)
-                        print("<input type='submit' class='product button' value='$value' >");
+                        print("<input type='submit' class='product' value='$value'>");
                     elseif ($x == 2)
                         print("<input type='hidden' name='price' value='$value'>");
                     elseif ($x == 3)
@@ -178,7 +205,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
             if (!$database = mysqli_connect("localhost", "root", "12345678", "hubreak2_db"))
                 die("Sorry, could not connect to the server.");
             extract($_POST);
-            $query = "select orders.ID,price,name from Orders,products where orders.productId=products.ID and resturantID=1";
+            $query = "select orders.ID,price,name from Orders,products where orders.productId=products.ID and resturantID=1 and frompos=1";
             $result = mysqli_query($database, $query);
             print("<table class='table'>");
             print("<thead>");
@@ -212,14 +239,26 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
             print("</tfoot>");
             print("</table><br>");
             print("<label class='desc'> : أضف ملاحظة<br><textarea rows='5' cols='25' id='dd' name='desc' class='box' placeholder='...أكتب ملاحظتك هنا'></textarea></label>");
-            mysqli_close($database);
             ?>
             <input type="hidden" name="RestId" value=1>
-            <input type="hidden" name="t" value=<?php echo$total;?>>
+            <input type="hidden" name="t" value=<?php echo $total; ?>>
             <input type="submit" value="تأكيد الطلب" class="subbutton" onclick="calc()">
             </form>
         </div>
     </div>
+    <div class="inv">
+        <?php
+        $qq2 = "select ID from carts where resturantId=1 and Payed=0";
+        $result = mysqli_query($database, $qq2);
+        while ($row = mysqli_fetch_row($result)) {
+            foreach ($row as $value) {
+                $Rid = $value;
+                print("<a href='invoice.php'>رقم الطلب : $value</a><br><br>");
+            }
+        }
+        ?>
+    </div>
+
     <footer>
         <p>Developed By</p>
         <p>HU Break Team &copy;</p>
@@ -228,7 +267,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     <script>
     function calc() {
         var m = prompt("أدخل المبلغ المدفوع لمعرفة المبلغ المتبقي");
-        var t = m - <?php echo $total;?>;
+        var t = m - <?php echo $total; ?>;
         alert("المبلغ المتبقي = " + t);
     }
     </script>

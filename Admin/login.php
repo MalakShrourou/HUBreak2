@@ -17,7 +17,7 @@ if (isset($submit)) {
             $_SESSION['logged_in'] = true;
             $_SESSION['Username'] = $username;
             $error = "";
-            header("Location:Admin.html");
+            header("Location:Admin.php");
         } else {
             $error = "Wrong Password";
             $_SESSION['logged_in'] = false;

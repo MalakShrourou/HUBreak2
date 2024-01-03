@@ -34,120 +34,120 @@ if (isset($_POST['upload'])) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="style.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Times New Roman', Times, serif;
-        }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Times New Roman', Times, serif;
+    }
 
-        body {
-            background-image: url('cover.jpg');
-            background-color: #f18b05;
-        }
+    h2 {
+        color: black;
+        text-align: center;
+    }
 
-        #content {
-            background: rgba(0, 0, 0, 0.582);
-            width: 50%;
-            justify-content: center;
-            align-items: center;
-            margin: 200px auto 50px;
-            padding: 50px;
-            border: 1px solid #cbcbcb00;
-            border-radius: 15px;
-        }
+    #content {
+        background-color: lightgray;
+        width: 50%;
+        justify-content: center;
+        align-items: center;
+        margin: 200px auto 50px;
+        padding: 50px;
+        border: 1px solid #cbcbcb00;
+        border-radius: 15px;
+    }
 
-        form {
-            width: 50%;
-            margin: 20px auto;
-        }
+    form {
+        width: 50%;
+        margin: 20px auto;
+    }
 
-        #display-image img {
-            width: 40%;
-            margin-left: 30%;
-            margin-bottom: 50px;
-        }
+    #display-image img {
+        width: 40%;
+        margin-left: 30%;
+        margin-bottom: 50px;
+    }
 
-        .upload {
-            background-color: #f18b05;
-            border: #f18b05;
-            color: white;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 15px;
-            width: 30%;
-            margin-left: 30%;
-        }
+    .upload {
+        background-color: #f18b05;
+        border: #f18b05;
+        color: white;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 15px;
+        width: 30%;
+        margin-left: 30%;
+    }
 
-        .menu-bar {
-            background: #f18b05;
-            text-align: right;
-            height: 40px;
-            margin-right: 10%;
-            padding-right: 5px;
-            font-size: large;
-        }
+    .menu-bar {
+        background: #f18b05;
+        text-align: right;
+        height: 40px;
+        margin-right: 10%;
+        padding-right: 5px;
+        font-size: large;
+    }
 
-        .menu-bar ul {
-            display: inline-flex;
-            list-style: none;
-            color: #fff;
-        }
+    .menu-bar ul {
+        display: inline-flex;
+        list-style: none;
+        color: #fff;
+    }
 
-        .menu-bar ul li {
-            width: 150px;
-            margin: 0px;
-            padding: 10px 0px;
-            text-align: center;
-        }
+    .menu-bar ul li {
+        width: 150px;
+        margin: 0px;
+        padding: 10px 0px;
+        text-align: center;
+    }
 
-        .menu-bar ul li a {
-            text-decoration: none;
-            color: #fff;
-        }
+    .menu-bar ul li a {
+        text-decoration: none;
+        color: #fff;
+    }
 
-        .menu {
-            display: none;
-        }
+    .menu {
+        display: none;
+    }
 
-        .menu-bar ul li:hover {
-            background-color: #fda025;
-        }
+    .menu-bar ul li:hover {
+        background-color: #fda025;
+    }
 
-        .menu-bar ul li:hover .menu {
-            display: block;
-            position: absolute;
-            background-color: #FBB202;
-            margin-top: 10px;
-        }
+    .menu-bar ul li:hover .menu {
+        display: block;
+        position: absolute;
+        background-color: #FBB202;
+        margin-top: 10px;
+    }
 
-        .menu-bar ul li:hover .menu ul {
-            display: block;
-        }
+    .menu-bar ul li:hover .menu ul {
+        display: block;
+    }
 
-        .menu-bar ul li:hover .menu ul li {
-            width: 150px;
-            padding: 10px;
-            border-bottom: 1px dotted #fff;
-            background: transparent;
-            border-radius: 0;
-            text-align: center;
-        }
+    .menu-bar ul li:hover .menu ul li {
+        width: 150px;
+        padding: 10px;
+        border-bottom: 1px dotted #fff;
+        background: transparent;
+        border-radius: 0;
+        text-align: center;
+    }
 
-        .menu-bar ul li:hover .menu ul li:last-child {
-            border-bottom: none;
-        }
+    .menu-bar ul li:hover .menu ul li:last-child {
+        border-bottom: none;
+    }
 
-        .menu-bar ul li:hover .menu ul li a:hover {
-            color: rgb(124, 17, 17);
-        }
+    .menu-bar ul li:hover .menu ul li a:hover {
+        color: rgb(124, 17, 17);
+    }
 
-        .logo {
-            width: 10%;
-            height: 40px;
-            right: 0;
-            position: absolute;
-        }
+    .logo {
+        width: 10%;
+        height: 40px;
+        right: 0;
+        position: absolute;
+    }
     </style>
 </head>
 
@@ -219,6 +219,7 @@ if (isset($_POST['upload'])) {
         </ul>
     </nav>
     <div id="content">
+        <h2>إضافة إعلان</h2>
         <form method="POST" action="" enctype="multipart/form-data">
             <div class="form-group">
                 <input class="form-control" type="file" name="uploadfile" value="">

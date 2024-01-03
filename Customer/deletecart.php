@@ -11,6 +11,8 @@ if (!mysqli_select_db($database, "hubreak2_db"))
 extract($_POST);
 $query = "delete from Orders where ID = $Id";
 $result = mysqli_query($database, $query);
+$query2 = "delete from Orders2 where ID = $Id";
+$result2 = mysqli_query($database, $query2);
 if (!$result)
     die("Sorry, Item not deleted.");
 mysqli_close($database);

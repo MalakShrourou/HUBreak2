@@ -41,13 +41,8 @@ if (isset($_POST['upload'])) {
         font-family: 'Times New Roman', Times, serif;
     }
 
-    body {
-        background-image: url('cover.jpg');
-        background-color: #f18b05;
-    }
-
     #content {
-        background: rgba(0, 0, 0, 0.582);
+        background-color: lightgray;
         width: 50%;
         justify-content: center;
         align-items: center;
@@ -55,6 +50,11 @@ if (isset($_POST['upload'])) {
         padding: 50px;
         border: 1px solid #cbcbcb00;
         border-radius: 15px;
+    }
+
+    h2 {
+        color: black;
+        text-align: center;
     }
 
     form {
@@ -219,6 +219,7 @@ if (isset($_POST['upload'])) {
         </ul>
     </nav>
     <div id="content">
+        <h2>إضافة إعلان</h2>
         <form method="POST" action="" enctype="multipart/form-data">
             <div class="form-group">
                 <input class="form-control" type="file" name="uploadfile" value="">

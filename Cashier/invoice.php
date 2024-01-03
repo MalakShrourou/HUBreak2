@@ -69,7 +69,7 @@ extract($_POST);
                             </div>
                             <div class="col-xs-6 col-sm-6 col-md-6 text-right">
                                 <?php
-                                $q = "select ID from carts where ResturantID = 1";
+                                $q = "select ID from carts where ResturantID = 1 and payed=0";
                                 $result = mysqli_query($database, $q);
                                 $row = mysqli_fetch_row($result);
                                 foreach ($row as $value) {
@@ -89,7 +89,7 @@ extract($_POST);
                                 </thead>
                                 <tbody id="new">
                                     <?php
-                                    $query = "select orders.price,products.Name from products join orders on products.ID = orders.ProductID where ResturantID =1";
+                                    $query = "select orders.price,products.Name from products join orders on products.ID = orders.ProductID where ResturantID =1 and frompos=0";
                                     $result = mysqli_query($database, $query);
                                     while ($row = mysqli_fetch_row($result)) {
                                         print("<tr style='width:100%;'>");
@@ -101,21 +101,19 @@ extract($_POST);
                                     $result = mysqli_query($database, $query1);
                                     $row = mysqli_fetch_row($result);
                                     if (mysqli_num_rows($result) > 0) {
-                                        foreach ($row as $value)
+                                        foreach ($row as $value) {
                                             print("<tr><td style='font-weight:bold;'>$value</td>");
+                                            $total = $value;
+                                        }
                                     }
                                     print("<td style='font-weight:bold;'>المبلغ الاجمالي</td></tr>");
-                                    $query2 = "UPDATE carts SET Payed=1 where ID = $Rid";
-                                    $result = mysqli_query($database, $query2);
-                                    $query2 = "UPDATE carts2 SET Payed=1 where ID = $Rid";
-                                    $result = mysqli_query($database, $query2);
                                     ?>
                                 </tbody>
                             </table>
                         </div>
                         <div style="margin-left:65%;">
                             <?php
-                            $qq = "select Description from carts where resturantId = 1";
+                            $qq = "select Description from carts where ID = $Rid";
                             $result = mysqli_query($database, $qq);
                             while ($row = mysqli_fetch_row($result)) {
                                 print("<tr><td class='notes'>الملاحظات : ");
@@ -129,14 +127,17 @@ extract($_POST);
                 </div>
             </div>
     </section>
-    <form method="post">
-        <input type="submit" formaction="Eastern.php" value="العودة" class="button">
+    <form method="POST" action="eastern.php">
+        <input type="submit" onclick="calc()" value="الدفع" class="button">
         <?php
+        $query2 = "UPDATE carts SET Payed=1 where ID = $Rid";
+        $result = mysqli_query($database, $query2);
+        $query2 = "UPDATE carts2 SET Payed=1 where ID = $Rid";
+        $result = mysqli_query($database, $query2);
         $qu = "delete from carts where payed=1";
         $result = mysqli_query($database, $qu);
-        $qu2 = "delete from orders where resturantid=1 and frompos=1";
-        $result = mysqli_query($database, $qu2);
-        ?>
+        $qu2 = "delete from orders where resturantid=1";
+        $result = mysqli_query($database, $qu2); ?>
     </form>
 </body>
 
@@ -228,5 +229,12 @@ function displayClock() {
     var time = new Date().toLocaleTimeString();
     document.getElementById("time").innerHTML = time;
     setTimeout(displayClock, 1000);
+}
+
+function calc() {
+    var m = prompt("أدخل المبلغ المدفوع لمعرفة المبلغ المتبقي");
+    var t = m - <?php echo $total; ?>;
+    alert("المبلغ المتبقي = " + t);
+    alert("تمت عملية الدفع بنجاح ");
 }
 </script>
