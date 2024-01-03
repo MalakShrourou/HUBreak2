@@ -128,7 +128,7 @@ extract($_POST);
     </section>
     <form method="post">
         <input type="submit" formaction="zaza.php" value="العودة" class="button">
-        <?php $q = "UPDATE orders set payed = 5 where resturantId=1";
+        <?php $q = "UPDATE orders set payed = 5 where resturantId=5";
         $result = mysqli_query($database, $q); ?>
         ?>
     </form>
